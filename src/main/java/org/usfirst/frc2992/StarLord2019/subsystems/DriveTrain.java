@@ -96,9 +96,6 @@ public class DriveTrain extends Subsystem {
         rightVictorDrive1 = new WPI_VictorSPX(5);
 
         rightVictorDrive2 = new WPI_VictorSPX(6);
-   
-        driveGearShift = new Solenoid(0, 0);
-        addChild("driveGearShift",driveGearShift);
         
         navx = new AHRS(SPI.Port.kMXP);
 
@@ -193,13 +190,15 @@ public class DriveTrain extends Subsystem {
         right = Math.max(-1.0, Math.min(1.0,  right));
         left = Math.max(-1.0, Math.min(1.0,  left));
 
-        rightTalonDrive.set(right);
+        //rightTalonDrive.set(right);
+        talon6.set(right);
         leftTalonDrive.set(left);
     }
 
     public void highGear(){
         driveGearShift.set(true);
     }
+    
 
     public void lowGear(){
         driveGearShift.set(false);
