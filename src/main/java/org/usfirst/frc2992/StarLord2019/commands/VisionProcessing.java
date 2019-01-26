@@ -66,7 +66,7 @@ public class VisionProcessing extends Command {
         SmartDashboard.putNumber("LimeLightArea", area);
 
         if(Math.abs(x) > 1.5){
-            //AutoDriveTurn(-x);
+            AutoDriveTurn(-x);
         } else if(Math.abs(x) <= 1.5){
             //AutoDriveFwd(dist);
         }
