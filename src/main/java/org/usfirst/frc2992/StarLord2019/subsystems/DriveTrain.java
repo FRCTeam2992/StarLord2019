@@ -114,8 +114,8 @@ public class DriveTrain extends Subsystem {
         talon6.set(mode, demand0, demand1Type, demand1);
         
         talon6.configAllowableClosedloopError(slotIdx, allowableCloseLoopError, timeoutMs);
-        
-    */
+        */
+    
         driveGearShift = new Solenoid(0,0);//(device #, port #)
         driveGearShift.setSubsystem("DriveTrain");
         driveGearShift.setName("driveGearShift");
