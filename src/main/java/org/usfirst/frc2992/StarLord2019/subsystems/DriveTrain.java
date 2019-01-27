@@ -104,17 +104,16 @@ public class DriveTrain extends Subsystem {
         talon6.setSubsystem("testing");
         LiveWindow.add(talon6);
         talon6.setSensorPhase(true);
-        talon6.set(ControlMode.Position, 4600);
-        /*
-        talon6.configClosedloopRamp(10);
-        talon6.config_kP(0, .1);
-        talon6.config_kI(0, 0);
-        talon6.config_kD(0, 0);
-        talon6.config_kF(0, 0);
-        talon6.set(mode, demand0, demand1Type, demand1);
+        talon6.set(ControlMode.Position, 4096*5);
         
-        talon6.configAllowableClosedloopError(slotIdx, allowableCloseLoopError, timeoutMs);
-        */
+        talon6.configClosedloopRamp(.1);// (seconds from min to full power)
+        talon6.config_kP(0, .243);// (slot, value)
+        talon6.config_kI(0, 0.0019);
+        talon6.config_kD(0, 10.35);
+        talon6.config_kF(0, 0);
+        talon6.config_IntegralZone(0, 150);
+        talon6.configAllowableClosedloopError(0, 20, 50);// (slot, error, timeoutMs)
+        
     
         driveGearShift = new Solenoid(0,0);//(device #, port #)
         driveGearShift.setSubsystem("DriveTrain");
