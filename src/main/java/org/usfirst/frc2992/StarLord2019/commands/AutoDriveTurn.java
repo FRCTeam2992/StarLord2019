@@ -54,7 +54,9 @@ public class AutoDriveTurn extends Command {
         timer.start();
 
         //RESET ENCODERS
+    
         //SET HEADING
+        Robot.driveTrain.SmartDriveRot(m_Heading);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -66,7 +68,7 @@ public class AutoDriveTurn extends Command {
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        if (timer.get()>= m_TimeOut){ //ADD IF REACHED SETPOINT
+        if (timer.get()>= m_TimeOut && Robot.driveTrain.turnPID.onTarget()){ //ADD IF REACHED SETPOINT
             return true;
         } else{
             return false;
