@@ -274,7 +274,6 @@ public class DriveTrain extends Subsystem {
         turnPID.setName("turnPID");
         LiveWindow.add(turnPID);
         
-        yeeHaw(11);
         turnPID.disable();
     }
     /*
