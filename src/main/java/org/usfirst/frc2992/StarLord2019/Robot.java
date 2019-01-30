@@ -18,6 +18,9 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+
 import org.usfirst.frc2992.StarLord2019.commands.*;
 import org.usfirst.frc2992.StarLord2019.subsystems.*;
 import edu.wpi.first.networktables.*;
@@ -86,6 +89,8 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void disabledInit(){
+        driveTrain.leftTalonDrive.setNeutralMode(NeutralMode.Coast);
+        driveTrain.rightTalonDrive.setNeutralMode(NeutralMode.Coast);
 
     }
 
@@ -96,6 +101,7 @@ public class Robot extends TimedRobot {
 
     @Override
     public void autonomousInit() {
+        driveTrain.navx.zeroYaw();
         autonomousCommand = chooser.getSelected();
         // schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
@@ -124,6 +130,18 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        
+    }
+    void dashUpdate() {
+        SmartDashboard.putNumber("Gyro Angle", driveTrain.navx.getYaw());
+        SmartDashboard.putNumber("Gyro Pitch", driveTrain.navx.getPitch());
+        SmartDashboard.putNumber("Gyro Roll", driveTrain.navx.getRoll());
+        SmartDashboard.putNumber("Left Enc", driveTrain.leftTalonDrive.getSelectedSensorPosition());
+        SmartDashboard.putNumber("Right Enc", driveTrain.rightTalonDrive.getSelectedSensorPosition());
+
+        SmartDashboard.putNumber("Lift Enc", lift.liftTalon.getSelectedSensorPosition());
+
+        SmartDashboard.putBoolean("Cargo Sensor", cargoIntake.cargoDistSensor.get());
         
     }
 

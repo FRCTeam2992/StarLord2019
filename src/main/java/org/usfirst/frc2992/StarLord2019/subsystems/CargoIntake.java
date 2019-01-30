@@ -40,7 +40,7 @@ public class CargoIntake extends Subsystem {
     private Solenoid goundIntakeSol;
     private WPI_VictorSPX cargoIntakeMtr;
     private WPI_VictorSPX cargoPickUpMtr;
-    private DigitalInput cargoDistSensor;
+    public DigitalInput cargoDistSensor;
     private Solenoid cargoCarriageSol;
 
 

@@ -11,6 +11,8 @@
 
 package org.usfirst.frc2992.StarLord2019.commands;
 import edu.wpi.first.wpilibj.command.Command;
+
+import org.usfirst.frc2992.StarLord2019.Constants;
 import org.usfirst.frc2992.StarLord2019.Robot;
 
 /**
@@ -45,7 +47,7 @@ public class CargoGroundFeedwheel extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        if (sensorValue < (4096*.5)) {
+        if (sensorValue < (Constants.driveEncDist * 0.5)) {
             Robot.cargoIntake.CargoGroundFeed(m_Power);
         }else {
             Robot.cargoIntake.CargoGroundFeed(0);

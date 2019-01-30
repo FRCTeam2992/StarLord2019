@@ -11,6 +11,9 @@
 
 package org.usfirst.frc2992.StarLord2019.commands;
 import edu.wpi.first.wpilibj.command.Command;
+
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+
 import org.usfirst.frc2992.StarLord2019.Robot;
 import edu.wpi.first.wpilibj.Timer;
 
@@ -54,6 +57,8 @@ public class AutoDriveTurn extends Command {
         timer.start();
 
         //RESET ENCODERS
+        Robot.driveTrain.rightTalonDrive.setSelectedSensorPosition(0, 0 , 1);
+        Robot.driveTrain.leftTalonDrive.setSelectedSensorPosition(0, 0, 1);
     
         //SET HEADING
         Robot.driveTrain.SmartDriveRot(m_Heading);
@@ -68,7 +73,7 @@ public class AutoDriveTurn extends Command {
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        if (timer.get()>= m_TimeOut && Robot.driveTrain.turnPID.onTarget()){ //ADD IF REACHED SETPOINT
+        if (timer.get()>= m_TimeOut || Robot.driveTrain.turnPID.onTarget()){ //ADD IF REACHED SETPOINT
             return true;
         } else{
             return false;
@@ -78,11 +83,18 @@ public class AutoDriveTurn extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
+        Robot.driveTrain.leftTalonDrive.setNeutralMode(NeutralMode.Coast);
+        Robot.driveTrain.rightTalonDrive.setNeutralMode(NeutralMode.Coast);
+        Robot.driveTrain.allStop();
+
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
+        Robot.driveTrain.leftTalonDrive.setNeutralMode(NeutralMode.Coast);
+        Robot.driveTrain.rightTalonDrive.setNeutralMode(NeutralMode.Coast);
+        Robot.driveTrain.allStop();
     }
 }

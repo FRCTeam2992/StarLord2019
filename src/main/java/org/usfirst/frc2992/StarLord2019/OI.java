@@ -151,7 +151,7 @@ public class OI {
         SmartDashboard.putData("HatchIntakeExtend", new HatchIntakeExtend(true));
         SmartDashboard.putData("HatchIntakeGrab", new HatchIntakeGrab(true));
         SmartDashboard.putData("HatchPickupFromGround", new HatchPickupFromGround(true));
-        SmartDashboard.putData("LiftSetHeight", new LiftSetHeight());
+        SmartDashboard.putData("LiftSetHeight", new LiftSetHeight(0, 0));
         SmartDashboard.putData("LiftUp", new LiftMove(.5));
         SmartDashboard.putData("LiftDown", new LiftMove(-.5));
         SmartDashboard.putData("LiftStop", new LiftStop());
