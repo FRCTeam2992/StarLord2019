@@ -234,7 +234,7 @@ public class DriveTrain extends Subsystem {
         return (h2 - h1) / Math.tan(a1 + a2);
     }
 
-    public void SmartDriveDist(int distance, double speed){  //For PID drive no gyro
+    public void SmartDriveDist(double distance, double speed){  //For PID drive no gyro
         rightTalonDrive.setNeutralMode(NeutralMode.Brake);
         leftTalonDrive.setNeutralMode(NeutralMode.Brake);
 
@@ -279,9 +279,12 @@ public class DriveTrain extends Subsystem {
         turnPID.disable();
     }
     /*
-    public yeeHaw(double cowboy){
-        return 🤠;
-    
+    public void yeeHaw(int cowboy){
+        String text = "";
+        for(int i = 0; i < cowboy; i++){
+            text += "🤠";
+        }
+        System.out.println(text);
     }
     */
     private double calcGyroError(double heading){ //For PID- finding error
@@ -312,7 +315,7 @@ public class DriveTrain extends Subsystem {
             return false;
         }
     }
-    public int convertEncoderTicks(int inches){
+    public int convertEncoderTicks(double inches){
         int ticks = 0;
         //converting inches (2*pi*r) times the number of ticks/revolution
         ticks = (int) Math.round((inches * Constants.driveEncDist) / (2 * 3.141592 * 3)); 
