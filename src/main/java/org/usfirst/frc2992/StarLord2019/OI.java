@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.*;
 import org.usfirst.frc2992.StarLord2019.subsystems.*;
 import org.usfirst.frc2992.StarLord2019.mhJoystick;
+import org.usfirst.frc2992.StarLord2019.Constants;
 
 
 /**
@@ -63,6 +64,10 @@ public class OI {
     public JoystickButton hatchReleaseBtn;
     public JoystickButton liftUpBtn;
     public JoystickButton liftDownBtn;
+    public JoystickButton liftSetBottomRocket;
+    public JoystickButton liftSetMiddleRocket;
+    public JoystickButton liftSetTopRocket;
+    public JoystickButton liftSetCargo;
     public JoystickButton gearShiftBtn;
     public JoystickButton cargoDeployBtn;
     public JoystickButton groundWheelsBtn;
@@ -121,6 +126,15 @@ public class OI {
         liftDownBtn.whileHeld(new LiftMove(-.5));
         liftUpBtn = new JoystickButton(rightJoy, 3);
         liftUpBtn.whileHeld(new LiftMove(.5));
+        liftSetBottomRocket = new JoystickButton(buttonBox, 11);
+        liftSetBottomRocket.whenPressed(new LiftSetHeight(Constants.bottomRocketHeight, 2));    //maybe change timeout
+        liftSetMiddleRocket = new JoystickButton(buttonBox, 12);
+        liftSetMiddleRocket.whenPressed(new LiftSetHeight(Constants.middleRocketHeight, 2));
+        liftSetTopRocket = new JoystickButton(buttonBox, 13);
+        liftSetTopRocket.whenPressed(new LiftSetHeight(Constants.topRocketHeight, 2));
+        liftSetCargo = new JoystickButton(buttonBox, 14);
+        liftSetCargo.whenPressed(new LiftSetHeight(Constants.cargoLoadHeight, 2));
+
 
         //hatch intake btns
         hatchGrabBtn = new JoystickButton(rightJoy, 2);
