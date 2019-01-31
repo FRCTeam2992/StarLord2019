@@ -77,7 +77,7 @@ public class VisionProcessing extends Command {
         } else if(Math.abs(x) <= 1.5){//if angle is close within 1.5deg, just drive towards it
             dist = Robot.driveTrain.getDist(camHt, tarHt, camAngle, y);
             //newDist = (int) Math.round(dist);
-            new AutoDriveFwd((int)Math.round(dist), 0.5, 3, true, x); 
+            new AutoDriveFwd(dist, 0.5, 3, true, x); 
         }
     }
 

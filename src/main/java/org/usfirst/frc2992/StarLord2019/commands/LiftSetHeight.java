@@ -21,8 +21,7 @@ public class LiftSetHeight extends Command {
     private double m_Height; //Height in inches
     private double m_Timeout;    
 
-    private boolean isDone = false;
-    //private boolean up;
+    private boolean isDone = false;  //Are we at our selected position
 
     Timer liftTime;
 
@@ -55,18 +54,19 @@ public class LiftSetHeight extends Command {
     protected void initialize() {
         this.setInterruptible(true);
 
-        //up = (Robot.driveTrain.convertEncoderTicks((int) Math.round(m_Height)) > Robot.lift.liftTalon.getSelectedSensorPosition());
-
-        Robot.lift.goToHeight((int) Math.round(m_Height));
+        //up
+        Robot.lift.goToHeight(m_Height);  //Move to selected height
     
-        liftTime.reset();
+        liftTime.reset(); //Reset and start timer for timeout
         liftTime.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        isDone = Math.abs(Robot.driveTrain.convertEncoderTicks((int) Math.round(m_Height)) - Robot.lift.liftTalon.getSelectedSensorPosition()) <= 20;
+
+        //Determines if the lift motor is on target
+        isDone = Math.abs(Robot.driveTrain.convertEncoderTicks(m_Height) - Robot.lift.liftTalon.getSelectedSensorPosition()) <= 20;
 
     }
 

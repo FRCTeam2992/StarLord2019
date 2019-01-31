@@ -103,7 +103,7 @@ public class Lift extends Subsystem {
         
     }
 
-    public void goToHeight(int height){
+    public void goToHeight(double height){
         height = Math.max(0, Math.min(height, liftMaxTravel));
         height = Robot.driveTrain.convertEncoderTicks(height);
 
