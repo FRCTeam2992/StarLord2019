@@ -24,6 +24,7 @@ public class Constants {
     public static final double middleRocketHeight = 0;
     public static final double bottomRocketHeight = 0;
     public static final double cargoLoadHeight = 0;
+    public static final double hatchLoadingGrabTimeout = 0.3;
 
     
 
