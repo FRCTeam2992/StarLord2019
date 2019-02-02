@@ -122,11 +122,11 @@ public class OI {
 
         //lift btns
         liftDownBtn = new JoystickButton(rightJoy, 4);
-        liftDownBtn.whileHeld(new LiftMove(-.2));
+        liftDownBtn.whileHeld(new LiftMove(-.3));
         liftDownBtn.whenReleased(new LiftStop());
 
         liftUpBtn = new JoystickButton(rightJoy, 3);
-        liftUpBtn.whileHeld(new LiftMove(.2));
+        liftUpBtn.whileHeld(new LiftMove(.4)); //0.15 good for backdrive prevention
         liftUpBtn.whenReleased(new LiftStop());
 
         liftSetBottomRocket = new JoystickButton(buttonBox, 11);
