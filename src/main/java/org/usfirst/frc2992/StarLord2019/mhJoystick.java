@@ -50,7 +50,7 @@ public class mhJoystick extends Joystick{
 
 		double val = super.getY();
 
-		return smoothPowerCurve(deadzone(val, .2));
+		return smoothPowerCurve(deadzone(val, .1));//10% deadzone is normal
 
 	}
 

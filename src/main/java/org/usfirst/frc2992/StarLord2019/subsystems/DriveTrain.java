@@ -130,12 +130,14 @@ public class DriveTrain extends Subsystem {
         rightTalonDrive.setName("rightTalonDrive");
         LiveWindow.add(rightTalonDrive);
         rightTalonDrive.setSafetyEnabled(false);
+        rightTalonDrive.set(ControlMode.Position, 4096*5);
     
         leftTalonDrive.setInverted(false);
         leftTalonDrive.setSubsystem("DriveTrain");
         leftTalonDrive.setName("leftTalonDrive");
         LiveWindow.add(leftTalonDrive);
         leftTalonDrive.setSafetyEnabled(false);
+        leftTalonDrive.set(ControlMode.Position, 4096*5);
 
         rightVictorDrive1.follow(rightTalonDrive);
         rightVictorDrive1.setInverted(InvertType.FollowMaster);

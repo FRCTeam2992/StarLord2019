@@ -122,15 +122,22 @@ public class OI {
 
         //lift btns
         liftDownBtn = new JoystickButton(rightJoy, 4);
-        liftDownBtn.whileHeld(new LiftMove(-.5));
+        liftDownBtn.whileHeld(new LiftMove(-.2));
+        liftDownBtn.whenReleased(new LiftStop());
+
         liftUpBtn = new JoystickButton(rightJoy, 3);
-        liftUpBtn.whileHeld(new LiftMove(.5));
+        liftUpBtn.whileHeld(new LiftMove(.2));
+        liftUpBtn.whenReleased(new LiftStop());
+
         liftSetBottomRocket = new JoystickButton(buttonBox, 11);
         liftSetBottomRocket.whenPressed(new LiftSetHeight(Constants.bottomRocketHeight, 2));    //maybe change timeout
+        
         liftSetMiddleRocket = new JoystickButton(buttonBox, 12);
         liftSetMiddleRocket.whenPressed(new LiftSetHeight(Constants.middleRocketHeight, 2));
+        
         liftSetTopRocket = new JoystickButton(buttonBox, 13);
         liftSetTopRocket.whenPressed(new LiftSetHeight(Constants.topRocketHeight, 2));
+        
         liftSetCargo = new JoystickButton(buttonBox, 14);
         liftSetCargo.whenPressed(new LiftSetHeight(Constants.cargoLoadHeight, 2));
 
