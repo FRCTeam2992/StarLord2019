@@ -278,15 +278,7 @@ public class DriveTrain extends Subsystem {
         
         turnPID.disable();
     }
-    /*
-    public void yeeHaw(int cowboy){
-        String text = "";
-        for(int i = 0; i < cowboy; i++){
-            text += "🤠";
-        }
-        System.out.println(text);
-    }
-    */
+
     private double calcGyroError(double heading){ //For PID- finding error
         double error = 0;
         error = scaleAngle(navx.getYaw()) - heading;
