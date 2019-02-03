@@ -64,10 +64,14 @@ public class OI {
     public JoystickButton hatchReleaseBtn;
     public JoystickButton liftUpBtn;
     public JoystickButton liftDownBtn;
-    public JoystickButton liftSetBottomRocket;
-    public JoystickButton liftSetMiddleRocket;
-    public JoystickButton liftSetTopRocket;
-    public JoystickButton liftSetCargo;
+    public JoystickButton liftSetCargoBottomRocket;
+    public JoystickButton liftSetCargoMiddleRocket;
+    public JoystickButton liftSetCargoTopRocket;
+    public JoystickButton liftSetCargoLoad;
+    public JoystickButton liftSetHatchBottomRocket;
+    public JoystickButton liftSetHatchMiddleRocket;
+    public JoystickButton liftSetHatchTopRocket;
+    public JoystickButton liftSetGround;
     public JoystickButton gearShiftBtn;
     public JoystickButton cargoDeployBtn;
     public JoystickButton groundWheelsBtn;
@@ -101,7 +105,7 @@ public class OI {
         climbExtendBtn.whenPressed(new ClimbExtendArms(true));
         
         //cargo intake btns
-        intakeDeployBtn = new JoystickButton(leftJoy, 6);
+        intakeDeployBtn = new JoystickButton(leftJoy, 6); // Top wheel 
         intakeDeployBtn.whenPressed(new CargoIntakeSol(true));
         intakeDeployBtn.whenReleased(new CargoIntakeSol(false));
 
@@ -116,7 +120,7 @@ public class OI {
         groundWheelsBtn.whileHeld(new CargoGroundFeedwheel(.5));
         groundWheelsBtn.whenReleased(new CargoGroundFeedwheel(0));
         
-        cargoDeployBtn = new JoystickButton(leftJoy, 7);
+        cargoDeployBtn = new JoystickButton(leftJoy, 7); // ground wheel 
         cargoDeployBtn.whenPressed(new CargoDeploySol(true));
         cargoDeployBtn.whenReleased(new CargoDeploySol(false));
 
@@ -129,17 +133,31 @@ public class OI {
         liftUpBtn.whileHeld(new LiftMove(.4)); //0.15 good for backdrive prevention
         liftUpBtn.whenReleased(new LiftStop());
 
-        liftSetBottomRocket = new JoystickButton(buttonBox, 11);
-        liftSetBottomRocket.whenPressed(new LiftSetHeight(Constants.bottomRocketHeight, 2));    //maybe change timeout
+        //Cargo lift heights
+        liftSetCargoBottomRocket = new JoystickButton(buttonBox, 1);
+        liftSetCargoBottomRocket.whenPressed(new LiftSetHeight(Constants.bottomRocketCargoHeight, 2));
+
+        liftSetCargoMiddleRocket = new JoystickButton(buttonBox, 2);
+        liftSetCargoMiddleRocket.whenPressed(new LiftSetHeight(Constants.middleRocketCargoHeight, 2));
+
+        liftSetCargoTopRocket = new JoystickButton(buttonBox, 3);
+        liftSetCargoTopRocket.whenPressed(new LiftSetHeight(Constants.topRocketCargoHeight, 2));
         
-        liftSetMiddleRocket = new JoystickButton(buttonBox, 12);
-        liftSetMiddleRocket.whenPressed(new LiftSetHeight(Constants.middleRocketHeight, 2));
-        
-        liftSetTopRocket = new JoystickButton(buttonBox, 13);
-        liftSetTopRocket.whenPressed(new LiftSetHeight(Constants.topRocketHeight, 2));
-        
-        liftSetCargo = new JoystickButton(buttonBox, 14);
-        liftSetCargo.whenPressed(new LiftSetHeight(Constants.cargoLoadHeight, 2));
+        liftSetCargoLoad = new JoystickButton(buttonBox, 14);
+        liftSetCargoLoad.whenPressed(new LiftSetHeight(Constants.cargoLoadHeight, 2));
+
+        liftSetGround = new JoystickButton(buttonBox, 18);
+        liftSetGround.whenPressed(new LiftSetHeight(Constants.cargoGroundHeight, 2));
+
+        //Hatch lift heights
+        liftSetHatchBottomRocket = new JoystickButton(buttonBox, 15);
+        liftSetHatchBottomRocket.whenPressed(new LiftSetHeight(Constants.bottomRocketHatchHeight, 2));
+
+        liftSetHatchMiddleRocket = new JoystickButton(buttonBox, 16);
+        liftSetHatchMiddleRocket.whenPressed(new LiftSetHeight(Constants.middleRocketHatchHeight, 2));
+
+        liftSetHatchTopRocket = new JoystickButton(buttonBox, 17);
+        liftSetHatchTopRocket.whenPressed(new LiftSetHeight(Constants.topRocketHatchHeight, 2));
 
 
         //hatch intake btns

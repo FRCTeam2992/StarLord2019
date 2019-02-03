@@ -20,10 +20,18 @@ package org.usfirst.frc2992.StarLord2019;
 public class Constants {
     public static final int driveEncDist = 4096;
     
-    public static final double topRocketHeight = 0; //Put in values
-    public static final double middleRocketHeight = 0;
-    public static final double bottomRocketHeight = 0;
+    //Cargo lift heights
+    public static final double topRocketCargoHeight = 0; //Put in values
+    public static final double middleRocketCargoHeight = 0;
+    public static final double bottomRocketCargoHeight = 0;
     public static final double cargoLoadHeight = 0;
+    public static final double cargoGroundHeight = 0;
+
+    //Hatch lift heights
+    public static final double topRocketHatchHeight = 0;
+    public static final double middleRocketHatchHeight = 0;
+    public static final double bottomRocketHatchHeight = 0;
+
     public static final double hatchLoadingGrabTimeout = 0.3;
 
     
