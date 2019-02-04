@@ -58,12 +58,12 @@ public class Climber extends Subsystem {
         climbMtr2 = new WPI_TalonSRX(12);
         
         
-        
+       /* 
         climbHeightEnc = new Encoder(4, 5, false, EncodingType.k4X);
         addChild("ClimbHeightEnc",climbHeightEnc);
         climbHeightEnc.setDistancePerPulse(1.0);
         climbHeightEnc.setPIDSourceType(PIDSourceType.kRate);
-        
+        */
         climbTopSwitch = new DigitalInput(2);
         addChild("ClimbTopSwitch",climbTopSwitch);
         

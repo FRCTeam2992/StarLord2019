@@ -134,7 +134,7 @@ public class OI {
         liftUpBtn.whenReleased(new LiftStop());
 
         //Cargo lift heights
-        liftSetCargoBottomRocket = new JoystickButton(buttonBox, 1);
+        liftSetCargoBottomRocket = new JoystickButton(rightJoy, 12);//btn box 1
         liftSetCargoBottomRocket.whenPressed(new LiftSetHeight(Constants.bottomRocketCargoHeight, 2));
 
         liftSetCargoMiddleRocket = new JoystickButton(buttonBox, 2);

@@ -50,7 +50,7 @@ public class LiftStop extends Command {
     @Override
     protected void execute() {
         if (stopTimer.get() < 30){  //Prevents backdriving on robot
-            Robot.lift.liftMove(.15);
+            Robot.lift.liftMove(0);//.15
         } else {
             Robot.lift.liftStop();
         }

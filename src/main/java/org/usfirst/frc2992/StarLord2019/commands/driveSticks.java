@@ -55,7 +55,7 @@ public class driveSticks extends Command {
         }
 
         if(Robot.oi.leftJoy.getTrigger()){
-            Robot.driveTrain.tankDrive(-left, -right);
+            Robot.driveTrain.tankDrive(-right, -left);
         } else{
             Robot.driveTrain.tankDrive(left, right);
         }
