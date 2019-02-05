@@ -99,5 +99,14 @@ public class HatchIntake extends Subsystem {
     public void HatchPickupFromGround(Boolean ground){
         hatchGroundPickupSol.set(ground);
     }
+    /*
+    public void yeeHaw(int cowboy){
+        String text = "";
+        for(int i = 0; i < cowboy; i++){
+            text += "Yeehaw! ";
+        }
+        System.out.println(text);
+    }
+    */
 }
 

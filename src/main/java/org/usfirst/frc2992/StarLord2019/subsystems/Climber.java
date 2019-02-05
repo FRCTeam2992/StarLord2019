@@ -105,9 +105,11 @@ public class Climber extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-    public void ClimbUp(){
-        climbMtr1.set(.5);
-        climbMtr2.set(.5);
+    public void ClimbFrontUp(double Speed){
+        climbMtr1.set(Speed);
+    }
+    public void ClimbBackUp(double Speed){
+        climbMtr2.set(Speed);
     }
     public void ClimbStop(){
         climbMtr1.set(0);
