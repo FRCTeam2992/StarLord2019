@@ -144,5 +144,10 @@ public class Robot extends TimedRobot {
         SmartDashboard.putBoolean("Cargo Sensor", cargoIntake.cargoDistSensor.get());
         
     }
+    public void setAutoMode() {
+        int autoMode = 0;
+        //if (autoSwitch1.get()){
 
+       // }
+    }
 }

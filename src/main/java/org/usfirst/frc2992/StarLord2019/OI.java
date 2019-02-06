@@ -120,9 +120,11 @@ public class OI {
         liftSetGround = new JoystickButton(buttonBox, 5);
         liftSetGround.whenPressed(new LiftSetHeight(Constants.cargoGroundHeight, 2));
 
-        autoGroundFeedBtn = new JoystickButton(buttonBox, 6); //ADD STUFF
+        autoGroundFeedBtn = new JoystickButton(buttonBox, 6); 
+        autoGroundFeedBtn.whenPressed(new autoCargoLoadGround());
 
-        autoStationFeedBtn = new JoystickButton(buttonBox, 7);//ADD STUFF
+        autoStationFeedBtn = new JoystickButton(buttonBox, 7);
+        autoStationFeedBtn.whenPressed(new autoCargoLoadStation());
 
         liftUpBtn = new JoystickButton(buttonBox, 8);
         liftUpBtn.whileHeld(new LiftMove(.4)); //0.15 good for backdrive prevention
@@ -156,10 +158,10 @@ public class OI {
 
 
         autoHatchLoadBtn = new JoystickButton(buttonBox2, 3);
-        //autoHatchLoadBtn.whenPressed(command); ADD STUFF
+        autoGroundFeedBtn.whenPressed(new autoHatchLoad());
 
         autoHatchScoreBtn = new JoystickButton(buttonBox2, 4);
-        //autoHatchScoreBtn.whenPressed(command); ADD STUFF
+        autoStationFeedBtn.whenPressed(new autoHatchScore());
 
         hatchGroundBtn = new JoystickButton(buttonBox2, 5);
         hatchGroundBtn.whenPressed(new HatchPickupFromGround(true));
@@ -225,7 +227,6 @@ public class OI {
         SmartDashboard.putData("LiftDown", new LiftMove(-.5));
         SmartDashboard.putData("LiftStop", new LiftStop());
         SmartDashboard.putData("CargoDeploySol", new CargoDeploySol(true));
-        SmartDashboard.putData("CargoIntakelSol", new CargoIntakeSol(true));
         SmartDashboard.putData("CargoGroundFeedwheel", new CargoGroundFeedwheel(0.5));
         SmartDashboard.putData("CargoIntakeFeedWheel", new CargoIntakeFeedWheel(0.5));
         SmartDashboard.putData("driveSticks", new driveSticks());
