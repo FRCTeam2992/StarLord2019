@@ -87,6 +87,7 @@ public class OI {
     public JoystickButton autoHatchLoadBtn; //Hatch
     public JoystickButton autoHatchScoreBtn; //Hatch
     public JoystickButton groundRevCargoBtn;
+    public JoystickButton limitSwitchOverrideBtn;
     public JoystickButton autoSwtich1;
     public JoystickButton autoSwtich2;
     public JoystickButton autoSwtich3;
@@ -153,6 +154,9 @@ public class OI {
         feedWheelOutBtn = new JoystickButton(buttonBox, 14);
         feedWheelOutBtn.whileHeld(new CargoIntakeFeedWheel(-.50));
         feedWheelOutBtn.whenReleased(new CargoIntakeFeedWheel(0));
+
+        limitSwitchOverrideBtn = new JoystickButton(buttonBox, 15); //ADD STUFF
+        //limitSwitchOverrideBtn.whenPressed(command);
 
         //Second Button Box
 
