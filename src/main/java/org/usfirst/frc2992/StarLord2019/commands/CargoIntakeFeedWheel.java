@@ -52,6 +52,7 @@ public class CargoIntakeFeedWheel extends Command {
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
+        //if have a ball in the carriage, stop intaking
         if(Robot.cargoIntake.cargoPickUpMtr.get() == 0){
             return true;
         } else{

@@ -41,7 +41,6 @@ public class HatchIntakeExtend extends Command {
     @Override
     protected void initialize() {
         this.setInterruptible(true);
-        Robot.hatchIntake.HatchIntakeExtend(false);
     }
     // Called repeatedly when this Command is scheduled to run
     @Override

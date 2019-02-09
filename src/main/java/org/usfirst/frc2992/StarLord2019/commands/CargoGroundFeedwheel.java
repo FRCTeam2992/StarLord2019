@@ -47,6 +47,7 @@ public class CargoGroundFeedwheel extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
+        //make sure the lift is down before intaking
         if (sensorValue < (Constants.driveEncDist * 0.5)) {
             Robot.cargoIntake.CargoGroundFeed(m_Power);
         }else {

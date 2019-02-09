@@ -58,9 +58,11 @@ public class OI {
     public mhJoystick leftJoy;
     public Joystick buttonBox;
     public Joystick buttonBox2;
+
     public JoystickButton hatchExtRetBtn;
     public JoystickButton hatchGroundBtn;
     public JoystickButton hatchGrabRelBtn;
+
     public JoystickButton liftUpBtn;
     public JoystickButton liftDownBtn;
     public JoystickButton liftSetCargoBottomRocket;
@@ -69,24 +71,29 @@ public class OI {
     public JoystickButton liftSetMiddleRocket;
     public JoystickButton liftSetTopRocket;
     public JoystickButton liftSetGround;
+
     public JoystickButton gearShiftBtn;
+
     public JoystickButton cargoDeployBtn;
     public JoystickButton groundFwdCargoBtn;
     public JoystickButton feedWheelInBtn;
     public JoystickButton feedWheelOutBtn;
     public JoystickButton intakeDeployBtn;
+    public JoystickButton groundRevCargoBtn;
+
     public JoystickButton climbExtendBtn;
     public JoystickButton climbDeployBtn;
     public JoystickButton climbUpRearBtn;
     public JoystickButton climbDownRearBtn;
     public JoystickButton climbUpFrontBtn;
     public JoystickButton climbDownFrontBtn;
+
     public JoystickButton autoAlignBtn;
     public JoystickButton autoGroundFeedBtn;//Cargo
     public JoystickButton autoStationFeedBtn;//Cargo
     public JoystickButton autoHatchLoadBtn; //Hatch
     public JoystickButton autoHatchScoreBtn; //Hatch
-    public JoystickButton groundRevCargoBtn;
+ 
     public JoystickButton limitSwitchOverrideBtn;
     public JoystickButton autoSwtich1;
     public JoystickButton autoSwtich2;
@@ -104,7 +111,7 @@ public class OI {
         buttonBox = new Joystick(2);
         buttonBox2 = new Joystick(3);
 
-        //First Button Box
+    //First Button Box
         liftSetTopRocket = new JoystickButton(buttonBox, 1);
         liftSetTopRocket.whenPressed(isCargoMode? new LiftSetHeight(Constants.topRocketCargoHeight, 2): new LiftSetHeight(Constants.topRocketHatchHeight, 2));
 
@@ -156,11 +163,9 @@ public class OI {
         feedWheelOutBtn.whenReleased(new CargoIntakeFeedWheel(0));
 
         limitSwitchOverrideBtn = new JoystickButton(buttonBox, 15); //ADD STUFF
-        //limitSwitchOverrideBtn.whenPressed(command);
+        //limitSwitchOverrideBtn.whenPressed(Robot.lift.liftTalon.);
 
-        //Second Button Box
-
-
+    //Second Button Box
         autoHatchLoadBtn = new JoystickButton(buttonBox2, 3);
         autoGroundFeedBtn.whenPressed(new autoHatchLoad());
 
@@ -178,8 +183,6 @@ public class OI {
         hatchExtRetBtn = new JoystickButton(buttonBox2, 7);
         hatchExtRetBtn.whenPressed(new HatchIntakeExtend(true));
         hatchExtRetBtn.whenReleased(new HatchIntakeExtend(false));
-
-       
 
         climbDeployBtn = new JoystickButton(buttonBox2, 8);
         climbDeployBtn.whenPressed(new ClimbExtendArms(false));
@@ -201,25 +204,26 @@ public class OI {
         climbDownFrontBtn.whileHeld(new ClimbFrontUp(-.5));
         climbDownFrontBtn.whenReleased(new ClimbStop());
 
-       climbExtendBtn = new JoystickButton(buttonBox2, 13);
-       climbExtendBtn.whenPressed(new ClimbExtendArms(true));
+        climbExtendBtn = new JoystickButton(buttonBox2, 13);
+        climbExtendBtn.whenPressed(new ClimbExtendArms(true));
 
-       autoSwtich1 = new JoystickButton(buttonBox2, 14);
+        autoSwtich1 = new JoystickButton(buttonBox2, 14);
 
-       autoSwtich2 = new JoystickButton(buttonBox2, 15);
+        autoSwtich2 = new JoystickButton(buttonBox2, 15);
 
-       autoSwtich3 = new JoystickButton(buttonBox2, 16);
+        autoSwtich3 = new JoystickButton(buttonBox2, 16);
 
-       autoSwtich4 = new JoystickButton(buttonBox2, 17);
+        autoSwtich4 = new JoystickButton(buttonBox2, 17);
 
-       autoSwtich5 = new JoystickButton(buttonBox2, 18);
+        autoSwtich5 = new JoystickButton(buttonBox2, 18);
 
-       autoSwtich6 = new JoystickButton(buttonBox2, 19);
+        autoSwtich6 = new JoystickButton(buttonBox2, 19);
 
         //Vision Processing Btn
         autoAlignBtn = new JoystickButton(buttonBox, 6);
         autoAlignBtn.whileHeld(new VisionProcessing());
         autoAlignBtn.whenReleased(new driveSticks());
+        
 
         // SmartDashboard Buttons
         SmartDashboard.putData("Autonomous Command", new AutonomousCommand());

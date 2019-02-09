@@ -30,10 +30,12 @@ public class autoMiddleToLeftCargo extends CommandGroup {
     // e.g. if Command1 requires chassis, and Command2 requires arm,
     // a CommandGroup containing them would require both the chassis and the
     // arm.
+
     //Need to start at the bottom left corner at the center of the middle HAB
     addSequential(new AutoDriveFwd(47.5,.5, 2, true, 0));
     addSequential(new AutoDriveFwd(88.51,.5, 2, true, -1));
     addParallel(new HatchIntakeExtend(true));
     addSequential(new autoHatchScore());
+    
   }
 }

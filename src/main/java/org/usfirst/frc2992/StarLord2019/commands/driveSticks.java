@@ -41,6 +41,7 @@ public class driveSticks extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
+        this.setInterruptible(true);//Need this bc Vision Processing needs DT
         Robot.driveTrain.allStop();
     }
 

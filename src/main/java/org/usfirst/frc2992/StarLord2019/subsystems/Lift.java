@@ -100,15 +100,10 @@ public class Lift extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-    // HOW TO DO PID WITH TALONS
-    //liftTalon.config_kP(slotIdx, value, timeoutMs)
-    //liftTalon.config_kI(slotIdx, value, timeoutMs)
-    //liftTalon.config_kD(slotIdx, value, timeoutMs)
-
     public void liftMove(double speed){
         //if(liftTalon.configForwardLimitSwitchSource(type, normalOpenOrClose))
         liftTalon.set(speed);
-        
+        liftTalon.configClearPositionOnLimitR(true, 10); //(clear Posn, TimeoutMS)
     }
 
     public void goToHeight(double height){
@@ -122,6 +117,13 @@ public class Lift extends Subsystem {
 
     public void liftStop(){
         liftTalon.set(0);
+    }
+
+    public void holdPosn(){
+        //height = Robot.driveTrain.convertEncoderTicks(height);
+        double height = liftTalon.getSelectedSensorPosition();
+
+        liftTalon.set(ControlMode.Position, height);
     }
 
 }

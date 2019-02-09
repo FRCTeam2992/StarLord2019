@@ -34,7 +34,10 @@ public class Constants {
 
     public static final double hatchLoadingGrabTimeout = 0.3;
 
-    
+    //VP Constants
+    public static final double camHt = 0;
+    public static final double tarHt = 0;
+    public static final double camAngle = 0;
 
 }
 

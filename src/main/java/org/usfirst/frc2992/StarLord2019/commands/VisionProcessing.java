@@ -11,6 +11,9 @@
 
 package org.usfirst.frc2992.StarLord2019.commands;
 import edu.wpi.first.wpilibj.command.Command;
+
+import org.usfirst.frc2992.StarLord2019.Constants;
+import org.usfirst.frc2992.StarLord2019.GlobalVariables;
 import org.usfirst.frc2992.StarLord2019.Robot;
 import edu.wpi.first.networktables.*;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -32,9 +35,9 @@ public class VisionProcessing extends Command {
     NetworkTableEntry ta = table.getEntry("ta"); //target area
     double x = 0;
     double dist = 0;
-    private final double camHt = 0;
-    private final double tarHt = 0;
-    private final double camAngle = 0;
+    private double camHt = Constants.camHt;
+    private double tarHt = Constants.tarHt;
+    private double camAngle = Constants.camAngle;
     //private int newDist = 0;// Needs int value for AutoDriveFwd
 
 
@@ -63,21 +66,23 @@ public class VisionProcessing extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        //values from limelight
-        x = tx.getDouble(0.0);
-        double y = ty.getDouble(0.0);
-        double area = ta.getDouble(0.0);
+        if(GlobalVariables.isCargoMode){//no Limelight on Cargo side, make sure no VP running
+            //values from limelight
+            x = tx.getDouble(0.0); //needs to be global
+            double y = ty.getDouble(0.0);
+            double area = ta.getDouble(0.0);
 
-        SmartDashboard.putNumber("LimeLightX", x);
-        SmartDashboard.putNumber("LimeLightY", y);
-        SmartDashboard.putNumber("LimeLightArea", area);
+            SmartDashboard.putNumber("LimeLightX", x);
+            SmartDashboard.putNumber("LimeLightY", y);
+            SmartDashboard.putNumber("LimeLightArea", area);
 
-        if(Math.abs(x) > 1.5){// if angle b/w middle of pic and bot, turn towards target
-            new AutoDriveTurn(-x, 0.5, 3);
-        } else if(Math.abs(x) <= 1.5){//if angle is close within 1.5deg, just drive towards it
-            dist = Robot.driveTrain.getDist(camHt, tarHt, camAngle, y);
-            //newDist = (int) Math.round(dist);
-            new AutoDriveFwd(dist, 0.5, 3, true, x); 
+            if(Math.abs(x) > 1.5){// if angle b/w middle of pic and bot, turn towards target
+                new AutoDriveTurn(-x, 0.5, 3);
+            } else if(Math.abs(x) <= 1.5){//if angle is close within 1.5deg, just drive towards it
+                dist = Robot.driveTrain.getDist(camHt, tarHt, camAngle, y);
+                //newDist = (int) Math.round(dist);
+                new AutoDriveFwd(dist, 0.5, 3, true, x); 
+            }
         }
     }
 

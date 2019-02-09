@@ -19,6 +19,7 @@ package org.usfirst.frc2992.StarLord2019;
  */
 public class GlobalVariables {
 
+    //is this really useful?
     public static boolean isCargoMode = false;
 
 }

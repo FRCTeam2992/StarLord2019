@@ -9,11 +9,11 @@ package org.usfirst.frc2992.StarLord2019.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class autoMiddleToRightCargo extends CommandGroup {
+public class AutoRightRocketRightSide extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public autoMiddleToRightCargo() {
+  public AutoRightRocketRightSide() {
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
@@ -30,12 +30,13 @@ public class autoMiddleToRightCargo extends CommandGroup {
     // e.g. if Command1 requires chassis, and Command2 requires arm,
     // a CommandGroup containing them would require both the chassis and the
     // arm.
-
-    //Need to start at bottom right corner at the center of the HAB
-    addSequential(new AutoDriveFwd(47.5,.5, 2, true, 0));
-    addSequential(new AutoDriveFwd(88.51,.5, 2, true, 1));
+    addSequential(new AutoDriveFwd(41.3, 0.5, 2, true, 0));
+    addSequential(new AutoDriveTurn(-61.25, .5, 2));
+    addSequential(new AutoDriveFwd(195.525, .5, 10, true, -61.25));
     addParallel(new HatchIntakeExtend(true));
-    addSequential(new autoHatchScore());
-    
+    addSequential(new AutoDriveFwd(23, .5, 5, true, -61.25));
+    addSequential(new HatchIntakeGrab(false));
+    addSequential(new HatchIntakeExtend(false));
+    addSequential(new AutoDriveFwd(-10, .5, 2, true, -61.25));
   }
 }

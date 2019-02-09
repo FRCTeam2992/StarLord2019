@@ -32,13 +32,8 @@ public class autoCargoLoadStation extends CommandGroup {
     // e.g. if Command1 requires chassis, and Command2 requires arm,
     // a CommandGroup containing them would require both the chassis and the
     // arm.
-    addParallel(new CargoDeploySol(true));
+    addParallel(new CargoDeploySol(false));
     addSequential(new LiftSetHeight(Constants.cargoLoadHeight, 2));
-    addParallel(new CargoGroundFeedwheel(.5));
     addSequential(new CargoIntakeFeedWheel(.5));//does have an isFinished true
-    addParallel(new CargoGroundFeedwheel(-.5));
-    addSequential(new WaitCommand(.2));
-    addParallel(new CargoGroundFeedwheel(0));
-    addSequential(new CargoDeploySol(false));
   }
 }

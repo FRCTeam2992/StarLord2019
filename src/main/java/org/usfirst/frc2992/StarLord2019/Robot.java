@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 import org.usfirst.frc2992.StarLord2019.commands.*;
@@ -51,12 +52,8 @@ public class Robot extends TimedRobot {
 
     //Auto variables
     public static int autoCommandNum; 
-    public static String autoPath = "Do Nothing";// to send command group info to smartDashboard
-    public static String gameData = ""; //We may not need this
-    public static String autoName;
-
-
-    
+    public static String autoName = "Nothing";// to send command group info to smartDashboard
+    public static String autoStartPosn = "";    
 
     /**
      * This function is run when the robot is first started up and should be
@@ -110,6 +107,7 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
         driveTrain.navx.zeroYaw();
+        dashUpdate();
         autonomousCommand = chooser.getSelected();
         // schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
@@ -120,6 +118,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousPeriodic() {
+        dashUpdate();
         Scheduler.getInstance().run();
     }
 
@@ -138,6 +137,7 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        dashUpdate();
         
     }
     void dashUpdate() {
@@ -152,11 +152,12 @@ public class Robot extends TimedRobot {
         SmartDashboard.putBoolean("Cargo Sensor", cargoIntake.cargoDistSensor.get());
 
         SmartDashboard.putNumber("Auto Number", autoCommandNum);
+        SmartDashboard.putString("Auto Name", autoName);
+        SmartDashboard.putString("Auto Start Position", autoStartPosn);
         
     }
     public void setAutoMode() {
         int autoMode = 0;
-        /*  Not sure if we were supposed to do this - Matthew, Kurt
         if (Robot.oi.autoSwtich1.get()){
             autoMode += 1;
         }
@@ -177,6 +178,35 @@ public class Robot extends TimedRobot {
         }
 
         autoCommandNum = autoMode;
-        */
+        
+
+        switch(autoMode){
+            case 0: new driveSticks();
+                    autoName = "Driver control";
+                    autoStartPosn = "Anywhere";
+                    break;
+            case 1: new autoLeftSideLeftRocket();
+                    autoName = "Left side, Left closest face rocket";
+                    autoStartPosn = "Left Side, Level 1";
+                    break;
+            case 4: new autoMiddleToLeftCargo();
+                    autoName = "Left middle, front Left Cargo";
+                    autoStartPosn = "Left-Middle Hab";
+                    break;
+            case 8: new autoMiddleToRightCargo();
+                    autoName = "Right Middle, front Right Cargo";
+                    autoStartPosn = "Right-Middle Hab";
+                    break;
+            case 16: new AutoRightRocketRightSide();
+                    autoName = "Right side, Right closest Face Rocket";
+                    autoStartPosn = "Right Side, Level 1";
+                    break;
+            default: new driveSticks();
+                    autoName = "Driver Control";
+                    autoStartPosn = "Anywhere";
+                    break;
+        }
     }
+
+
 }

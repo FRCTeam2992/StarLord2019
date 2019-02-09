@@ -48,6 +48,8 @@ public class LiftMove extends Command {
     @Override
     protected void execute() {
         Robot.lift.liftMove(m_speed);
+        //The lift talon should be tuned so the encoder clears 
+        //when low limit switch is grounded
     }
 
     // Make this return true when this Command no longer needs to run execute()
