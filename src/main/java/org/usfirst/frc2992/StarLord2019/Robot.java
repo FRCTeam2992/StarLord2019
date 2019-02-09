@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 import org.usfirst.frc2992.StarLord2019.commands.*;
@@ -156,7 +157,6 @@ public class Robot extends TimedRobot {
     }
     public void setAutoMode() {
         int autoMode = 0;
-        /*  Not sure if we were supposed to do this - Matthew, Kurt
         if (Robot.oi.autoSwtich1.get()){
             autoMode += 1;
         }
@@ -177,6 +177,29 @@ public class Robot extends TimedRobot {
         }
 
         autoCommandNum = autoMode;
-        */
+        
+
+        switch(autoMode){
+            case 0: new driveSticks();
+                    autoName = "Driver control";
+                    break;
+            case 1: new autoLeftSideLeftRocket();
+                    autoName = "Left side, Left closest face rocket";
+                    break;
+            case 4: new autoMiddleToLeftCargo();
+                    autoName = "Left middle, front Left Cargo";
+                    break;
+            case 8: new autoMiddleToRightCargo();
+                    autoName = "Right Middle, front Right Cargo";
+                    break;
+            case 16: new AutoRightRocketRightSide();
+                    autoName = "Right side, Right closest Face Rocket";
+                    break;
+            default: new driveSticks();
+                    autoName = "Driver Control";
+                    break;
+        }
     }
+
+
 }
