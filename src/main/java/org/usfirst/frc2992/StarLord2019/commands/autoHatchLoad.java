@@ -34,18 +34,10 @@ public class autoHatchLoad extends CommandGroup {
     // e.g. if Command1 requires chassis, and Command2 requires arm,
     // a CommandGroup containing them would require both the chassis and the
     // arm.
-    addSequential(new HatchIntakeExtend(true));
-    if(Robot.hatchIntake.hatchLoadingSwitch.get()){
-      addSequential(new HatchIntakeGrab(true));
-      addSequential(new WaitCommand(0.3));
-      if(Robot.hatchIntake.hatchLoadingSwitch.get()){
-        addSequential(new HatchIntakeExtend(false));
-      } else {
-        addSequential(new HatchIntakeGrab(false));
-      }
-    }
-
-
-
+    
+    addSequential(new HatchIntakeExtend(false,true));
+    addSequential(new LiftSetHeight(2, 2));
+    addSequential(new autoHatchGrab());
+    
   }
 }

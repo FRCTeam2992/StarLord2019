@@ -34,7 +34,7 @@ public class autoCargoLoadGround extends CommandGroup {
     // arm.
     
     addParallel(new CargoDeploySol(true));
-    addSequential(new LiftSetHeight(Constants.cargoGroundHeight, 2));
+    addSequential(new LiftSetHeight(0, 2));
     addParallel(new CargoGroundFeedwheel(.5));
     addSequential(new CargoIntakeFeedWheel(.5));//does have an isFinished true
     addParallel(new CargoGroundFeedwheel(-.5));

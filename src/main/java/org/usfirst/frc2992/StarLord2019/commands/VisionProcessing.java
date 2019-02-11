@@ -13,7 +13,6 @@ package org.usfirst.frc2992.StarLord2019.commands;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc2992.StarLord2019.Constants;
-import org.usfirst.frc2992.StarLord2019.GlobalVariables;
 import org.usfirst.frc2992.StarLord2019.Robot;
 import edu.wpi.first.networktables.*;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -66,7 +65,7 @@ public class VisionProcessing extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        if(GlobalVariables.isCargoMode){//no Limelight on Cargo side, make sure no VP running
+        if(!Robot.isCargoMode){//no Limelight on Cargo side, make sure no VP running
             //values from limelight
             x = tx.getDouble(0.0); //needs to be global
             double y = ty.getDouble(0.0);

@@ -21,18 +21,19 @@ public class Constants {
     public static final int driveEncDist = 4096;
     
     //Cargo lift heights
-    public static final double topRocketCargoHeight = 0; //Put in values
-    public static final double middleRocketCargoHeight = 0;
-    public static final double bottomRocketCargoHeight = 0;
-    public static final double cargoLoadHeight = 0;
+    public static final double topRocketCargoHeight = 66; //Put in values
+    public static final double middleRocketCargoHeight = 38;
+    public static final double bottomRocketCargoHeight = 10;
+    public static final double cargoLoadHeight = 28;
     public static final double cargoGroundHeight = 0;
 
     //Hatch lift heights
-    public static final double topRocketHatchHeight = 0;
-    public static final double middleRocketHatchHeight = 0;
+    public static final double topRocketHatchHeight = 56;
+    public static final double middleRocketHatchHeight = 28;
     public static final double bottomRocketHatchHeight = 0;
 
     public static final double hatchLoadingGrabTimeout = 0.3;
+    public static final double liftTimeout = 0.1;
 
     //VP Constants
     public static final double camHt = 0;

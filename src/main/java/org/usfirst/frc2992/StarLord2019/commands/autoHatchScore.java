@@ -8,6 +8,7 @@
 package org.usfirst.frc2992.StarLord2019.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
 public class autoHatchScore extends CommandGroup {
   /**
@@ -31,9 +32,9 @@ public class autoHatchScore extends CommandGroup {
     // a CommandGroup containing them would require both the chassis and the
     // arm.
 
-    addSequential(new HatchIntakeExtend(true));
     addSequential(new HatchIntakeGrab(false));
-    addSequential(new HatchIntakeExtend(false));
+    addSequential(new WaitCommand(1));
+    addSequential(new HatchIntakeExtend(false,false));
 
   }
 }

@@ -34,7 +34,7 @@ public class autoMiddleToLeftCargo extends CommandGroup {
     //Need to start at the bottom left corner at the center of the middle HAB
     addSequential(new AutoDriveFwd(47.5,.5, 2, true, 0));
     addSequential(new AutoDriveFwd(88.51,.5, 2, true, -1));
-    addParallel(new HatchIntakeExtend(true));
+    addParallel(new HatchIntakeExtend(false,true));
     addSequential(new autoHatchScore());
     
   }

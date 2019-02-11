@@ -12,7 +12,6 @@
 package org.usfirst.frc2992.StarLord2019.commands;
 import edu.wpi.first.wpilibj.command.Command;
 
-import org.usfirst.frc2992.StarLord2019.GlobalVariables;
 import org.usfirst.frc2992.StarLord2019.Robot;
 import org.usfirst.frc2992.StarLord2019.mhJoystick;
 
@@ -59,10 +58,10 @@ public class driveSticks extends Command {
 
         if(Robot.oi.leftJoy.getTrigger()){
             Robot.driveTrain.tankDrive(-right, -left);
-            GlobalVariables.isCargoMode = true;
+            Robot.isCargoMode = true;
         } else{
             Robot.driveTrain.tankDrive(left, right);
-            GlobalVariables.isCargoMode = false;
+            Robot.isCargoMode = false;
         }
     }
 

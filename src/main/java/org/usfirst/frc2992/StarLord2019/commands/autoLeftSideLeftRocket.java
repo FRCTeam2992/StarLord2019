@@ -34,10 +34,10 @@ public class autoLeftSideLeftRocket extends CommandGroup {
     addSequential(new AutoDriveFwd(41.3, 0.5, 2, true, 0));
     addSequential(new AutoDriveTurn(61.25, .5, 2));
     addSequential(new AutoDriveFwd(195.525, .5, 10, true, 61.25));
-    addParallel(new HatchIntakeExtend(true));
+    addParallel(new HatchIntakeExtend(true,true));
     addSequential(new AutoDriveFwd(23, .5, 5, true, 61.25));
     addSequential(new HatchIntakeGrab(false));
-    addSequential(new HatchIntakeExtend(false));
+    addSequential(new HatchIntakeExtend(false,false));
     addSequential(new AutoDriveFwd(-10, .5, 2, true, 61.25));
 
   }
