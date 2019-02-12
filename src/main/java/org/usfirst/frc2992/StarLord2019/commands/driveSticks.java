@@ -59,9 +59,17 @@ public class driveSticks extends Command {
         if(Robot.oi.leftJoy.getTrigger()){
             Robot.driveTrain.tankDrive(-right, -left);
             Robot.isCargoMode = true;
+
+            //setting the port# on the btnBox to boolean for LED
+            Robot.oi.buttonBox2.setOutput(Robot.oi.cargoLight, true);//turn on CargoLight
+            Robot.oi.buttonBox2.setOutput(Robot.oi.hatchLight, false);//turn off HatchLight
         } else{
             Robot.driveTrain.tankDrive(left, right);
             Robot.isCargoMode = false;
+
+            //setting the port# on the btnBox to boolean for LED
+            Robot.oi.buttonBox2.setOutput(Robot.oi.hatchLight, true);//turn on HatchLight
+            Robot.oi.buttonBox2.setOutput(Robot.oi.cargoLight, false);//turn off CargoLight
         }
     }
 
