@@ -155,10 +155,6 @@ public class OI {
         groundRevCargoBtn = new JoystickButton(buttonBox, 12);
         groundRevCargoBtn.whileHeld(new CargoGroundFeedwheel(-0.5));
         groundRevCargoBtn.whenReleased(new CargoGroundFeedwheel(0));
-
-        feedWheelInBtn = new JoystickButton(buttonBox, 13);
-        feedWheelInBtn.whileHeld(new CargoIntakeFeedWheel(.50));
-        feedWheelInBtn.whenReleased(new CargoIntakeFeedWheel(0));
  
         feedWheelOutBtn = new JoystickButton(buttonBox, 14);
         feedWheelOutBtn.whileHeld(new CargoIntakeFeedWheel(-.50));
@@ -167,6 +163,10 @@ public class OI {
         //this btn doesn't tirgger a cmd.
         //It's used in lift and climber to make sure can still lift w/ broken sensor
         limitSwitchOverrideBtn = new JoystickButton(buttonBox, 15);
+
+        feedWheelInBtn = new JoystickButton(buttonBox, 16);
+        feedWheelInBtn.whileHeld(new CargoIntakeFeedWheel(.50));
+        feedWheelInBtn.whenReleased(new CargoIntakeFeedWheel(0));
 
 
     //Second Button Box
@@ -193,11 +193,11 @@ public class OI {
         hatchExtBtn2.whenPressed(new HatchIntakeExtend(true, true));
         hatchExtBtn2.whenReleased(new HatchIntakeExtend(false, true));
 
-        climbUpRearBtn = new JoystickButton(buttonBox2, 9);
+        climbUpRearBtn = new JoystickButton(buttonBox2, 10);
         climbUpRearBtn.whileHeld(new ClimbBackUp(.5));
         climbUpRearBtn.whenReleased(new ClimbStopBack());
 
-        climbDownRearBtn = new JoystickButton(buttonBox2, 10);
+        climbDownRearBtn = new JoystickButton(buttonBox2, 9);
         climbDownRearBtn.whileHeld(new ClimbBackUp(-.5));
         climbDownRearBtn.whenReleased(new ClimbStopBack());
 
