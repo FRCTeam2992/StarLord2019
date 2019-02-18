@@ -47,7 +47,9 @@ public class LiftMove extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        Robot.lift.liftMove(m_speed);
+        if(!Robot.oi.climberCheckBtn.get()){
+            Robot.lift.liftMove(m_speed);
+        }
         //The lift talon should be tuned so the encoder clears 
         //when low limit switch is grounded
     }

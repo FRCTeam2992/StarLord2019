@@ -61,15 +61,19 @@ public class driveSticks extends Command {
             Robot.isCargoMode = true;
 
             //setting the port# on the btnBox to boolean for LED
-            Robot.oi.buttonBox2.setOutput(Robot.oi.cargoLight, true);//turn on CargoLight
-            Robot.oi.buttonBox2.setOutput(Robot.oi.hatchLight, false);//turn off HatchLight
+            Robot.oi.buttonBox.setOutput(Robot.oi.cargoLight, true);//turn on CargoLight
+            Robot.oi.buttonBox.setOutput(Robot.oi.hatchLight, false);//turn off HatchLight
+
+            Robot.startCam("Cargo"); // start the cargo Camera
         } else{
             Robot.driveTrain.tankDrive(left, right);
             Robot.isCargoMode = false;
 
             //setting the port# on the btnBox to boolean for LED
-            Robot.oi.buttonBox2.setOutput(Robot.oi.hatchLight, true);//turn on HatchLight
-            Robot.oi.buttonBox2.setOutput(Robot.oi.cargoLight, false);//turn off CargoLight
+            Robot.oi.buttonBox.setOutput(Robot.oi.hatchLight, true);//turn on HatchLight
+            Robot.oi.buttonBox.setOutput(Robot.oi.cargoLight, false);//turn off CargoLight
+
+            Robot.startCam("Hatch"); //start HatchCam
         }
     }
 
@@ -82,11 +86,15 @@ public class driveSticks extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
+        Robot.oi.buttonBox.setOutput(Robot.oi.cargoLight, false);//turn off CargoLight
+        Robot.oi.buttonBox.setOutput(Robot.oi.hatchLight, false);//turn off HatchLight
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
+        Robot.oi.buttonBox.setOutput(Robot.oi.cargoLight, false);//turn off CargoLight
+        Robot.oi.buttonBox.setOutput(Robot.oi.hatchLight, false);//turn off HatchLight
     }
 }

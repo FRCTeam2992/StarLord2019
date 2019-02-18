@@ -84,6 +84,7 @@ public class OI {
     public JoystickButton climbDownRearBtn;
     public JoystickButton climbUpFrontBtn;
     public JoystickButton climbDownFrontBtn;
+    public JoystickButton climberCheckBtn;
 
     public JoystickButton autoAlignBtn;
     public JoystickButton autoGroundFeedBtn;//Cargo
@@ -130,19 +131,25 @@ public class OI {
         liftSetGround = new JoystickButton(buttonBox, 5);
         liftSetGround.whenPressed(new LiftSetHeight(0, 2));
 
-        autoHatchLoadBtn = new JoystickButton(buttonBox, 6);
-        autoHatchLoadBtn.whenPressed(new autoHatchLoad());
+        autoGroundFeedBtn = new JoystickButton(buttonBox, 6); 
+        autoGroundFeedBtn.whenPressed(new autoCargoLoadGround());
 
-        autoHatchScoreBtn = new JoystickButton(buttonBox, 7);
-        autoHatchScoreBtn.whenPressed(new autoHatchScore());
+        autoStationFeedBtn = new JoystickButton(buttonBox, 7);
+        autoStationFeedBtn.whenPressed(new autoCargoLoadStation());
 
         liftUpBtn = new JoystickButton(buttonBox, 8);
         liftUpBtn.whileHeld(new LiftMove(.4));
         liftUpBtn.whenReleased(new LiftStop());
+        liftUpBtn.whileHeld(new AutoClimb(.3));
+        liftUpBtn.whenReleased(new ClimbStopBack());
+        liftUpBtn.whenReleased(new ClimbStopFront());
 
         liftDownBtn = new JoystickButton(buttonBox, 9);
         liftDownBtn.whileHeld(new LiftMove(-.3));
         liftDownBtn.whenReleased(new LiftStop());
+        liftDownBtn.whileHeld(new AutoClimb(-.2));
+        liftDownBtn.whenReleased(new ClimbStopBack());
+        liftDownBtn.whenReleased(new ClimbStopFront());
         
         cargoDeployBtn = new JoystickButton(buttonBox, 10); // ground wheel 
         cargoDeployBtn.whenPressed(new CargoDeploySol(true));
@@ -155,6 +162,10 @@ public class OI {
         groundRevCargoBtn = new JoystickButton(buttonBox, 12);
         groundRevCargoBtn.whileHeld(new CargoGroundFeedwheel(-0.5));
         groundRevCargoBtn.whenReleased(new CargoGroundFeedwheel(0));
+        
+        feedWheelInBtn = new JoystickButton(buttonBox, 13);
+        feedWheelInBtn.whileHeld(new CargoIntakeFeedWheel(.50));
+        feedWheelInBtn.whenReleased(new CargoIntakeFeedWheel(0));
  
         feedWheelOutBtn = new JoystickButton(buttonBox, 14);
         feedWheelOutBtn.whileHeld(new CargoIntakeFeedWheel(-.50));
@@ -164,62 +175,61 @@ public class OI {
         //It's used in lift and climber to make sure can still lift w/ broken sensor
         limitSwitchOverrideBtn = new JoystickButton(buttonBox, 15);
 
-        feedWheelInBtn = new JoystickButton(buttonBox, 16);
-        feedWheelInBtn.whileHeld(new CargoIntakeFeedWheel(.50));
-        feedWheelInBtn.whenReleased(new CargoIntakeFeedWheel(0));
 
 
     //Second Button Box
-        autoGroundFeedBtn = new JoystickButton(buttonBox2, 3); 
-        autoGroundFeedBtn.whenPressed(new autoCargoLoadGround());
-
-        autoStationFeedBtn = new JoystickButton(buttonBox2, 4);
-        autoStationFeedBtn.whenPressed(new autoCargoLoadStation());
     
+        autoHatchLoadBtn = new JoystickButton(buttonBox2, 3);
+        autoHatchLoadBtn.whenPressed(new autoHatchLoad());
+
+        autoHatchScoreBtn = new JoystickButton(buttonBox2, 4);
+        autoHatchScoreBtn.whenPressed(new autoHatchScore());
 
         hatchGroundBtn = new JoystickButton(buttonBox2, 5);
         hatchGroundBtn.whenPressed(new HatchPickupFromGround(true));
         hatchGroundBtn.whenReleased(new HatchPickupFromGround(false));
 
         hatchGrabRelBtn = new JoystickButton(buttonBox2, 6);
-        hatchGrabRelBtn.whenPressed(new HatchIntakeGrab(false));
-        hatchGrabRelBtn.whenReleased(new HatchIntakeGrab(true));
+        hatchGrabRelBtn.whenPressed(new HatchIntakeGrab(true));
+        hatchGrabRelBtn.whenReleased(new HatchIntakeGrab(false));
 
-        hatchExtBtn1 = new JoystickButton(buttonBox2, 7);
+        hatchExtBtn1 = new JoystickButton(buttonBox2, 2);
         hatchExtBtn1.whenPressed(new HatchIntakeExtend(false, false));
         hatchExtBtn1.whenReleased(new HatchIntakeExtend(false, true));
 
-        hatchExtBtn2 = new JoystickButton(buttonBox2, 8);
+        hatchExtBtn2 = new JoystickButton(buttonBox2, 7);
         hatchExtBtn2.whenPressed(new HatchIntakeExtend(true, true));
         hatchExtBtn2.whenReleased(new HatchIntakeExtend(false, true));
 
+        climberCheckBtn = new JoystickButton(buttonBox2, 8);
+
         climbUpRearBtn = new JoystickButton(buttonBox2, 10);
-        climbUpRearBtn.whileHeld(new ClimbBackUp(.5));
+        climbUpRearBtn.whileHeld(new ClimbBackUp(.7));
         climbUpRearBtn.whenReleased(new ClimbStopBack());
 
         climbDownRearBtn = new JoystickButton(buttonBox2, 9);
-        climbDownRearBtn.whileHeld(new ClimbBackUp(-.5));
+        climbDownRearBtn.whileHeld(new ClimbBackUp(-.7));
         climbDownRearBtn.whenReleased(new ClimbStopBack());
 
         climbUpFrontBtn = new JoystickButton(buttonBox2, 11);
-        climbUpFrontBtn.whileHeld(new ClimbFrontUp(.5));
+        climbUpFrontBtn.whileHeld(new ClimbFrontUp(.3));
         climbUpFrontBtn.whenReleased(new ClimbStopFront());
 
         climbDownFrontBtn = new JoystickButton(buttonBox2, 12);
-        climbDownFrontBtn.whileHeld(new ClimbFrontUp(-.5));
+        climbDownFrontBtn.whileHeld(new ClimbFrontUp(-.4));
         climbDownFrontBtn.whenReleased(new ClimbStopFront());
 
-        autoSwtich1 = new JoystickButton(buttonBox2, 14);
+        autoSwtich1 = new JoystickButton(buttonBox2, 13);
 
-        autoSwtich2 = new JoystickButton(buttonBox2, 15);
+        autoSwtich2 = new JoystickButton(buttonBox2, 14);
 
-        autoSwtich3 = new JoystickButton(buttonBox2, 16);
+        autoSwtich3 = new JoystickButton(buttonBox2, 15);
 
-        autoSwtich4 = new JoystickButton(buttonBox2, 17);
+        autoSwtich4 = new JoystickButton(buttonBox2, 16);
 
-        autoSwtich5 = new JoystickButton(buttonBox2, 18);
+        autoSwtich5 = new JoystickButton(buttonBox2, 17);
 
-        autoSwtich6 = new JoystickButton(buttonBox2, 19);
+        autoSwtich6 = new JoystickButton(buttonBox2, 18);
 
         //Vision Processing Btn
         autoAlignBtn = new JoystickButton(rightJoy, 6);

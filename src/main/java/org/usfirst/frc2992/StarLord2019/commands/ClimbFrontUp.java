@@ -47,7 +47,15 @@ public class ClimbFrontUp extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        Robot.climbFront.ClimbFrontUp(m_Speed);
+        if(Robot.oi.climberCheckBtn.get()){
+            Robot.climbFront.ClimbFrontUp(m_Speed);
+        } else if(m_Speed>0){
+            Robot.climbFront.ClimbFrontUp(0.1);//slow speed to pull up arms
+        } else if(m_Speed < 0){
+            Robot.climbFront.ClimbFrontUp(-0.1);//slow speed to pull down arms
+        } else{
+            Robot.climbFront.ClimbStop();
+        }
     }
 
     // Make this return true when this Command no longer needs to run execute()

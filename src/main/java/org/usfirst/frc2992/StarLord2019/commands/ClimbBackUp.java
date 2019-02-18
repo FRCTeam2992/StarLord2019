@@ -47,7 +47,12 @@ public class ClimbBackUp extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        Robot.climbBack.ClimbBackUp(m_Speed);
+        if(Robot.oi.climberCheckBtn.get()){
+            Robot.climbBack.ClimbBackUp(m_Speed);
+        } else{
+            Robot.climbBack.ClimbStop();
+        }
+        
     }
 
     // Make this return true when this Command no longer needs to run execute()
