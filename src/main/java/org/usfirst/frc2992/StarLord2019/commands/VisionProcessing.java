@@ -71,6 +71,10 @@ public class VisionProcessing extends Command {
             double y = ty.getDouble(0.0);
             double area = ta.getDouble(0.0);
 
+            if(x != 0){
+                new lights(.15);
+            }
+
             SmartDashboard.putNumber("LimeLightX", x);
             SmartDashboard.putNumber("LimeLightY", y);
             SmartDashboard.putNumber("LimeLightArea", area);

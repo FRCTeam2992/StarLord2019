@@ -138,7 +138,7 @@ public class OI {
         autoStationFeedBtn.whenPressed(new autoCargoLoadStation());
 
         liftUpBtn = new JoystickButton(buttonBox, 8);
-        liftUpBtn.whileHeld(new LiftMove(.4));
+        liftUpBtn.whileHeld(new LiftMove(.7));
         liftUpBtn.whenReleased(new LiftStop());
         liftUpBtn.whileHeld(new AutoClimb(.3));
         liftUpBtn.whenReleased(new ClimbStopBack());
@@ -156,7 +156,7 @@ public class OI {
         cargoDeployBtn.whenReleased(new CargoDeploySol(false));
        
         groundFwdCargoBtn = new JoystickButton(buttonBox, 11);
-        groundFwdCargoBtn.whileHeld(new CargoGroundFeedwheel(.5));
+        groundFwdCargoBtn.whileHeld(new CargoGroundFeedwheel(.7));
         groundFwdCargoBtn.whenReleased(new CargoGroundFeedwheel(0));
 
         groundRevCargoBtn = new JoystickButton(buttonBox, 12);
@@ -168,7 +168,7 @@ public class OI {
         feedWheelInBtn.whenReleased(new CargoIntakeFeedWheel(0));
  
         feedWheelOutBtn = new JoystickButton(buttonBox, 14);
-        feedWheelOutBtn.whileHeld(new CargoIntakeFeedWheel(-.50));
+        feedWheelOutBtn.whileHeld(new CargoIntakeFeedWheel(-.7));
         feedWheelOutBtn.whenReleased(new CargoIntakeFeedWheel(0));
 
         //this btn doesn't tirgger a cmd.
@@ -203,20 +203,20 @@ public class OI {
 
         climberCheckBtn = new JoystickButton(buttonBox2, 8);
 
-        climbUpRearBtn = new JoystickButton(buttonBox2, 10);
-        climbUpRearBtn.whileHeld(new ClimbBackUp(.7));
+        climbUpRearBtn = new JoystickButton(buttonBox2, 11);//10
+        climbUpRearBtn.whileHeld(new ClimbBackUp(.5));
         climbUpRearBtn.whenReleased(new ClimbStopBack());
 
-        climbDownRearBtn = new JoystickButton(buttonBox2, 9);
-        climbDownRearBtn.whileHeld(new ClimbBackUp(-.7));
+        climbDownRearBtn = new JoystickButton(buttonBox2, 12);//9
+        climbDownRearBtn.whileHeld(new ClimbBackUp(-.5));
         climbDownRearBtn.whenReleased(new ClimbStopBack());
 
-        climbUpFrontBtn = new JoystickButton(buttonBox2, 11);
-        climbUpFrontBtn.whileHeld(new ClimbFrontUp(.3));
+        climbUpFrontBtn = new JoystickButton(buttonBox2, 10);//11
+        climbUpFrontBtn.whileHeld(new ClimbFrontUp(.5));
         climbUpFrontBtn.whenReleased(new ClimbStopFront());
 
-        climbDownFrontBtn = new JoystickButton(buttonBox2, 12);
-        climbDownFrontBtn.whileHeld(new ClimbFrontUp(-.4));
+        climbDownFrontBtn = new JoystickButton(buttonBox2, 9);//12
+        climbDownFrontBtn.whileHeld(new ClimbFrontUp(-.5));
         climbDownFrontBtn.whenReleased(new ClimbStopFront());
 
         autoSwtich1 = new JoystickButton(buttonBox2, 13);
