@@ -59,7 +59,7 @@ public class OI {
 
     public JoystickButton hatchExtBtn1;
     public JoystickButton hatchExtBtn2;
-    public JoystickButton hatchGroundBtn;
+    public JoystickButton climbBackHold;
     public JoystickButton hatchGrabRelBtn;
 
     public JoystickButton liftUpBtn;
@@ -140,14 +140,14 @@ public class OI {
         liftUpBtn = new JoystickButton(buttonBox, 8);
         liftUpBtn.whileHeld(new LiftMove(.7));
         liftUpBtn.whenReleased(new LiftStop());
-        liftUpBtn.whileHeld(new AutoClimb(.3));
+        liftUpBtn.whileHeld(new AutoClimb(.7));
         liftUpBtn.whenReleased(new ClimbStopBack());
         liftUpBtn.whenReleased(new ClimbStopFront());
 
         liftDownBtn = new JoystickButton(buttonBox, 9);
         liftDownBtn.whileHeld(new LiftMove(-.3));
         liftDownBtn.whenReleased(new LiftStop());
-        liftDownBtn.whileHeld(new AutoClimb(-.2));
+        liftDownBtn.whileHeld(new AutoClimb(-.3));
         liftDownBtn.whenReleased(new ClimbStopBack());
         liftDownBtn.whenReleased(new ClimbStopFront());
         
@@ -185,9 +185,7 @@ public class OI {
         autoHatchScoreBtn = new JoystickButton(buttonBox2, 4);
         autoHatchScoreBtn.whenPressed(new autoHatchScore());
 
-        hatchGroundBtn = new JoystickButton(buttonBox2, 5);
-        hatchGroundBtn.whenPressed(new HatchPickupFromGround(true));
-        hatchGroundBtn.whenReleased(new HatchPickupFromGround(false));
+        climbBackHold = new JoystickButton(buttonBox2, 5);
 
         hatchGrabRelBtn = new JoystickButton(buttonBox2, 6);
         hatchGrabRelBtn.whenPressed(new HatchIntakeGrab(true));
@@ -203,19 +201,19 @@ public class OI {
 
         climberCheckBtn = new JoystickButton(buttonBox2, 8);
 
-        climbUpRearBtn = new JoystickButton(buttonBox2, 11);//10
+        climbUpRearBtn = new JoystickButton(buttonBox2, 9);//10
         climbUpRearBtn.whileHeld(new ClimbBackUp(.5));
         climbUpRearBtn.whenReleased(new ClimbStopBack());
 
-        climbDownRearBtn = new JoystickButton(buttonBox2, 12);//9
+        climbDownRearBtn = new JoystickButton(buttonBox2, 10);//9
         climbDownRearBtn.whileHeld(new ClimbBackUp(-.5));
         climbDownRearBtn.whenReleased(new ClimbStopBack());
 
-        climbUpFrontBtn = new JoystickButton(buttonBox2, 10);//11
+        climbUpFrontBtn = new JoystickButton(buttonBox2, 11);//11
         climbUpFrontBtn.whileHeld(new ClimbFrontUp(.5));
         climbUpFrontBtn.whenReleased(new ClimbStopFront());
 
-        climbDownFrontBtn = new JoystickButton(buttonBox2, 9);//12
+        climbDownFrontBtn = new JoystickButton(buttonBox2, 12);//12
         climbDownFrontBtn.whileHeld(new ClimbFrontUp(-.5));
         climbDownFrontBtn.whenReleased(new ClimbStopFront());
 

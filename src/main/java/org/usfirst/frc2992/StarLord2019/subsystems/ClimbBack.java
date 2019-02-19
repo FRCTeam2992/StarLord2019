@@ -58,6 +58,7 @@ public class ClimbBack extends Subsystem {
 
         climbMtr2 = new WPI_TalonSRX(12);
         climbMtr2.setNeutralMode(NeutralMode.Brake);
+        climbMtr2.setInverted(true);
 
         climbMtr2.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
         climbMtr2.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
