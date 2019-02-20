@@ -40,5 +40,9 @@ public class Constants {
     public static final double tarHt = 0;
     public static final double camAngle = 0;
 
+    //Climb speeds
+    public static double upClimbSpeed = 0.7;
+    public static double downClimbSpeed = -0.3;
+
 }
 

@@ -53,7 +53,7 @@ public class CargoGroundFeedwheel extends Command {
             Robot.cargoGroundIntake.CargoGroundFeed(m_Power);
         } else if ((sensorValue < (Constants.driveEncDist * 0.5) || Robot.oi.limitSwitchOverrideBtn.get())
             && Robot.cargoGroundIntake.groundIntakeSol.get() 
-            && Robot.cargoIntake.cargoDistSensor.get()) { 
+            && !Robot.cargoIntake.cargoDistSensor.get()) { 
                 Robot.cargoGroundIntake.CargoGroundFeed(m_Power);
         }else {
             Robot.cargoGroundIntake.CargoGroundFeed(0);

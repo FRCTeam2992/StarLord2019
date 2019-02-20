@@ -15,6 +15,7 @@ package org.usfirst.frc2992.StarLord2019.subsystems;
 import org.usfirst.frc2992.StarLord2019.Robot;
 import org.usfirst.frc2992.StarLord2019.commands.*;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.PIDOutput;
@@ -116,6 +117,14 @@ public class HatchIntake extends Subsystem {
     public void HatchPickupFromGround(Boolean ground){
         hatchGroundPickupSol.set(ground);
     }
-
+    /*
+    public void yeeHaw(int cowboy){
+        String text = "";
+        for(int i = 0; i < cowboy; i++){
+            text += "Yeehaw! ";
+        }
+        System.out.println(text);
+    }
+*/
 }
 

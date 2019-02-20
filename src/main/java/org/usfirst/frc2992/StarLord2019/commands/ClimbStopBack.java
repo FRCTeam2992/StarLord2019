@@ -12,6 +12,7 @@
 package org.usfirst.frc2992.StarLord2019.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc2992.StarLord2019.Robot;
+import org.usfirst.frc2992.StarLord2019.Constants;
 
 /**
  *
@@ -44,11 +45,18 @@ public class ClimbStopBack extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        if(Robot.oi.climberCheckBtn.get() && Robot.oi.climbBackHold.get()){
-            Robot.climbBack.ClimbBackUp(.1);
+        if(Robot.oi.climberCheckBtn.get() && Robot.oi.climbBackHold.get() 
+                && !Robot.oi.liftUpBtn.get() && !Robot.oi.liftDownBtn.get()){
+            Robot.climbBack.ClimbBackUp(.4);
+        }else if(Robot.oi.climberCheckBtn.get() && Robot.oi.liftUpBtn.get()){
+            new AutoClimb(Constants.upClimbSpeed);
+        } else if(Robot.oi.climberCheckBtn.get() && Robot.oi.liftDownBtn.get()){
+            new AutoClimb(Constants.downClimbSpeed);
         }else{
             Robot.climbBack.ClimbStop();
         }
+            
+        
         
     }
 

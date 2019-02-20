@@ -82,7 +82,7 @@ public class CargoIntake extends Subsystem {
     // here. Call these from Commands.
     public void CargoIntakeFeedWheel(double Power){
         //makes sure the motor run longer so cargo is in all the way
-        if (!cargoDistSensor.get() && Power>0){ //if get sensor increment counter
+        if (cargoDistSensor.get() && Power>0){ //if get sensor increment counter
             counter++;
         }else {// otherwise reset counter
             counter = 0;

@@ -44,6 +44,8 @@ public class LiftStop extends Command {
 
         stopTimer.reset();
         stopTimer.start();
+
+        Robot.lift.setPosition = false;
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -65,11 +67,13 @@ public class LiftStop extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
+        Robot.lift.setPosition = false;
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
+        Robot.lift.setPosition = false;
     }
 }
