@@ -47,7 +47,7 @@ public class Lift extends Subsystem {
     public WPI_TalonSRX liftTalon;
     private WPI_VictorSPX liftVictor;
 
-    private final int liftMaxTravel = 40;//44?  //Inches we can move from bottom to top
+    private final int liftMaxTravel = convertEncoderTicks(Constants.topRocketCargoHeight + 1);//Inches we can move from bottom to top
 
     public boolean moving;
     public boolean setPosition = false;
@@ -148,7 +148,8 @@ public class Lift extends Subsystem {
 
         height = Math.max(0, Math.min(height, liftMaxTravel));
 
-        height += liftTalon.getSelectedSensorPosition();
+        //auto re-zero the encoder hitting btm so don't have to keep track of where you are
+        //height += liftTalon.getSelectedSensorPosition();
         
         liftTalon.set(ControlMode.Position, height);
     }

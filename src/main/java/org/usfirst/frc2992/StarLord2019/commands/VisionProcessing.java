@@ -37,6 +37,9 @@ public class VisionProcessing extends Command {
     private double camHt = Constants.camHt;
     private double tarHt = Constants.tarHt;
     private double camAngle = Constants.camAngle;
+
+    Command autoCmd;
+    boolean isAutoSet = false;
     //private int newDist = 0;// Needs int value for AutoDriveFwd
 
 
@@ -79,20 +82,26 @@ public class VisionProcessing extends Command {
             SmartDashboard.putNumber("LimeLightY", y);
             SmartDashboard.putNumber("LimeLightArea", area);
 
-            if(Math.abs(x) > 1.5){// if angle b/w middle of pic and bot, turn towards target
-                new AutoDriveTurn(-x, 0.5, 3);
-            } else if(Math.abs(x) <= 1.5){//if angle is close within 1.5deg, just drive towards it
+            if(Math.abs(x) > 1.5 && !isAutoSet){// if angle b/w middle of pic and bot, turn towards target
+                autoCmd = new AutoDriveTurn(-x, 0.5, 3);
+                isAutoSet = true;
+            } else if(Math.abs(x) <= 1.5 && !isAutoSet){//if angle is close within 1.5deg, just drive towards it
                 dist = Robot.driveTrain.getDist(camHt, tarHt, camAngle, y);
                 //newDist = (int) Math.round(dist);
-                new AutoDriveFwd(dist, 0.5, 3, true, x); 
+                dist = dist * (Math.sin(camAngle)); //Pyth. Theorem to find Horiz dist fwd
+                autoCmd = new AutoDriveFwd(dist, 0.5, 3, true, x); 
+                isAutoSet = true;
             }
+            //autoCmd = new AutoDriveTurn(dist, 0.5, 3, true, x);
+            if(autoCmd != null) autoCmd.start();
+            if(autoCmd.isCompleted()) isAutoSet = false;
         }
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        if(dist < 5 && Math.abs(x) < 1.5){
+        if((dist < 5 && Math.abs(x) < 1.5)){
             return true;
         } else{
             return false;
@@ -102,12 +111,14 @@ public class VisionProcessing extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
+        if(autoCmd != null) autoCmd.cancel();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
+        if(autoCmd != null) autoCmd.cancel();
     }
 
 }

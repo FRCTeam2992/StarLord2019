@@ -83,6 +83,7 @@ public class CargoGroundIntake extends Subsystem {
         groundIntakeSol.set(Deploy);
     }
     public void CargoGroundFeed(double Power) {
+        
         cargoIntakeMtr.set(Power);
     }
 

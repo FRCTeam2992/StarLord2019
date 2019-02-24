@@ -57,6 +57,9 @@ public class OI {
     public Joystick buttonBox;
     public Joystick buttonBox2;
 
+    public JoystickButton hatchRelJoyBtn;
+    public JoystickButton cargoRelJoyBtn;
+
     public JoystickButton hatchExtBtn1;
     public JoystickButton hatchExtBtn2;
     public JoystickButton climbBackHold;
@@ -113,6 +116,13 @@ public class OI {
         leftJoy = new mhJoystick(1);
         buttonBox = new Joystick(2);
         buttonBox2 = new Joystick(3);
+
+    //Joystick Btns
+        hatchRelJoyBtn = new JoystickButton(rightJoy, 4);
+        hatchRelJoyBtn.whenPressed(new HatchIntakeGrab(true));
+
+        cargoRelJoyBtn = new JoystickButton(leftJoy, 3);
+        cargoRelJoyBtn.whenPressed(new CargoGroundFeedwheel(-1));
 
     //First Button Box
         liftSetTopRocket = new JoystickButton(buttonBox, 1);
@@ -231,7 +241,7 @@ public class OI {
 
         //Vision Processing Btn
         autoAlignBtn = new JoystickButton(rightJoy, 6);
-        autoAlignBtn.whileHeld(new VisionProcessing());
+        autoAlignBtn.whenPressed(new VisionProcessing());
         autoAlignBtn.whenReleased(new driveSticks());
         
 
