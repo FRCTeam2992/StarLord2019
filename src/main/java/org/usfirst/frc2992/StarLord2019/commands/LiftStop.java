@@ -51,7 +51,7 @@ public class LiftStop extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        if (stopTimer.get() < 30 && !Robot.oi.limitSwitchOverrideBtn.get()){  //Prevents backdriving on robot
+        if (stopTimer.get() < 30){  //Prevents backdriving on robot
             Robot.lift.holdPosn();
         } else {
             Robot.lift.liftStop();

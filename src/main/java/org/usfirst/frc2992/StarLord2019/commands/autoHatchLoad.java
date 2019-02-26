@@ -8,7 +8,7 @@
 package org.usfirst.frc2992.StarLord2019.commands;
 
 import org.usfirst.frc2992.StarLord2019.Robot;
-
+import org.usfirst.frc2992.StarLord2019.Constants;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
 
@@ -35,8 +35,9 @@ public class autoHatchLoad extends CommandGroup {
     // a CommandGroup containing them would require both the chassis and the
     // arm.
     
-    addSequential(new HatchIntakeExtend(false,true));
-    addSequential(new LiftSetHeight(2, 2));
+    addSequential(new HatchIntakeGrab(true));
+    addSequential(new HatchIntakeExtend(true,true));
+    addSequential(new LiftSetHeight(2, Constants.normalLiftSpeed, 2));
     addSequential(new autoHatchGrab());
     
   }
