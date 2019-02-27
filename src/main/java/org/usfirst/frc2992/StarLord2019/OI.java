@@ -118,11 +118,12 @@ public class OI {
         buttonBox2 = new Joystick(3);
 
     //Joystick Btns
-        hatchRelJoyBtn = new JoystickButton(rightJoy, 4);
+        hatchRelJoyBtn = new JoystickButton(rightJoy, 3);
         hatchRelJoyBtn.whenPressed(new HatchIntakeGrab(true));
 
-        cargoRelJoyBtn = new JoystickButton(leftJoy, 3);
-        cargoRelJoyBtn.whenPressed(new CargoGroundFeedwheel(-1));
+        cargoRelJoyBtn = new JoystickButton(rightJoy, 3);
+        cargoRelJoyBtn.whenPressed(new CargoIntakeFeedWheel(-1));
+        cargoRelJoyBtn.whenReleased(new CargoIntakeFeedWheel(0));
     
     //Vision Processing Btn
         autoAlignBtn = new JoystickButton(rightJoy, 6);
