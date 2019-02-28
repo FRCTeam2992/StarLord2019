@@ -20,7 +20,8 @@ package org.usfirst.frc2992.StarLord2019;
 public class Constants {
     public static final int driveEncDist = 4096;
 
-    public static final double normalLiftSpeed = 0.9;
+    public static final double normalLiftUpSpeed = 0.7;
+    public static final double normalLiftDownSpeed = 0.3;
     
     //Cargo lift heights
     public static final double topRocketCargoHeight = 66; 

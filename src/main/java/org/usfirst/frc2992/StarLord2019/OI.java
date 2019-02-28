@@ -132,19 +132,19 @@ public class OI {
 
     //First Button Box
         liftSetTopRocket = new JoystickButton(buttonBox, 1);
-        liftSetTopRocket.whenPressed(new LiftSetHeight(4, Constants.normalLiftSpeed, 2));
+        liftSetTopRocket.whenPressed(new LiftSetHeight(4, Constants.normalLiftUpSpeed, Constants.normalLiftDownSpeed, 2));
 
         liftSetMiddleRocket = new JoystickButton(buttonBox, 2);
-        liftSetMiddleRocket.whenPressed(new LiftSetHeight(3, Constants.normalLiftSpeed, 2));
+        liftSetMiddleRocket.whenPressed(new LiftSetHeight(3, Constants.normalLiftUpSpeed, Constants.normalLiftDownSpeed, 2));
         
         liftSetBottomRocket = new JoystickButton(buttonBox, 3);
-        liftSetBottomRocket.whenPressed(new LiftSetHeight(2, Constants.normalLiftSpeed, 2));    
+        liftSetBottomRocket.whenPressed(new LiftSetHeight(2, Constants.normalLiftUpSpeed, Constants.normalLiftDownSpeed, 2));    
 
         liftSetCargoLoad = new JoystickButton(buttonBox, 4);
-        liftSetCargoLoad.whenPressed(new LiftSetHeight(1, Constants.normalLiftSpeed, 2));
+        liftSetCargoLoad.whenPressed(new LiftSetHeight(1, Constants.normalLiftUpSpeed, Constants.normalLiftDownSpeed, 2));
 
         liftSetGround = new JoystickButton(buttonBox, 5);
-        liftSetGround.whenPressed(new LiftSetHeight(0, Constants.normalLiftSpeed, 2));
+        liftSetGround.whenPressed(new LiftSetHeight(0, Constants.normalLiftUpSpeed, Constants.normalLiftDownSpeed, 2));
 
         autoHatchLoadBtn = new JoystickButton(buttonBox, 6);
         autoHatchLoadBtn.whenPressed(new autoHatchLoad());
@@ -249,7 +249,7 @@ public class OI {
         //SmartDashboard.putData("HatchIntakeExtend", new HatchIntakeExtend(true));
         SmartDashboard.putData("HatchIntakeGrab", new HatchIntakeGrab(true));
         SmartDashboard.putData("HatchPickupFromGround", new HatchPickupFromGround(true));
-        SmartDashboard.putData("LiftSetHeight", new LiftSetHeight(0, Constants.normalLiftSpeed, 0));
+        SmartDashboard.putData("LiftSetHeight", new LiftSetHeight(0, Constants.normalLiftUpSpeed, Constants.normalLiftDownSpeed, 0));
         SmartDashboard.putData("LiftUp", new LiftMove(.5));
         SmartDashboard.putData("LiftDown", new LiftMove(-.5));
         SmartDashboard.putData("LiftStop", new LiftStop());

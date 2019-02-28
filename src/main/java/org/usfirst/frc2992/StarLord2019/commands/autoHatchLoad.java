@@ -37,7 +37,7 @@ public class autoHatchLoad extends CommandGroup {
     
     addSequential(new HatchIntakeGrab(true));
     addSequential(new HatchIntakeExtend(true,true));
-    addSequential(new LiftSetHeight(2, Constants.normalLiftSpeed, 2));
+    addSequential(new LiftSetHeight(2, Constants.normalLiftUpSpeed, Constants.normalLiftDownSpeed, 2));
     addSequential(new autoHatchGrab());
     
   }
