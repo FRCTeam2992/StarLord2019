@@ -213,7 +213,7 @@ public class Robot extends TimedRobot {
             SmartDashboard.putString("Auto Name", autoName);
             SmartDashboard.putString("Auto Start Position", autoStartPosn);
             SmartDashboard.putBoolean("Lift top limit", lift.liftTalon.getSensorCollection().isFwdLimitSwitchClosed());
-            SmartDashboard.putBoolean("Limit bottom limit", lift.liftTalon.getSensorCollection().isRevLimitSwitchClosed());
+            SmartDashboard.putBoolean("Lift bottom limit", lift.liftTalon.getSensorCollection().isRevLimitSwitchClosed());
             SmartDashboard.putBoolean("Front climb limit", climbFront.climbMtr1.getSensorCollection().isFwdLimitSwitchClosed());
             SmartDashboard.putBoolean("Rear climb limit", climbBack.climbMtr2.getSensorCollection().isFwdLimitSwitchClosed());
 
@@ -239,9 +239,9 @@ public class Robot extends TimedRobot {
         if (Robot.oi.autoSwtich5.get()){
             autoMode += 16;
         }
-        if (Robot.oi.autoSwtich6.get()){
-            autoMode += 32;
-        }
+        //if (Robot.oi.autoSwtich6.get()){
+          //  autoMode += 32;
+        //}
 
         autoCommandNum = autoMode;
         
@@ -275,13 +275,17 @@ public class Robot extends TimedRobot {
     }
 
     public static void climbGyro(double power){// use to autonomously climb and keep robot level
-        double gkp = .01;
+        double gkp = .02;//COMP ROBOT = .01
 
-        double gyroError = (driveTrain.navx.getRoll());
+        double gyroError = (driveTrain.navx.getRoll() + Constants.rollCorrection);
 
         //PID for climb motors
-        climbFront.climbMtr1.set(ControlMode.PercentOutput, power-(gkp*gyroError));
-        climbBack.climbMtr2.set(ControlMode.PercentOutput, power+(gkp*gyroError));
+        //UNCOMMENT FOR COMP ROBOT!!!
+        //climbFront.climbMtr1.set(ControlMode.PercentOutput, power-(gkp*gyroError));
+        //climbBack.climbMtr2.set(ControlMode.PercentOutput, power+(gkp*gyroError));
+
+        climbFront.climbMtr1.set(ControlMode.PercentOutput, power+(gkp*gyroError));
+        climbBack.climbMtr2.set(ControlMode.PercentOutput, power-(gkp*gyroError));
     }
 
     public static void startCam(String whichCam){

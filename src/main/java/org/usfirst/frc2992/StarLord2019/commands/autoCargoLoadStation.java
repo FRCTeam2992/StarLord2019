@@ -37,7 +37,7 @@ public class autoCargoLoadStation extends CommandGroup {
     addSequential(new CargoIntakeFeedWheel(1));//does have an isFinished true
     addSequential(new WaitCommand(.3));
     addParallel(new CargoDeploySol(true));
-    addSequential(new LiftSetHeight(0, 0.4, Constants.normalLiftDownSpeed, 4));
+    addSequential(new LiftSetHeight(0, 0.4, Constants.normalLiftDownSpeed, 4));//why was this changed - we're not going up here
     addParallel(new CargoDeploySol(false));
   }
 }

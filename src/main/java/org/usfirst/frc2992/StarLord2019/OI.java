@@ -57,8 +57,10 @@ public class OI {
     public Joystick buttonBox;
     public Joystick buttonBox2;
 
-    public JoystickButton hatchRelJoyBtn;
-    public JoystickButton cargoRelJoyBtn;
+    public JoystickButton pieceRelJoyBtn;
+    //public JoystickButton cargoRelJoyBtn;
+    public JoystickButton OSBtn;
+    public JoystickButton OSJoyBtn;
 
     public JoystickButton hatchExtBtn1;
     public JoystickButton hatchExtBtn2;
@@ -101,7 +103,7 @@ public class OI {
     public JoystickButton autoSwtich3;
     public JoystickButton autoSwtich4;
     public JoystickButton autoSwtich5;
-    public JoystickButton autoSwtich6;
+    //public JoystickButton autoSwtich6;
 
     //2 output channels for LED on btnBox
     //To see where used - go to driveSticks Cmd
@@ -117,14 +119,22 @@ public class OI {
         buttonBox = new Joystick(2);
         buttonBox2 = new Joystick(3);
 
-    //Joystick Btns
-        hatchRelJoyBtn = new JoystickButton(rightJoy, 3);
-        hatchRelJoyBtn.whenPressed(new HatchIntakeGrab(true));
+    //OS BUTTON!!
+        OSBtn = new JoystickButton(buttonBox2, 18);
+        OSJoyBtn = new JoystickButton(leftJoy, 4);
 
-        cargoRelJoyBtn = new JoystickButton(rightJoy, 3);
+    //Joystick Btns
+        pieceRelJoyBtn = new JoystickButton(rightJoy, 3);
+        pieceRelJoyBtn.whenPressed(new HatchIntakeGrab(true));
+        pieceRelJoyBtn.whenPressed(new CargoIntakeFeedWheel(-1));
+        pieceRelJoyBtn.whenReleased(new CargoIntakeFeedWheel(0));
+        
+        /*
+        //why not just trigger 2 commands from same btn?
+        cargoRelJoyBtn = new JoystickButton(rightJoy, 3); 
         cargoRelJoyBtn.whenPressed(new CargoIntakeFeedWheel(-1));
         cargoRelJoyBtn.whenReleased(new CargoIntakeFeedWheel(0));
-    
+        */
     //Vision Processing Btn
         autoAlignBtn = new JoystickButton(rightJoy, 6);
         autoAlignBtn.whenPressed(new VisionProcessing());
@@ -150,7 +160,7 @@ public class OI {
         autoHatchLoadBtn.whenPressed(new autoHatchLoad());
 
         autoHatchScoreBtn = new JoystickButton(buttonBox, 7);
-        autoHatchScoreBtn.whenPressed(new autoHatchScore());
+        autoHatchScoreBtn.whenPressed(new autoHatchRel());
 
         liftUpBtn = new JoystickButton(buttonBox, 8);
         liftUpBtn.whileHeld(new LiftMove(.7));
@@ -242,7 +252,7 @@ public class OI {
 
         autoSwtich5 = new JoystickButton(buttonBox2, 17);
 
-        autoSwtich6 = new JoystickButton(buttonBox2, 18);        
+        //autoSwtich6 = new JoystickButton(buttonBox2, 18);        
 
         // SmartDashboard Buttons
         SmartDashboard.putData("Autonomous Command", new AutonomousCommand());

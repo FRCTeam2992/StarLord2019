@@ -35,7 +35,7 @@ public class autoMiddleToLeftCargo extends CommandGroup {
     addSequential(new AutoDriveFwd(47.5,.5, 2, true, 0));
     addSequential(new AutoDriveFwd(88.51,.5, 2, true, -1));
     addParallel(new HatchIntakeExtend(false,true));
-    addSequential(new autoHatchScore());
+    addSequential(new autoHatchRel());
     
   }
 }
