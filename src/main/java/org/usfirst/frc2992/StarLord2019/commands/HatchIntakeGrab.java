@@ -57,7 +57,7 @@ public class HatchIntakeGrab extends Command {
     protected boolean isFinished() {
         /*
         return (HatchGrabTimer.get() >= Constants.hatchLoadingGrabTimeout && 
-        Robot.hatchIntake.hatchLoadingSwitch.get());
+        !Robot.hatchIntake.hatchLoadingSwitch.get());
         */
         return true;
     }

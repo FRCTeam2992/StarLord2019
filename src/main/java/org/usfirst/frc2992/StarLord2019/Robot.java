@@ -56,6 +56,14 @@ public class Robot extends TimedRobot {
 
     public static Boolean isCargoMode = false;
 
+    //Light booleans - so no cross ups
+    public static boolean isAutoTime = false;
+    public static boolean cargoLoadLights = false;
+    public static boolean hatchLoadLights = false;
+    public static boolean cargoScoreLights = false;
+    public static boolean hatchScoreLights = false;
+    public static boolean VPLights = false;
+    public static boolean climbLights = false;
 
     private int counter = 0;
 
@@ -143,6 +151,11 @@ public class Robot extends TimedRobot {
 
         driveTrain.leftTalonDrive.setNeutralMode(NeutralMode.Coast);
         driveTrain.rightTalonDrive.setNeutralMode(NeutralMode.Coast);
+        driveTrain.rightTalonDrive.setSelectedSensorPosition(0);
+        driveTrain.leftTalonDrive.setSelectedSensorPosition(0);
+
+        isAutoTime = false;
+        lightCode.setLightSequence(0);
     }
 
     @Override
@@ -160,9 +173,11 @@ public class Robot extends TimedRobot {
 
     @Override
     public void autonomousInit() {
+        isAutoTime = true;
         setAutoMode();
         driveTrain.navx.zeroYaw();
         lift.liftTalon.setSelectedSensorPosition(0);
+        lightCode.setLightSequence(.525);
         // schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
     }
@@ -174,6 +189,7 @@ public class Robot extends TimedRobot {
     public void autonomousPeriodic() {
         dashUpdate();
         Scheduler.getInstance().run();
+        lightCode.setLightSequence(.525);
     }
 
     @Override
@@ -182,6 +198,9 @@ public class Robot extends TimedRobot {
         // teleop starts running. If you want the autonomous to
         // continue until interrupted by another command, remove
         // this line or comment it out.
+        driveTrain.rightTalonDrive.setSelectedSensorPosition(0);
+        driveTrain.leftTalonDrive.setSelectedSensorPosition(0);
+        isAutoTime = false;
         if (autonomousCommand != null) autonomousCommand.cancel();
 
     }
@@ -218,6 +237,8 @@ public class Robot extends TimedRobot {
             SmartDashboard.putBoolean("Rear climb limit", climbBack.climbMtr2.getSensorCollection().isFwdLimitSwitchClosed());
 
             SmartDashboard.putNumber("Lift Motor", lift.liftTalon.get());
+
+            SmartDashboard.putBoolean("OS Button Engaged", oi.OSBtn.get());
             counter = 0;
         }
                
@@ -247,7 +268,7 @@ public class Robot extends TimedRobot {
         
 
         switch(autoMode){
-            case 0: autonomousCommand = new driveSticks();
+            case 0: autonomousCommand = new driveSticks();//AutoDriveFwd(120, 0.5, 5, true, 0)
                     autoName = "Driver control";
                     autoStartPosn = "Anywhere";
                     break;
@@ -297,9 +318,5 @@ public class Robot extends TimedRobot {
             }
         }
         whichOne = whichCam;
-    }
-
-    public void allianceLights(){
-        //if(Robot.)
     }
 }

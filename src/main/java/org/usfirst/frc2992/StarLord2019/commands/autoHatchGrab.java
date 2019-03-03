@@ -55,7 +55,7 @@ public class autoHatchGrab extends Command {
     @Override
     protected void execute() {
         if(!triedToGrab){
-            if(Robot.hatchIntake.hatchLoadingSwitch.get()){
+            if(!Robot.hatchIntake.hatchLoadingSwitch.get()){
                 counter++;
             }else {
                 counter = 0;
@@ -69,9 +69,10 @@ public class autoHatchGrab extends Command {
             }
         } else {
             if(HatchGrabTimer.get() >= Constants.hatchLoadingGrabTimeout 
-                    && Robot.hatchIntake.hatchLoadingSwitch.get()){
+                    && !Robot.hatchIntake.hatchLoadingSwitch.get()){
                 Robot.hatchIntake.HatchIntakeExtend(false, false);
                 isDone = true;
+
             }else if(HatchGrabTimer.get() >= Constants.hatchLoadingGrabTimeout){
                 Robot.hatchIntake.HatchIntakeGrab(true);
                 triedToGrab = false;

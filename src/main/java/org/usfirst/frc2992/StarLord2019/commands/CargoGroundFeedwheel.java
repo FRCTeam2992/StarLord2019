@@ -53,7 +53,7 @@ public class CargoGroundFeedwheel extends Command {
     protected void execute() {
         //make sure the lift is down before intaking
         //if lift down or override lift btn pressed - run cargo
-        if(m_Power < 0){
+        if(m_Power <= 0){
             Robot.cargoGroundIntake.CargoGroundFeed(m_Power);
         } else if ((sensorValue < (Constants.driveEncDist * 0.5) || Robot.oi.limitSwitchOverrideBtn.get())
             && (Robot.cargoGroundIntake.groundIntakeSol.get() || deployTimer.get()<.2)

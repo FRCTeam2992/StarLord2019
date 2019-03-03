@@ -46,7 +46,7 @@ public class CargoIntakeFeedWheel extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        if(Robot.isCargoMode){
+        if(Robot.isCargoMode || Robot.oi.OSBtn.get()){
             Robot.cargoIntake.CargoIntakeFeedWheel(m_InOut);
         }
     }
