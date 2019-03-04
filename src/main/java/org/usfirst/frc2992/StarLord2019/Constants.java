@@ -43,10 +43,11 @@ public class Constants {
     public static final double tarHt = 30;//inches
     public static final double camAngle = 32;
 
-    //Climb speeds
+    //Climb Constants
     public static double upClimbSpeed = .75;//1
     public static double downClimbSpeed = -.65;//-.3
     public static double rollCorrection = -3;
+    public static double climbAngleLimit = 7;
 
 }
 

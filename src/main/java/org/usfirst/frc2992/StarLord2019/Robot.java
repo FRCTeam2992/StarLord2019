@@ -314,6 +314,12 @@ public class Robot extends TimedRobot {
         SmartDashboard.putNumber("ClimbBack Value", power + .1 -(gkp*gyroError));
     }
 
+    public static void climbHoldBack(double speed, double roll){
+        double gkp = .01;
+        double gyroError = (driveTrain.navx.getRoll() + Constants.rollCorrection) - roll;
+        climbBack.climbMtr2.set(ControlMode.Position, speed + .1 -(gkp*gyroError));
+    }
+
     public static void startCam(String whichCam){
         if(whichCam.contentEquals(whichOne)){//if cam not already set, set it
             if(whichOne.contentEquals("Cargo")){//Don't compare strings with ==
