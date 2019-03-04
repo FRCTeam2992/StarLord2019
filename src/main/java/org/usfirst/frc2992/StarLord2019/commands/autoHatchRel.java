@@ -41,6 +41,7 @@ public class autoHatchRel extends Command {
     @Override
     protected void initialize() {
         Robot.hatchIntake.HatchIntakeExtend(true, true);
+        Robot.hatchIntake.hatchScoringBool = true;
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -72,6 +73,8 @@ public class autoHatchRel extends Command {
     @Override
     protected void end() {
         Robot.hatchIntake.HatchIntakeExtend(false,false);
+        Robot.hatchIntake.hatchLoadedBool = false;
+        Robot.hatchIntake.hatchScoringBool = false;
     }
 
     // Called when another command which requires one or more of the same
@@ -79,5 +82,7 @@ public class autoHatchRel extends Command {
     @Override
     protected void interrupted() {
         Robot.hatchIntake.HatchIntakeExtend(false,false);
+        Robot.hatchIntake.hatchLoadedBool = false;
+        Robot.hatchIntake.hatchScoringBool = false;
     }
 }

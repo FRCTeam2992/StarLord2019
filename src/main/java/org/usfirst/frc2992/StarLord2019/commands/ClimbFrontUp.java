@@ -50,9 +50,9 @@ public class ClimbFrontUp extends Command {
         if(Robot.oi.climberCheckBtn.get()){
             Robot.climbFront.ClimbFrontUp(m_Speed);
         } else if(m_Speed>0){
-            Robot.climbFront.ClimbFrontUp(0.15);//slow speed to pull up arms
+            Robot.climbFront.ClimbFrontUp(0.2);//slow speed to pull up arms
         } else if(m_Speed < 0){
-            Robot.climbFront.ClimbFrontUp(-0.15);//slow speed to pull down arms
+            Robot.climbFront.ClimbFrontUp(-0.2);//slow speed to pull down arms
         } else{
             Robot.climbFront.ClimbStop();
         }

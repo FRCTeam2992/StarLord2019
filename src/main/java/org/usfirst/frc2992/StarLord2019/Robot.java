@@ -65,6 +65,9 @@ public class Robot extends TimedRobot {
     public static boolean VPLights = false;
     public static boolean climbLights = false;
 
+    //VP has valid target variables
+    static NetworkTableEntry tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv"); //if has valid target 
+
     private int counter = 0;
 
     //Auto variables
@@ -268,7 +271,7 @@ public class Robot extends TimedRobot {
         
 
         switch(autoMode){
-            case 0: autonomousCommand = new driveSticks();//AutoDriveFwd(120, 0.5, 5, true, 0)
+            case 0: autonomousCommand = new driveSticks();//  AutoDriveFwd(6 * 3.14, 0.5, 5, true, 0)
                     autoName = "Driver control";
                     autoStartPosn = "Anywhere";
                     break;
@@ -296,7 +299,7 @@ public class Robot extends TimedRobot {
     }
 
     public static void climbGyro(double power){// use to autonomously climb and keep robot level
-        double gkp = .02;//COMP ROBOT = .01
+        double gkp = .01;//COMP ROBOT = .01
 
         double gyroError = (driveTrain.navx.getRoll() + Constants.rollCorrection);
 
@@ -306,7 +309,9 @@ public class Robot extends TimedRobot {
         //climbBack.climbMtr2.set(ControlMode.PercentOutput, power+(gkp*gyroError));
 
         climbFront.climbMtr1.set(ControlMode.PercentOutput, power+(gkp*gyroError));
-        climbBack.climbMtr2.set(ControlMode.PercentOutput, power-(gkp*gyroError));
+        climbBack.climbMtr2.set(ControlMode.PercentOutput, power + .1 -(gkp*gyroError));
+        SmartDashboard.putNumber("ClimbFront Value", power+(gkp*gyroError));
+        SmartDashboard.putNumber("ClimbBack Value", power + .1 -(gkp*gyroError));
     }
 
     public static void startCam(String whichCam){
@@ -319,4 +324,12 @@ public class Robot extends TimedRobot {
         }
         whichOne = whichCam;
     }
+
+    public static boolean getLimelightValidTarget(){
+        double TV = tv.getDouble(0.0);
+        boolean validTar = false;
+        validTar = TV<1? false : true;
+        return validTar;
+    }
+    
 }

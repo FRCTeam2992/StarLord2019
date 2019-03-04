@@ -18,7 +18,7 @@ package org.usfirst.frc2992.StarLord2019;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class Constants {
-    public static final int driveEncDist = 4096;
+    public static final int liftEncDist = 4096;
 
     public static final double normalLiftUpSpeed = 0.8;//.9
     public static final double normalLiftDownSpeed = 0.4;
@@ -39,13 +39,13 @@ public class Constants {
     public static final double liftTimeout = 0.5;
 
     //VP Constants
-    public static final double camHt = 0;
-    public static final double tarHt = 0;
-    public static final double camAngle = 0;
+    public static final double camHt = 44.25;//inches
+    public static final double tarHt = 30;//inches
+    public static final double camAngle = 32;
 
     //Climb speeds
     public static double upClimbSpeed = .75;//1
-    public static double downClimbSpeed = -.75;//-.3
+    public static double downClimbSpeed = -.65;//-.3
     public static double rollCorrection = -3;
 
 }
