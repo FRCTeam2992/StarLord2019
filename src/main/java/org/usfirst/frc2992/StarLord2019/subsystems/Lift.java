@@ -90,16 +90,16 @@ public class Lift extends Subsystem {
     //LiftUp PID Values (Slot 0)
         liftTalon.config_kP(0, 0.1500001);// (slot, value)
         liftTalon.config_kI(0, 0);
-        liftTalon.config_kD(0, 4.5);
+        liftTalon.config_kD(0, 7.5);
         liftTalon.config_kF(0, 0);
         //liftTalon.config_IntegralZone(0, 150);
         liftTalon.configAllowableClosedloopError(0, 100, 1000);// (slot, error, timeoutMs)
         liftTalon.configClosedLoopPeakOutput(0, Constants.normalLiftUpSpeed);
 
     //LiftDown PID Values (Slot 1)
-        liftTalon.config_kP(1, .35);
+        liftTalon.config_kP(1, .32);
         liftTalon.config_kI(1, 0);
-        liftTalon.config_kD(1, 5);
+        liftTalon.config_kD(1, 6.5);
         liftTalon.configAllowableClosedloopError(1, 100, 1000);
         liftTalon.configClosedLoopPeakOutput(1, Constants.normalLiftDownSpeed);
         
@@ -186,7 +186,7 @@ public class Lift extends Subsystem {
     public void holdPosn(){
         //height = Robot.driveTrain.convertEncoderTicks(height);
         if(!setPosition){
-            height = liftTalon.getSelectedSensorPosition();
+            height = liftTalon.getSelectedSensorPosition() + 1;
             setPosition = true;
         }
         

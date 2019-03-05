@@ -50,9 +50,9 @@ public class ClimbBackUp extends Command {
         if(Robot.oi.climberCheckBtn.get()){
             Robot.climbBack.ClimbBackUp(m_Speed);
         } else if(m_Speed>0){//provide a slow climb back too 
-            Robot.climbBack.ClimbBackUp(0.2);
+            Robot.climbBack.ClimbBackUp(0.3);
         } else if(m_Speed < 0){
-            Robot.climbBack.ClimbBackUp(-0.2);
+            Robot.climbBack.ClimbBackUp(-0.3);
         }else{
             Robot.climbBack.ClimbStop();
         }

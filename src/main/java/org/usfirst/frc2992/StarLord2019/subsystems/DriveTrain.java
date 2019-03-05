@@ -338,7 +338,7 @@ public class DriveTrain extends Subsystem {
 
     }
 
-    private double calcGyroError(double heading){ //For PID- finding error
+    public double calcGyroError(double heading){ //For PID- finding error
         double error = 0;
         error = scaleAngle(navx.getYaw()) - heading;
         if(Math.abs(error) >= 1){
@@ -348,7 +348,7 @@ public class DriveTrain extends Subsystem {
         }
 
     }
-    private double scaleAngle(double angle){ //For PID make sure turning goes shortest distance (think circle)
+    public double scaleAngle(double angle){ //For PID make sure turning goes shortest distance (think circle)
         while(angle > 180){
             angle -= 360;
         }

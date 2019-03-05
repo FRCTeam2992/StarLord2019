@@ -74,7 +74,6 @@ public class autoHatchRel extends Command {
     protected void end() {
         Robot.hatchIntake.HatchIntakeExtend(false,false);
         Robot.hatchIntake.hatchLoadedBool = false;
-        Robot.hatchIntake.hatchScoringBool = false;
     }
 
     // Called when another command which requires one or more of the same
@@ -83,6 +82,5 @@ public class autoHatchRel extends Command {
     protected void interrupted() {
         Robot.hatchIntake.HatchIntakeExtend(false,false);
         Robot.hatchIntake.hatchLoadedBool = false;
-        Robot.hatchIntake.hatchScoringBool = false;
     }
 }

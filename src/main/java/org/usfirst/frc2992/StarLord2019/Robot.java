@@ -158,7 +158,7 @@ public class Robot extends TimedRobot {
         driveTrain.leftTalonDrive.setSelectedSensorPosition(0);
 
         isAutoTime = false;
-        lightCode.setLightSequence(0);
+        lightCode.setLightSequence(.8);
     }
 
     @Override

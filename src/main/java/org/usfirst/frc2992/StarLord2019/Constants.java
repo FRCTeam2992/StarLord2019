@@ -31,8 +31,8 @@ public class Constants {
     public static final double cargoGroundHeight = 0;
 
     //Hatch lift heights
-    public static final double topRocketHatchHeight = 55;//56
-    public static final double middleRocketHatchHeight = 27;//28
+    public static final double topRocketHatchHeight = 53.5;//56
+    public static final double middleRocketHatchHeight = 26;//28
     public static final double bottomRocketHatchHeight = 0;
 
     public static final double hatchLoadingGrabTimeout = 0.3;

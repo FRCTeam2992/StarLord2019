@@ -163,11 +163,6 @@ public class HatchIntake extends Subsystem {
         else extendPosn = false;
     }
     public void HatchIntakeGrab(Boolean grab){
-        if(!grab){
-            hatchScoringBool = true;
-        } else{
-            hatchScoringBool = false;
-        }
         hatchGrabSol.set(grab);
     }
     public void HatchPickupFromGround(Boolean ground){

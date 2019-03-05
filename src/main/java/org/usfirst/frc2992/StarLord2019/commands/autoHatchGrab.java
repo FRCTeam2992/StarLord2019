@@ -73,7 +73,8 @@ public class autoHatchGrab extends Command {
                 Robot.hatchIntake.HatchIntakeExtend(false, false);
                 isDone = true;
 
-            }else if(HatchGrabTimer.get() >= Constants.hatchLoadingGrabTimeout){
+            }else if(HatchGrabTimer.get() >= Constants.hatchLoadingGrabTimeout 
+                    && Robot.hatchIntake.hatchLoadingSwitch.get()){
                 Robot.hatchIntake.HatchIntakeGrab(true);
                 triedToGrab = false;
                 counter = 0;
