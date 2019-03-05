@@ -62,6 +62,8 @@ public class OI {
     public JoystickButton OSBtn;
     public JoystickButton OSJoyBtn;
 
+    public JoystickButton slowSpeedRegulator;
+
     public JoystickButton hatchExtBtn1;
     public JoystickButton hatchExtBtn2;
     public JoystickButton climbBackHold;
@@ -127,6 +129,8 @@ public class OI {
         pieceRelJoyBtn.whenPressed(new HatchIntakeGrab(true));
         pieceRelJoyBtn.whenPressed(new CargoIntakeFeedWheel(-1));
         pieceRelJoyBtn.whenReleased(new CargoIntakeFeedWheel(0));
+
+        slowSpeedRegulator = new JoystickButton(rightJoy, 4);
         
         /*
         //why not just trigger 2 commands from same btn?
