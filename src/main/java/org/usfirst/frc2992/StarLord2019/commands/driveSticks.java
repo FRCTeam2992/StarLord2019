@@ -145,7 +145,11 @@ public class driveSticks extends Command {
                 Robot.lightCode.setLightSequence(.225);
             }else if(!Robot.isAutoTime && !Robot.hatchLoadLights && !Robot.hatchScoreLights
                     && !Robot.VPLights && !Robot.climbLights){//make sure other lights not overrridden
-                Robot.lightCode.setLightSequence(.125);
+                if(Robot.hatchIntake.getGrabSol()){
+                    Robot.lightCode.setLightSequence(.125);
+                } else{
+                    Robot.lightCode.setLightSequence(.575);
+                }    
             }
         }
     }
