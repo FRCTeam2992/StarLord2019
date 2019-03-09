@@ -87,8 +87,9 @@ public class CargoIntake extends Subsystem {
         if(stopCommand!=null) stopCommand.start();
         if(stopCommand != null)stopCommand2.start();
 
-
-        if(!Robot.isAutoTime && Robot.isCargoMode && cargoDistSensor.get() && !isScoring && lightLoadCounter<5){
+        if(!Robot.isAutoTime && !Robot.VPLights && !Robot.climbLights){
+            Robot.lightCode.setLightSequence(.075);
+        } else if(!Robot.isAutoTime && Robot.isCargoMode && cargoDistSensor.get() && !isScoring && lightLoadCounter<5){
             Robot.cargoLoadLights = true;
             Robot.lightCode.setLightSequence(.325);
             lightLoadCounter++;

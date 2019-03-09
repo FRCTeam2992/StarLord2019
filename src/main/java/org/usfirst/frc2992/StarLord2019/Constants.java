@@ -26,7 +26,7 @@ public class Constants {
     //Cargo lift heights
     public static final double topRocketCargoHeight = 65;//66 
     public static final double middleRocketCargoHeight = 37;//38
-    public static final double bottomRocketCargoHeight = 10;//10
+    public static final double bottomRocketCargoHeight = 12;//10
     public static final double cargoLoadHeight = 26.5;//27.5
     public static final double cargoGroundHeight = 0;
 
@@ -44,7 +44,7 @@ public class Constants {
     public static final double camAngle = 32;
 
     //Climb Constants
-    public static double upClimbSpeed = .75;//1
+    public static double upClimbSpeed = .85;//1
     public static double downClimbSpeed = -.65;//-.3
     public static double rollCorrection = -3;
     public static double climbAngleLimit = 7;

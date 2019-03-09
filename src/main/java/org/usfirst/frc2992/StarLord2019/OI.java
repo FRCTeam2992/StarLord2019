@@ -126,7 +126,7 @@ public class OI {
 
     //Joystick Btns
         pieceRelJoyBtn = new JoystickButton(rightJoy, 3);
-        pieceRelJoyBtn.whenPressed(new HatchIntakeGrab(true));
+        pieceRelJoyBtn.whenPressed(new autoHatchScore());
         pieceRelJoyBtn.whenPressed(new CargoIntakeFeedWheel(-1));
         pieceRelJoyBtn.whenReleased(new CargoIntakeFeedWheel(0));
 
@@ -230,11 +230,11 @@ public class OI {
         climberCheckBtn = new JoystickButton(buttonBox2, 8);
 
         climbUpRearBtn = new JoystickButton(buttonBox2, 9);//10
-        climbUpRearBtn.whileHeld(new ClimbBackUp(.5));
+        climbUpRearBtn.whileHeld(new ClimbBackUp(.75));
         climbUpRearBtn.whenReleased(new ClimbStopBack());
 
         climbDownRearBtn = new JoystickButton(buttonBox2, 10);//9
-        climbDownRearBtn.whileHeld(new ClimbBackUp(-.5));
+        climbDownRearBtn.whileHeld(new ClimbBackUp(-.75));
         climbDownRearBtn.whenReleased(new ClimbStopBack());
 
         climbUpFrontBtn = new JoystickButton(buttonBox2, 11);//11

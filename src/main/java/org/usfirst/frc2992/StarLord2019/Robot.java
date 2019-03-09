@@ -305,13 +305,15 @@ public class Robot extends TimedRobot {
 
         //PID for climb motors
         //UNCOMMENT FOR COMP ROBOT!!!
-        //climbFront.climbMtr1.set(ControlMode.PercentOutput, power-(gkp*gyroError));
-        //climbBack.climbMtr2.set(ControlMode.PercentOutput, power+(gkp*gyroError));
-
+        climbFront.climbMtr1.set(ControlMode.PercentOutput, power-(gkp*gyroError));
+        climbBack.climbMtr2.set(ControlMode.PercentOutput, power+(gkp*gyroError) + .1);
+        
+/*      //FOR PRACTICE ROBOT
         climbFront.climbMtr1.set(ControlMode.PercentOutput, power+(gkp*gyroError));
         climbBack.climbMtr2.set(ControlMode.PercentOutput, power + .1 -(gkp*gyroError));
         SmartDashboard.putNumber("ClimbFront Value", power+(gkp*gyroError));
         SmartDashboard.putNumber("ClimbBack Value", power + .1 -(gkp*gyroError));
+*/
     }
 
     public static void climbHoldBack(double speed, double roll){

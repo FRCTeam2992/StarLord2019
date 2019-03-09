@@ -8,14 +8,13 @@
 package org.usfirst.frc2992.StarLord2019.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import org.usfirst.frc2992.StarLord2019.Constants;
 import edu.wpi.first.wpilibj.command.WaitCommand;
 
-public class autoCargoLoadGround extends CommandGroup {
+public class autoHatchScore extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public autoCargoLoadGround() {
+  public autoHatchScore() {
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
@@ -32,14 +31,8 @@ public class autoCargoLoadGround extends CommandGroup {
     // e.g. if Command1 requires chassis, and Command2 requires arm,
     // a CommandGroup containing them would require both the chassis and the
     // arm.
-    
-    addParallel(new CargoDeploySol(true));
-    //addSequential(new LiftSetHeight(0, Constants.normalLiftUpSpeed, Constants.normalLiftDownSpeed, 2));
-    addParallel(new CargoGroundFeedwheel(1));
-    addSequential(new CargoIntakeFeedWheel(1));//does have an isFinished true
-    addParallel(new CargoGroundFeedwheel(-.5));
-    addSequential(new CargoDeploySol(false));
-    addSequential(new WaitCommand(.35));
-    addParallel(new CargoGroundFeedwheel(0));
+    addSequential(new HatchIntakeGrab(true));
+    addSequential(new WaitCommand(.25));
+    addSequential(new HatchIntakeExtend(false, false));
   }
 }

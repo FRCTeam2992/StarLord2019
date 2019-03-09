@@ -127,12 +127,7 @@ public class driveSticks extends Command {
             Robot.oi.buttonBox.setOutput(Robot.oi.hatchLight, false);//turn off HatchLight
 
             Robot.startCam("Cargo"); // start the cargo Camera
-
-            //Setting cargoMode lights
-            if(!Robot.isAutoTime && !Robot.VPLights //make sure other lights not overridden 
-                    && !Robot.cargoLoadLights && !Robot.cargoScoreLights){
-                Robot.lightCode.setLightSequence(.075);
-            }
+            
         } else{
             Robot.driveTrain.tankDrive(left, right);
             Robot.isCargoMode = false;
@@ -148,13 +143,6 @@ public class driveSticks extends Command {
             if(limeLightHasTarget && !Robot.isAutoTime){
                 Robot.VPLights = true;
                 Robot.lightCode.setLightSequence(.225);
-            }else if(!Robot.isAutoTime && !Robot.hatchLoadLights && !Robot.hatchScoreLights
-                    && !Robot.VPLights && !Robot.climbLights){//make sure other lights not overrridden
-                if(Robot.hatchIntake.getGrabSol()){
-                    Robot.lightCode.setLightSequence(.125);
-                } else{
-                    Robot.lightCode.setLightSequence(.575);
-                }    
             }
         }
     }

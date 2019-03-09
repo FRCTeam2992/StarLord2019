@@ -47,6 +47,7 @@ public class ClimbStopBack extends Command {
     protected void execute() {
         if(Robot.oi.climberCheckBtn.get() && Robot.oi.climbBackHold.get() 
                 && !Robot.oi.liftUpBtn.get() && !Robot.oi.liftDownBtn.get()){
+                    /*//FOR PRACTICE ROBOT
             if((Robot.climbBack.climbMtr2.get() == 0 && Robot.driveTrain.navx.getRoll() > Constants.climbAngleLimit) 
                     || doClimbHold){
                 Robot.climbHoldBack(.4, Constants.climbAngleLimit);
@@ -55,6 +56,8 @@ public class ClimbStopBack extends Command {
                 Robot.climbBack.ClimbBackUp(.75);
                 doClimbHold = false;
             }
+            */
+            Robot.climbBack.ClimbBackUp(.4); //FOR COMPETITION ROBOT
         }else if(Robot.oi.climberCheckBtn.get() && Robot.oi.liftUpBtn.get()){
             new AutoClimb(Constants.upClimbSpeed);
         } else if(Robot.oi.climberCheckBtn.get() && Robot.oi.liftDownBtn.get()){
