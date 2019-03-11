@@ -33,7 +33,7 @@ public class autoCargoLoadStation extends CommandGroup {
     // a CommandGroup containing them would require both the chassis and the
     // arm.
     addParallel(new CargoDeploySol(false));
-    addParallel(new LiftSetHeight(1, Constants.normalLiftUpSpeed, Constants.normalLiftDownSpeed, 2));
+    addSequential(new LiftSetHeight(1, Constants.normalLiftUpSpeed, Constants.normalLiftDownSpeed, 2));
     addSequential(new CargoIntakeFeedWheel(1));//does have an isFinished true
     addSequential(new WaitCommand(.3));
     addParallel(new CargoDeploySol(true));

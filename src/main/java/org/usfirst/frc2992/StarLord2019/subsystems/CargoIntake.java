@@ -122,7 +122,7 @@ public class CargoIntake extends Subsystem {
         }else {// otherwise reset counter
             counter = 0;
         }
-        if (counter >= 3 && Power>0){//sets power to 0 when counter exceeds number
+        if (counter >= 5 && Power>0){//sets power to 0 when counter exceeds number
             cargoPickUpMtr.set(0);
             isScoring = false;
         }else {//otherwise sets power 
@@ -133,6 +133,10 @@ public class CargoIntake extends Subsystem {
             isScoring = true;
         }
 
+    }
+
+    public boolean getDistSensor(){
+        return cargoDistSensor.get();
     }
 
 }

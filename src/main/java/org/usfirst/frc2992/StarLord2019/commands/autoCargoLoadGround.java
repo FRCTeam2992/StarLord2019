@@ -36,6 +36,7 @@ public class autoCargoLoadGround extends CommandGroup {
     addParallel(new CargoDeploySol(true));
     //addSequential(new LiftSetHeight(0, Constants.normalLiftUpSpeed, Constants.normalLiftDownSpeed, 2));
     addParallel(new CargoGroundFeedwheel(1));
+    addSequential(new WaitCommand(0.2));
     addSequential(new CargoIntakeFeedWheel(1));//does have an isFinished true
     addParallel(new CargoGroundFeedwheel(-.5));
     addSequential(new CargoDeploySol(false));

@@ -306,7 +306,7 @@ public class Robot extends TimedRobot {
         //PID for climb motors
         //UNCOMMENT FOR COMP ROBOT!!!
         climbFront.climbMtr1.set(ControlMode.PercentOutput, power-(gkp*gyroError));
-        climbBack.climbMtr2.set(ControlMode.PercentOutput, power+(gkp*gyroError) + .1);
+        climbBack.climbMtr2.set(ControlMode.PercentOutput, power+(gkp*gyroError) + .2);
         
 /*      //FOR PRACTICE ROBOT
         climbFront.climbMtr1.set(ControlMode.PercentOutput, power+(gkp*gyroError));

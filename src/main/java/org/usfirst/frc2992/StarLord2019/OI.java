@@ -58,7 +58,7 @@ public class OI {
     public Joystick buttonBox2;
 
     public JoystickButton pieceRelJoyBtn;
-    //public JoystickButton cargoRelJoyBtn;
+    public JoystickButton highCargoRelJoyBtn;
     public JoystickButton OSBtn;
     public JoystickButton OSJoyBtn;
 
@@ -127,8 +127,12 @@ public class OI {
     //Joystick Btns
         pieceRelJoyBtn = new JoystickButton(rightJoy, 3);
         pieceRelJoyBtn.whenPressed(new autoHatchScore());
-        pieceRelJoyBtn.whenPressed(new CargoIntakeFeedWheel(-1));
+        pieceRelJoyBtn.whileHeld(new CargoIntakeFeedWheel(-.6));
         pieceRelJoyBtn.whenReleased(new CargoIntakeFeedWheel(0));
+
+        highCargoRelJoyBtn = new JoystickButton(rightJoy, 5);
+        highCargoRelJoyBtn.whileHeld(new CargoIntakeFeedWheel(-1));
+        highCargoRelJoyBtn.whenReleased(new CargoIntakeFeedWheel(0));
 
         slowSpeedRegulator = new JoystickButton(rightJoy, 4);
         
@@ -196,7 +200,7 @@ public class OI {
         feedWheelInBtn.whenReleased(new CargoIntakeFeedWheel(0));
  
         feedWheelOutBtn = new JoystickButton(buttonBox, 14);
-        feedWheelOutBtn.whileHeld(new CargoIntakeFeedWheel(-1));
+        feedWheelOutBtn.whileHeld(new CargoIntakeFeedWheel(-.6));
         feedWheelOutBtn.whenReleased(new CargoIntakeFeedWheel(0));
 
         //this btn doesn't tirgger a cmd.
