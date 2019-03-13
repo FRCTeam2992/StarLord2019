@@ -77,7 +77,7 @@ public class CargoIntake extends Subsystem {
     @Override
     public void periodic() {
         // Put code here to be run every loop
-        if(Robot.oi.OSBtn.get()){
+        if(Robot.oi.OSBtn.get() || Robot.oi.OSJoyBtn.get()){
             stopCommand = new CargoGroundFeedwheel(0);
             stopCommand2 = new CargoIntakeFeedWheel(0);
         } else{

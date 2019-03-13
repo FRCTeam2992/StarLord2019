@@ -196,7 +196,7 @@ public class OI {
         groundRevCargoBtn.whenReleased(new CargoGroundFeedwheel(0));
         
         feedWheelInBtn = new JoystickButton(buttonBox, 13);
-        feedWheelInBtn.whileHeld(new CargoIntakeFeedWheel(1));
+        feedWheelInBtn.whileHeld(new CargoIntakeFeedWheel(.7));
         feedWheelInBtn.whenReleased(new CargoIntakeFeedWheel(0));
  
         feedWheelOutBtn = new JoystickButton(buttonBox, 14);

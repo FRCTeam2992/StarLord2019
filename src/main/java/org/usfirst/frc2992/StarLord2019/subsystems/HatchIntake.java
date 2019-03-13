@@ -110,7 +110,7 @@ public class HatchIntake extends Subsystem {
             resetSol = true;
         }
 
-        if(Robot.oi.OSBtn.get()){
+        if(Robot.oi.OSBtn.get() || Robot.oi.OSJoyBtn.get()){
             stopCommand = new HatchIntakeExtend(false, false);
             stopCommand2 = new HatchIntakeGrab(true);
         } else{
