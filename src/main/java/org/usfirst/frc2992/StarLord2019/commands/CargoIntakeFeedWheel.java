@@ -46,8 +46,8 @@ public class CargoIntakeFeedWheel extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        //if in cargoMode or neither OS btn is pressed - run cargo inta
-        if(Robot.isCargoMode || Robot.oi.OSBtn.get()){//(!Robot.oi.OSBtn.get() && !Robot.oi.OSJoyBtn.get())
+        //run the carriage only if in cargo mode and neither OS btn is pressed
+        if(Robot.isCargoMode || (!Robot.oi.OSBtn.get() && !Robot.oi.OSJoyBtn.get())){//Robot.oi.OSBtn.get()
             Robot.cargoIntake.CargoIntakeFeedWheel(m_InOut);
         }
     }
