@@ -163,6 +163,7 @@ public class Robot extends TimedRobot {
 
     @Override
     public void disabledPeriodic() {
+        lightCode.setLightSequence(.8);
         dashUpdate();
         Scheduler.getInstance().run();
         setAutoMode();

@@ -138,11 +138,13 @@ public class driveSticks extends Command {
 
             Robot.startCam("Hatch"); //start HatchCam
 
-            //Setting hatchMode lights
+            //Setting VP lights
             limeLightHasTarget = Robot.getLimelightValidTarget();
             if(limeLightHasTarget && !Robot.isAutoTime){
                 Robot.VPLights = true;
                 Robot.lightCode.setLightSequence(.225);
+            } else{
+                Robot.VPLights = false;
             }
         }
     }

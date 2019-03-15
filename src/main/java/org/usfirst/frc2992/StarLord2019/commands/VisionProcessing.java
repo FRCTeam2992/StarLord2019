@@ -78,7 +78,7 @@ public class VisionProcessing extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        if(!Robot.isCargoMode && Robot.lift.liftTalon.getSelectedSensorPosition() <= 200){//no Limelight on Cargo side, make sure no VP running
+        if(!Robot.isCargoMode && (Robot.lift.liftTalon.getSelectedSensorPosition() <= 200 || Robot.oi.limitSwitchOverrideBtn.get())){//no Limelight on Cargo side, make sure no VP running
             updateLimelightTracking();
             if(m_hasValidTarget){
                 if(!Robot.isAutoTime){
@@ -92,6 +92,7 @@ public class VisionProcessing extends Command {
                     Robot.lightCode.setLightSequence(.225);
                 }
                 Robot.driveTrain.arcadeDrive(0,0);
+                //do we want this or allow manual driving?
             }
 /*
             //values from limelight

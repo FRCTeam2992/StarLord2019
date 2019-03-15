@@ -92,6 +92,7 @@ public class OI {
     public JoystickButton climbUpFrontBtn;
     public JoystickButton climbDownFrontBtn;
     public JoystickButton climberCheckBtn;
+    public JoystickButton climberOSBtn;
 
     public JoystickButton autoAlignBtn;
     public JoystickButton autoGroundFeedBtn;//Cargo
@@ -120,9 +121,12 @@ public class OI {
         buttonBox = new Joystick(2);
         buttonBox2 = new Joystick(3);
 
-    //OS BUTTON!!
+    //OS BUTTONS!!
         OSBtn = new JoystickButton(buttonBox2, 18);
         OSJoyBtn = new JoystickButton(leftJoy, 4);
+
+        climberOSBtn = new JoystickButton(rightJoy, 6);
+        climberOSBtn.whileHeld(new ClimbFrontUp(-.8));
 
     //Joystick Btns
         pieceRelJoyBtn = new JoystickButton(rightJoy, 3);
