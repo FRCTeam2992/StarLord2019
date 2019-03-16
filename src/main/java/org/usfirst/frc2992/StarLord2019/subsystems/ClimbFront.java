@@ -61,7 +61,7 @@ public class ClimbFront extends Subsystem {
         climbMtr1.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
         climbMtr1.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
 
-        climbTopLimitSwitch = new DigitalInput(2);
+        climbTopLimitSwitch = new DigitalInput(1);
         addChild("ClimbTopSwitch",climbTopLimitSwitch);
         /*
         climbHeightEnc = new Encoder(4, 5, false, EncodingType.k4X);

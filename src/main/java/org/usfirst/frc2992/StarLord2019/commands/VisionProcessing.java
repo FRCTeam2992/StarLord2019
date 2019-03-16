@@ -38,11 +38,15 @@ public class VisionProcessing extends Command {
     NetworkTableEntry tx = table.getEntry("tx"); //target x value 
     NetworkTableEntry ty = table.getEntry("ty"); //target y value
     NetworkTableEntry ta = table.getEntry("ta"); //target area
+    NetworkTableEntry light = table.getEntry("ledMode");
     double x = 0;
     double dist = 0;
     private double camHt = Constants.camHt;
     private double tarHt = (Constants.tarHt);
     private double camAngle = Constants.camAngle;
+
+    private double rightJoyVal = 0;
+    private double leftJoyVal = 0;
 
     Command autoCmd;
     boolean isAutoSet = false;
@@ -70,9 +74,7 @@ public class VisionProcessing extends Command {
     @Override
     protected void initialize() {
         this.setInterruptible(true);
-        dist = Robot.driveTrain.convertEncoderTicks(120);
-        autoCmd = new AutoDriveFwd(dist, 0.5, 3, true, 0);
-        autoCmd.start();
+        light.setDouble(3); //for limelight LEDs on
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -85,13 +87,15 @@ public class VisionProcessing extends Command {
                     Robot.VPLights = true;
                     Robot.lightCode.setLightSequence(.175);
                 }
-                Robot.driveTrain.arcadeDrive(m_driveCmd, m_turnCmd);
+                Robot.driveTrain.arcadeDrive(m_driveCmd, -m_turnCmd);
             } else{
                 if(!Robot.isAutoTime){
                     Robot.VPLights = true;
                     Robot.lightCode.setLightSequence(.225);
                 }
-                Robot.driveTrain.arcadeDrive(0,0);
+                rightJoyVal = -Robot.oi.rightJoy.smoothGetX();//for arcade
+                leftJoyVal = -Robot.oi.leftJoy.smoothGetY();
+                Robot.driveTrain.arcadeDrive(leftJoyVal, -rightJoyVal);
                 //do we want this or allow manual driving?
             }
 /*
@@ -143,6 +147,7 @@ public class VisionProcessing extends Command {
     @Override
     protected void end() {
         Robot.VPLights = false;
+        light.setDouble(1);//force limelight light off
     //    if(autoCmd != null) autoCmd.cancel();
     }
 
@@ -151,14 +156,15 @@ public class VisionProcessing extends Command {
     @Override
     protected void interrupted() {
         Robot.VPLights = false;
+        light.setDouble(1); //force limelight light to turn off
     //    if(autoCmd != null) autoCmd.cancel();
     }
 
     public void updateLimelightTracking(){
-        final double STEER_K = 0.03;
+        final double STEER_K = 0.02;
         final double DRIVE_K = 0.26;
         final double DESIRED_TARGET_AREA = 13.0;
-        final double MAX_DRIVE = 0.7;
+        final double MAX_DRIVE = 0.4;
 
         double TV = tv.getDouble(0.0);
         double TX = tx.getDouble(0.0);
@@ -169,22 +175,23 @@ public class VisionProcessing extends Command {
             m_hasValidTarget = false;
             m_driveCmd = 0.0;
             m_turnCmd = 0.0;
+        } else{
+            m_hasValidTarget = true;
+
+            //start with proportional steering
+            double steerCmd = TX * STEER_K;
+            m_turnCmd = steerCmd;
+    
+            //try to drive fwd until target area reaches desired area
+            double driveCmd = (DESIRED_TARGET_AREA - TA) * DRIVE_K;
+    
+            //don't let robot drive too fast into goal
+            if(driveCmd > MAX_DRIVE){
+                driveCmd = MAX_DRIVE;
+            }
+            m_driveCmd = driveCmd;
         }
-
-        m_hasValidTarget = true;
-
-        //start with proportional steering
-        double steerCmd = TX * STEER_K;
-        m_turnCmd = steerCmd;
-
-        //try to drive fwd until target area reaches desired area
-        double driveCmd = (DESIRED_TARGET_AREA - TA) * DRIVE_K;
-
-        //don't let robot drive too fast into goal
-        if(driveCmd > MAX_DRIVE){
-            driveCmd = MAX_DRIVE;
-        }
-        m_driveCmd = driveCmd;
+        
     }
 
 }

@@ -13,6 +13,7 @@ package org.usfirst.frc2992.StarLord2019.subsystems;
 
 
 import org.usfirst.frc2992.StarLord2019.Constants;
+import org.usfirst.frc2992.StarLord2019.Robot;
 import org.usfirst.frc2992.StarLord2019.commands.*;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -245,9 +246,38 @@ public class DriveTrain extends Subsystem {
     }
 
     public void arcadeDrive(double moveValue, double rotateValue){
-	   
-        double leftMotorSpeed;
-        double rightMotorSpeed;
+
+        double throttle = moveValue; //fwd
+        double direction = rotateValue; //turn
+
+        double leftMotorSpeed = 0;
+        double rightMotorSpeed = 0;
+
+        if (throttle < -0.05) {
+            leftMotorSpeed = throttle - direction;
+            rightMotorSpeed = throttle + direction;
+        } else {
+            leftMotorSpeed = throttle + direction;
+            rightMotorSpeed = throttle - direction;
+        }
+        
+        //leftMotorSpeed = leftMotorSpeed > 0? Math.min(leftMotorSpeed, 1) : Math.max(leftMotorSpeed, -1);
+        //rightMotorSpeed = rightMotorSpeed > 0? Math.min(rightMotorSpeed, 1) : Math.max(rightMotorSpeed, -1);
+        
+        double max = Math.max(Math.abs(leftMotorSpeed),Math.abs(rightMotorSpeed));
+        if (max > 1.0){
+            leftMotorSpeed /= max;
+            rightMotorSpeed /= max;
+        }
+
+        if(Robot.isCargoMode){
+            tankDrive(-rightMotorSpeed, -leftMotorSpeed);    
+        } else{
+            tankDrive(leftMotorSpeed, rightMotorSpeed);
+        }
+        
+    /*	   
+        
  
          if (moveValue > 0.0) {
            if (rotateValue > 0.0) {
@@ -258,16 +288,19 @@ public class DriveTrain extends Subsystem {
              rightMotorSpeed = Math.max(moveValue, -rotateValue);
            }
          } else {
-           if (rotateValue > 0.0) {
-             leftMotorSpeed = moveValue + rotateValue;
-             rightMotorSpeed = -Math.max(-moveValue, rotateValue);
+            //if need to switch way turning while going backwards,
+            //switch the motors (rightMotorSpeed to leftMotorSpeed)
+           if (rotateValue > 0.0) { 
+             rightMotorSpeed = moveValue + rotateValue;
+             leftMotorSpeed = -Math.max(-moveValue, rotateValue);
            } else {
-             leftMotorSpeed = -Math.max(-moveValue, -rotateValue);
-             rightMotorSpeed = moveValue - rotateValue;
+             rightMotorSpeed = -Math.max(-moveValue, -rotateValue);
+             leftMotorSpeed = moveValue - rotateValue;
            }
          }
  
          tankDrive(leftMotorSpeed, rightMotorSpeed);
+    */
     }
 
     public void highGear(){

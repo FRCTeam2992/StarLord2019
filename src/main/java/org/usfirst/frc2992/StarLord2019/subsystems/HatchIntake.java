@@ -165,6 +165,8 @@ public class HatchIntake extends Subsystem {
     public void HatchIntakeGrab(Boolean grab){
         if(grab){
             hatchScoringBool = false;
+        } else{
+            HatchIntakeExtend(false,false);
         }
         hatchGrabSol.set(grab);
     }

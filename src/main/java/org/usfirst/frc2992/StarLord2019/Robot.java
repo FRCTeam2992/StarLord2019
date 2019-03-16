@@ -67,6 +67,7 @@ public class Robot extends TimedRobot {
 
     //VP has valid target variables
     static NetworkTableEntry tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv"); //if has valid target 
+    static NetworkTableEntry limeLight = NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode");
 
     private int counter = 0;
 
@@ -159,6 +160,7 @@ public class Robot extends TimedRobot {
 
         isAutoTime = false;
         lightCode.setLightSequence(.8);
+        limeLight.setDouble(1);
     }
 
     @Override

@@ -39,9 +39,10 @@ public class Constants {
     public static final double liftTimeout = 0.5;
 
     //VP Constants
-    public static final double camHt = 44.25;//inches
+    public static final double camHt = 44.5;//inches
+    public static final double camOffset = 2.5;
     public static final double tarHt = 30;//inches
-    public static final double camAngle = 32;
+    public static final double camAngle = 53;
 
     //Climb Constants
     public static double upClimbSpeed = .85;//1

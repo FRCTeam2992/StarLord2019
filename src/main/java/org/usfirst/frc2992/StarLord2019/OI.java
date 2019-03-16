@@ -147,7 +147,7 @@ public class OI {
         cargoRelJoyBtn.whenReleased(new CargoIntakeFeedWheel(0));
         */
     //Vision Processing Btn
-        autoAlignBtn = new JoystickButton(rightJoy, 6);
+        autoAlignBtn = new JoystickButton(leftJoy, 3);
         autoAlignBtn.whileHeld(new VisionProcessing());
         autoAlignBtn.whenReleased(new driveSticks());
 

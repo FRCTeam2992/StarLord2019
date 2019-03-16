@@ -26,7 +26,10 @@ public class driveSticks extends Command {
     final double kDamp = 0.2;         // 20% turn speed dampening
 
     boolean straightDrive = false;          // Are we attempting to assist w/ straight driving?
-    final double straightThreshold = 0.9;       // Faster than this both stick we straighten assist
+    final double straightThreshold = 0.1;
+    double maxJoy = 0;
+    double minJoy = 0;       // Faster than this both stick we straighten assist
+    double deadzone = 0;
     double straightHead = 0.0;             // Heading to try and hold
     final double gkp = 0.015;                 // Coefficient for gyro corrections
 
@@ -64,7 +67,8 @@ public class driveSticks extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        double right = -Robot.oi.rightJoy.smoothGetY();
+        //double right = -Robot.oi.rightJoy.smoothGetY(); //for tank
+        double right = -Robot.oi.rightJoy.smoothGetX();//for arcade
         double left = -Robot.oi.leftJoy.smoothGetY();
 
         // Turn dampening
@@ -73,20 +77,37 @@ public class driveSticks extends Command {
         left /= 1 + kDamp * speeddiff;
 
         // Straight drive assist
-        if (right > straightThreshold && left > straightThreshold) {
-            // Driving straight forward
+/*
+        maxJoy = Math.max(Math.abs(rawRight), Math.abs(rawLeft));
+        minJoy = Math.min(Math.abs(rawRight), Math.abs(rawLeft));
+
+        deadzone = maxJoy - (maxJoy * .2);
+
+        if (minJoy >= deadzone && ((rawRight > 0 && rawLeft > 0) || (rawRight < 0 && rawLeft < 0))) {
+            // Driving straight forward or back
             if (!straightDrive) {
                 // First cycle so record the angle
                 straightHead = Robot.driveTrain.scaleAngle(Robot.driveTrain.navx.getYaw());
                 straightDrive = true;
             } 
-            else {
+            /*else if(rawRight > 0 && rawLeft > 0){
                 // Not first cycle so we will adjust drive powers
                 right += gkp * Robot.driveTrain.calcGyroError(straightHead);
                 left -= gkp * Robot.driveTrain.calcGyroError(straightHead);
+            }//
+            else {
+                // Not first cycle so we will adjust drive powers
+                //same values fwd and back
+                right += gkp * Robot.driveTrain.calcGyroError(straightHead);
+                left -= gkp * Robot.driveTrain.calcGyroError(straightHead);
             }
+        } else {
+            // Not trying to drive straight
+            straightDrive = false;
         }
-        else if (left < -straightThreshold && right < -straightThreshold) {
+*/
+/*
+        else if (stickDiff <  -straightThreshold) {
             // Driving straight back
             if (!straightDrive) {
                 // First cycle so record the angle
@@ -97,10 +118,8 @@ public class driveSticks extends Command {
                 right += gkp * Robot.driveTrain.calcGyroError(straightHead);
                 left -= gkp * Robot.driveTrain.calcGyroError(straightHead);
             }
-        } else {
-            // Not trying to drive straight
-            straightDrive = false;
         }
+*/      
 
         // Force scale motor powers -1 to 1 range
         double powerMax = Math.max(1.0, Math.max(Math.abs(right), Math.abs(left)));
@@ -119,7 +138,9 @@ public class driveSticks extends Command {
         }
 
         if(Robot.oi.leftJoy.getTrigger()){
-            Robot.driveTrain.tankDrive(-right, -left);
+            //DO WE WANT TANK OR ARCADE??????
+            //Robot.driveTrain.tankDrive(-right, -left);
+            Robot.driveTrain.arcadeDrive(left, -right);
             Robot.isCargoMode = true;
 
             //setting the port# on the btnBox to boolean for LED
@@ -129,7 +150,8 @@ public class driveSticks extends Command {
             Robot.startCam("Cargo"); // start the cargo Camera
             
         } else{
-            Robot.driveTrain.tankDrive(left, right);
+            //Robot.driveTrain.tankDrive(left, right);
+            Robot.driveTrain.arcadeDrive(left, -right);
             Robot.isCargoMode = false;
 
             //setting the port# on the btnBox to boolean for LED
@@ -139,13 +161,14 @@ public class driveSticks extends Command {
             Robot.startCam("Hatch"); //start HatchCam
 
             //Setting VP lights
-            limeLightHasTarget = Robot.getLimelightValidTarget();
+/*            limeLightHasTarget = Robot.getLimelightValidTarget();
             if(limeLightHasTarget && !Robot.isAutoTime){
                 Robot.VPLights = true;
                 Robot.lightCode.setLightSequence(.225);
             } else{
                 Robot.VPLights = false;
             }
+*/
         }
     }
 
@@ -169,4 +192,5 @@ public class driveSticks extends Command {
         Robot.oi.buttonBox.setOutput(Robot.oi.cargoLight, false);//turn off CargoLight
         Robot.oi.buttonBox.setOutput(Robot.oi.hatchLight, false);//turn off HatchLight
     }
+
 }
