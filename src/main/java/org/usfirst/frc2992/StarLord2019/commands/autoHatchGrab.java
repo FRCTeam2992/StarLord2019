@@ -70,12 +70,12 @@ public class autoHatchGrab extends Command {
         } else {
             if(HatchGrabTimer.get() >= Constants.hatchLoadingGrabTimeout 
                     && !Robot.hatchIntake.hatchLoadingSwitch.get()){
-                Robot.hatchIntake.HatchIntakeExtend(false, false);
+                //Robot.hatchIntake.HatchIntakeExtend(false, false);
                 isDone = true;
 
             }else if(HatchGrabTimer.get() >= Constants.hatchLoadingGrabTimeout 
                     && Robot.hatchIntake.hatchLoadingSwitch.get()){
-                Robot.hatchIntake.HatchIntakeGrab(true);
+                //Robot.hatchIntake.HatchIntakeGrab(true);
                 triedToGrab = false;
                 counter = 0;
             }
@@ -94,6 +94,7 @@ public class autoHatchGrab extends Command {
     protected void end() {
         counter = 0;
         isDone = false;
+        Robot.hatchIntake.HatchIntakeExtend(false, false);
     }
 
     // Called when another command which requires one or more of the same

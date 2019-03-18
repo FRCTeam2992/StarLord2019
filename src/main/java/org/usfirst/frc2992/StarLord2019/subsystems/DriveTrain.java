@@ -253,7 +253,7 @@ public class DriveTrain extends Subsystem {
         double leftMotorSpeed = 0;
         double rightMotorSpeed = 0;
 
-        if (throttle < -0.05) {
+        if (throttle < -0.1) {
             leftMotorSpeed = throttle - direction;
             rightMotorSpeed = throttle + direction;
         } else {
