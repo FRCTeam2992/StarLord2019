@@ -63,6 +63,10 @@ public class ClimbBack extends Subsystem {
         climbMtr2.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
         climbMtr2.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
 
+        climbMtr2.configPeakCurrentLimit(54);
+        climbMtr2.configPeakCurrentDuration(5000); //5 sec
+        climbMtr2.configContinuousCurrentLimit(50);
+
         /*
         climbHeightEnc = new Encoder(4, 5, false, EncodingType.k4X);
         addChild("ClimbHeightEnc",climbHeightEnc);

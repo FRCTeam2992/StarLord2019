@@ -71,10 +71,14 @@ public class driveSticks extends Command {
         double right = -Robot.oi.rightJoy.smoothGetX();//for arcade
         double left = -Robot.oi.leftJoy.smoothGetY();
 
-        // Turn dampening
+        // Turn dampening for tank drive
+        /*
         double speeddiff = Math.abs(right - left);
         right /= 1 + kDamp * speeddiff;
         left /= 1 + kDamp * speeddiff;
+*/
+        //turn dampening for arcade
+        right /= 1 + kDamp;
 
         // Straight drive assist
 /*
@@ -118,13 +122,13 @@ public class driveSticks extends Command {
                 right += gkp * Robot.driveTrain.calcGyroError(straightHead);
                 left -= gkp * Robot.driveTrain.calcGyroError(straightHead);
             }
-        }
-*/      
+        }   
 
         // Force scale motor powers -1 to 1 range
         double powerMax = Math.max(1.0, Math.max(Math.abs(right), Math.abs(left)));
         right /= powerMax;
         left /= powerMax;
+*/
 
         if(Robot.oi.slowSpeedRegulator.get()){  //Set to slower max speed for fine movements
             right /= Constants.slowSpeed;

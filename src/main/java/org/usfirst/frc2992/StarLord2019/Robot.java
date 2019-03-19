@@ -58,6 +58,7 @@ public class Robot extends TimedRobot {
 
     //Light booleans - so no cross ups
     public static boolean isAutoTime = false;
+    public static boolean disabledLights = false;
     public static boolean cargoLoadLights = false;
     public static boolean hatchLoadLights = false;
     public static boolean cargoScoreLights = false;
@@ -152,6 +153,9 @@ public class Robot extends TimedRobot {
         climbBack.ClimbStop();
         cargoGroundIntake.CargoGroundFeed(0);
         cargoIntake.CargoIntakeFeedWheel(0);
+        cargoGroundIntake.CargoDeploy(false);
+        hatchIntake.HatchIntakeExtend(false,false);
+        hatchIntake.HatchIntakeGrab(false);
 
         driveTrain.leftTalonDrive.setNeutralMode(NeutralMode.Coast);
         driveTrain.rightTalonDrive.setNeutralMode(NeutralMode.Coast);
@@ -159,12 +163,19 @@ public class Robot extends TimedRobot {
         driveTrain.leftTalonDrive.setSelectedSensorPosition(0);
 
         isAutoTime = false;
+        disabledLights = true;
         lightCode.setLightSequence(.8);
         limeLight.setDouble(1);
     }
 
     @Override
     public void disabledPeriodic() {
+        disabledLights = true;
+        if(oi.autoAlignBtn.get()){
+            limeLight.setDouble(3);
+        } else{
+            limeLight.setDouble(1);
+        }
         lightCode.setLightSequence(.8);
         dashUpdate();
         Scheduler.getInstance().run();
@@ -179,7 +190,19 @@ public class Robot extends TimedRobot {
 
     @Override
     public void autonomousInit() {
+        driveTrain.allStop();
+        lift.liftStop();
+        climbFront.ClimbStop();
+        climbBack.ClimbStop();
+        cargoGroundIntake.CargoGroundFeed(0);
+        cargoIntake.CargoIntakeFeedWheel(0);
+        cargoGroundIntake.CargoDeploy(false);
+        hatchIntake.HatchIntakeExtend(false,false);
+        hatchIntake.HatchIntakeGrab(false);
+
         isAutoTime = true;
+        disabledLights = false;
+
         setAutoMode();
         driveTrain.navx.zeroYaw();
         lift.liftTalon.setSelectedSensorPosition(0);
@@ -204,9 +227,21 @@ public class Robot extends TimedRobot {
         // teleop starts running. If you want the autonomous to
         // continue until interrupted by another command, remove
         // this line or comment it out.
+        
+        driveTrain.allStop();
+        lift.liftStop();
+        climbFront.ClimbStop();
+        climbBack.ClimbStop();
+        cargoGroundIntake.CargoGroundFeed(0);
+        cargoIntake.CargoIntakeFeedWheel(0);
+        cargoGroundIntake.CargoDeploy(false);
+        hatchIntake.HatchIntakeExtend(false,false);
+        hatchIntake.HatchIntakeGrab(false);
+
         driveTrain.rightTalonDrive.setSelectedSensorPosition(0);
         driveTrain.leftTalonDrive.setSelectedSensorPosition(0);
         isAutoTime = false;
+        disabledLights = false;
         if (autonomousCommand != null) autonomousCommand.cancel();
 
     }

@@ -60,6 +60,10 @@ public class ClimbFront extends Subsystem {
 
         climbMtr1.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
         climbMtr1.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
+        
+        climbMtr1.configPeakCurrentLimit(54);
+        climbMtr1.configPeakCurrentDuration(5000); //5 sec above 54 amps
+        climbMtr1.configContinuousCurrentLimit(50);
 
         climbTopLimitSwitch = new DigitalInput(1);
         addChild("ClimbTopSwitch",climbTopLimitSwitch);
@@ -68,9 +72,6 @@ public class ClimbFront extends Subsystem {
         addChild("ClimbHeightEnc",climbHeightEnc);
         climbHeightEnc.setDistancePerPulse(1.0);
         climbHeightEnc.setPIDSourceType(PIDSourceType.kRate);
-        
-        
-        
         
         climbBottomSwitch = new DigitalInput(3);
         addChild("ClimbBottomSwitch",climbBottomSwitch);

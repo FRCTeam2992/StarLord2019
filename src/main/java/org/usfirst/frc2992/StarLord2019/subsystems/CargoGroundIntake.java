@@ -67,6 +67,7 @@ public class CargoGroundIntake extends Subsystem {
 
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new CargoGroundFeedwheel(0));
     }
 
     @Override
@@ -97,7 +98,6 @@ public class CargoGroundIntake extends Subsystem {
         groundIntakeSol.set(Deploy);
     }
     public void CargoGroundFeed(double Power) {
-        
         cargoIntakeMtr.set(Power);
     }
 

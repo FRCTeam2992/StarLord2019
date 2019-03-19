@@ -85,13 +85,13 @@ public class VisionProcessing extends Command {
             if(m_hasValidTarget){
                 if(!Robot.isAutoTime){
                     Robot.VPLights = true;
-                    Robot.lightCode.setLightSequence(.175);
+                    Robot.lightCode.setLightSequence(.225);
                 }
                 Robot.driveTrain.arcadeDrive(m_driveCmd, -m_turnCmd);
             } else{
                 if(!Robot.isAutoTime){
                     Robot.VPLights = true;
-                    Robot.lightCode.setLightSequence(.225);
+                    Robot.lightCode.setLightSequence(.175);
                 }
                 rightJoyVal = -Robot.oi.rightJoy.smoothGetX();//for arcade
                 leftJoyVal = -Robot.oi.leftJoy.smoothGetY();

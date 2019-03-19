@@ -168,7 +168,7 @@ public class Lift extends Subsystem {
         moving = true;
         //Robot.hatchIntake.HatchIntakeExtend(false, false);
 
-        height = Math.max(0, Math.min(height + .5, liftMaxTravel));
+        height = Math.max(0, Math.min(height + 2, liftMaxTravel));
 
         liftTalon.set(ControlMode.Position, height, DemandType.ArbitraryFeedForward, .15);    
         //auto re-zeroing the encoder hitting btm so don't have to keep track of where you are
