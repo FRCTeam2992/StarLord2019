@@ -65,9 +65,10 @@ public class ClimbFront extends Subsystem {
         climbMtr1.configPeakCurrentDuration(5000); //5 sec above 54 amps
         climbMtr1.configContinuousCurrentLimit(50);
 
+        /*
         climbTopLimitSwitch = new DigitalInput(1);
         addChild("ClimbTopSwitch",climbTopLimitSwitch);
-        /*
+        
         climbHeightEnc = new Encoder(4, 5, false, EncodingType.k4X);
         addChild("ClimbHeightEnc",climbHeightEnc);
         climbHeightEnc.setDistancePerPulse(1.0);

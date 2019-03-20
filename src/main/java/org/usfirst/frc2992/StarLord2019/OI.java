@@ -148,7 +148,7 @@ public class OI {
         */
     //Vision Processing Btn
         autoAlignBtn = new JoystickButton(leftJoy, 3);
-        autoAlignBtn.whileHeld(new VisionProcessing());
+        autoAlignBtn.whileHeld(new VisionProcessing());//VisionProcessing()
         autoAlignBtn.whenReleased(new driveSticks());
 
     //First Button Box
