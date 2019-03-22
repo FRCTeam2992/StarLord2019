@@ -205,7 +205,6 @@ public class Robot extends TimedRobot {
 
         setAutoMode();
         driveTrain.navx.zeroYaw();
-        lift.liftTalon.setSelectedSensorPosition(0);
         lightCode.setLightSequence(.525);
         // schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();

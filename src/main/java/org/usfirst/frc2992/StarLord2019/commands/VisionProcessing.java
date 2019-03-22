@@ -161,8 +161,8 @@ public class VisionProcessing extends Command {
     }
 
     public void updateLimelightTracking(){
-        final double STEER_K = 0.025;
-        final double DRIVE_K = 0.26;
+        final double STEER_K = 0.025; //for practice : .025
+        final double DRIVE_K = 0.26; //for practice: .26
         final double DESIRED_TARGET_AREA = 13.0;
         final double MAX_DRIVE = 0.4;
 

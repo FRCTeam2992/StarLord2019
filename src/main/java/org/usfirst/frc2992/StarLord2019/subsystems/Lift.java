@@ -53,8 +53,8 @@ public class Lift extends Subsystem {
     public boolean moving;
     public boolean setPosition = false;
     private double height = 0;
-    private boolean hatchExtSol1 = false;
-    private boolean hatchExtSol2 = false;
+    //private boolean hatchExtSol1 = false;
+    //private boolean hatchExtSol2 = false;
 
     private boolean limitSwitchMode = true;
     private boolean limitOverrideBtn = false;
@@ -136,6 +136,13 @@ public class Lift extends Subsystem {
             limitSwitchMode = true;
         }
 
+        
+        if(liftTalon.getSensorCollection().isRevLimitSwitchClosed()){
+            //bottomEncVal = liftTalon.getSelectedSensorPosition();
+            //encoder attached to climb mtr bc sentinel board probs
+            Robot.climbFront.climbMtr1.setSelectedSensorPosition(0);
+        }
+        
  
     }
 
@@ -173,8 +180,6 @@ public class Lift extends Subsystem {
         liftTalon.set(ControlMode.Position, height, DemandType.ArbitraryFeedForward, .15);    
         //auto re-zeroing the encoder hitting btm so don't have to keep track of where you are
         //height += liftTalon.getSelectedSensorPosition();
-        
-        
     }
 
     public void liftStop(){
