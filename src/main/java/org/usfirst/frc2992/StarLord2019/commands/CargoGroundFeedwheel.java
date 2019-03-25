@@ -59,6 +59,8 @@ public class CargoGroundFeedwheel extends Command {
             && (Robot.cargoGroundIntake.groundIntakeSol.get() || deployTimer.get()<.2)
             && !Robot.cargoIntake.cargoDistSensor.get()) { 
                 Robot.cargoGroundIntake.CargoGroundFeed(m_Power);
+        }else if (!Robot.cargoGroundIntake.groundIntakeSol.get() && deployTimer.get() < .25){
+            Robot.cargoGroundIntake.CargoGroundFeed(.2);
         }else {
             Robot.cargoGroundIntake.CargoGroundFeed(0);
         }
