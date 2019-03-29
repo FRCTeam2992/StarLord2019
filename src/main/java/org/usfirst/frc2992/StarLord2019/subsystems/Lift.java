@@ -102,6 +102,10 @@ public class Lift extends Subsystem {
         liftTalon.config_kD(1, 6.5);
         liftTalon.configAllowableClosedloopError(1, 100, 1000);
         liftTalon.configClosedLoopPeakOutput(1, Constants.normalLiftDownSpeed);
+
+        //motion profiling - acceleration and max cruise velocity
+        //liftTalon.configMotionAcceleration(400, 10);//(accel in enc ticks/100ms/sec, timeout ms)
+        //liftTalon.configMotionCruiseVelocity(1000, 10);//(velocity in enc ticks/100ms, timeout ms)
         
         //liftTalon.set(ControlMode.Position, 4096*3);
         //liftTalon.set(ControlMode.Position, 4096*2, DemandType.ArbitraryFeedForward, .07);
@@ -177,7 +181,9 @@ public class Lift extends Subsystem {
 
         height = Math.max(0, Math.min(height + 2, liftMaxTravel));
 
-        liftTalon.set(ControlMode.Position, height, DemandType.ArbitraryFeedForward, .15);    
+        liftTalon.set(ControlMode.Position, height, DemandType.ArbitraryFeedForward, .15);
+        //liftTalon.set(ControlMode.MotionMagic, height);
+        
         //auto re-zeroing the encoder hitting btm so don't have to keep track of where you are
         //height += liftTalon.getSelectedSensorPosition();
     }
