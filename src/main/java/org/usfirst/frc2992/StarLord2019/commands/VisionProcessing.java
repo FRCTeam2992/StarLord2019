@@ -12,6 +12,8 @@
 package org.usfirst.frc2992.StarLord2019.commands;
 import edu.wpi.first.wpilibj.command.Command;
 
+import java.lang.reflect.Array;
+
 import org.usfirst.frc2992.StarLord2019.Constants;
 import org.usfirst.frc2992.StarLord2019.Robot;
 import edu.wpi.first.networktables.*;
@@ -44,6 +46,10 @@ public class VisionProcessing extends Command {
     private double camHt = Constants.camHt;
     private double tarHt = (Constants.tarHt);
     private double camAngle = Constants.camAngle;
+
+    private double lastSteer = 0;
+    private double secondSteer = 0;
+    private double thirdSteer = 0;
 
     private double rightJoyVal = 0;
     private double leftJoyVal = 0;
@@ -180,8 +186,13 @@ public class VisionProcessing extends Command {
 
             //start with proportional steering
             double steerCmd = TX * STEER_K;
-            m_turnCmd = steerCmd;
-    
+
+            thirdSteer = secondSteer;
+            secondSteer = lastSteer;
+            lastSteer = steerCmd;
+            
+            m_turnCmd = getRollingAvg(lastSteer, secondSteer, thirdSteer);
+
             //try to drive fwd until target area reaches desired area
             double driveCmd = (DESIRED_TARGET_AREA - TA) * DRIVE_K;
     
@@ -190,8 +201,14 @@ public class VisionProcessing extends Command {
                 driveCmd = MAX_DRIVE;
             }
             m_driveCmd = driveCmd;
+
+            
         }
         
+    }
+
+    private double getRollingAvg(double one, double two, double three){
+        return (one + two + three) / 3;
     }
 
 }
