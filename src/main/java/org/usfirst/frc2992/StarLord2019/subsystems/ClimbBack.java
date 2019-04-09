@@ -109,7 +109,7 @@ public class ClimbBack extends Subsystem {
             limitSwitchMode = true;
         }
         
-        if(Robot.oi.climberCheckBtn.get()){
+        if(Robot.oi.climberCheckBtn.get() && !Robot.disabledMode){
             Robot.climbLights = true;
             Robot.lightCode.setLightSequence(.275);
         } else{

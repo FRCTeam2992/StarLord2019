@@ -196,10 +196,10 @@ public class VisionProcessingBetter extends Command {
     }
 
     public void enhancedDriving(){
-        final double STEER_K = 0.015;
-        final double DRIVE_K = 0.26;
+        final double STEER_K = 0.020;//.025
+        final double DRIVE_K = 0.26;//.26
         final double DESIRED_TARGET_AREA = 13.0;
-        final double MAX_DRIVE = 0.4;
+        final double MAX_DRIVE = 0.5;
 
         double TV = tv.getDouble(0.0);
         double TX = tx.getDouble(0.0);

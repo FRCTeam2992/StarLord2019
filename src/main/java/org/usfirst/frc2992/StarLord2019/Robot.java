@@ -58,7 +58,7 @@ public class Robot extends TimedRobot {
 
     //Light booleans - so no cross ups
     public static boolean isAutoTime = false;
-    public static boolean disabledLights = false;
+    public static boolean disabledMode = false;
     public static boolean cargoLoadLights = false;
     public static boolean hatchLoadLights = false;
     public static boolean cargoScoreLights = false;
@@ -163,14 +163,14 @@ public class Robot extends TimedRobot {
         driveTrain.leftTalonDrive.setSelectedSensorPosition(0);
 
         isAutoTime = false;
-        disabledLights = true;
+        disabledMode = true;
         lightCode.setLightSequence(.8);
         limeLight.setDouble(1);
     }
 
     @Override
     public void disabledPeriodic() {
-        disabledLights = true;
+        disabledMode = true;
         if(oi.autoAlignBtn.get()){
             limeLight.setDouble(3);
         } else{
@@ -201,7 +201,7 @@ public class Robot extends TimedRobot {
         hatchIntake.HatchIntakeGrab(false);
 
         isAutoTime = true;
-        disabledLights = false;
+        disabledMode = false;
 
         setAutoMode();
         driveTrain.navx.zeroYaw();
@@ -240,7 +240,7 @@ public class Robot extends TimedRobot {
         driveTrain.rightTalonDrive.setSelectedSensorPosition(0);
         driveTrain.leftTalonDrive.setSelectedSensorPosition(0);
         isAutoTime = false;
-        disabledLights = false;
+        disabledMode = false;
         if (autonomousCommand != null) autonomousCommand.cancel();
 
     }

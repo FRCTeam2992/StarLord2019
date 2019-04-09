@@ -81,6 +81,10 @@ public class VisionProcessing extends Command {
     protected void initialize() {
         this.setInterruptible(true);
         light.setDouble(3); //for limelight LEDs on
+
+        lastSteer = 0;
+        secondSteer = 0;
+        thirdSteer = 0;
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -102,7 +106,6 @@ public class VisionProcessing extends Command {
                 rightJoyVal = -Robot.oi.rightJoy.smoothGetX();//for arcade
                 leftJoyVal = -Robot.oi.leftJoy.smoothGetY();
                 Robot.driveTrain.arcadeDrive(leftJoyVal, -rightJoyVal);
-                //do we want this or allow manual driving?
             }
 /*
             //values from limelight
@@ -152,6 +155,10 @@ public class VisionProcessing extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
+        lastSteer = 0;
+        secondSteer = 0;
+        thirdSteer = 0;
+
         Robot.VPLights = false;
         light.setDouble(1);//force limelight light off
     //    if(autoCmd != null) autoCmd.cancel();
@@ -161,6 +168,9 @@ public class VisionProcessing extends Command {
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
+        lastSteer = 0;
+        secondSteer = 0;
+        thirdSteer = 0;
         Robot.VPLights = false;
         light.setDouble(1); //force limelight light to turn off
     //    if(autoCmd != null) autoCmd.cancel();
