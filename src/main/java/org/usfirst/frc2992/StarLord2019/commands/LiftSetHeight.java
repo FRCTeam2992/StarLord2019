@@ -100,7 +100,7 @@ public class LiftSetHeight extends Command {
         } 
 
         //Determines if the lift motor is on target
-        isDone = Math.abs(height - Robot.lift.liftTalon.getSelectedSensorPosition()) <= 200;
+        isDone = Math.abs(height - Robot.lift.liftTalon.getSelectedSensorPosition()) <= 50;
 
     }
 

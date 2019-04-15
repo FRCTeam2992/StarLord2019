@@ -174,7 +174,7 @@ public class OI {
         autoHatchScoreBtn.whenPressed(new autoHatchRel());
 
         liftUpBtn = new JoystickButton(buttonBox, 8);
-        liftUpBtn.whileHeld(new LiftMove(.7));
+        liftUpBtn.whileHeld(new LiftMove(0.7));
         liftUpBtn.whenReleased(new LiftStop());
         liftUpBtn.whileHeld(new AutoClimb(Constants.upClimbSpeed));
         liftUpBtn.whenReleased(new ClimbStopBack());
