@@ -197,15 +197,14 @@ public class Lift extends Subsystem {
     }
 
     public void holdPosn(){
-        //height = Robot.driveTrain.convertEncoderTicks(height);
         moving = false;
         if(!setPosition){
-            height = liftTalon.getSelectedSensorPosition() + 512;
+            height = liftTalon.getSelectedSensorPosition();
             setPosition = true;
         }
         
         //liftTalon.set(ControlMode.Position, height);        
-        //liftTalon.set(ControlMode.MotionMagic, height);
+        liftTalon.set(ControlMode.MotionMagic, height);
     }
 
     public double ChooseCargoHeight(int floor){
