@@ -131,7 +131,7 @@ public class OI {
     //Joystick Btns
         pieceRelJoyBtn = new JoystickButton(rightJoy, 3);
         pieceRelJoyBtn.whenPressed(new autoHatchScore());
-        pieceRelJoyBtn.whileHeld(new CargoIntakeFeedWheel(-.6));
+        pieceRelJoyBtn.whileHeld(new CargoIntakeFeedWheel(-1));
         pieceRelJoyBtn.whenReleased(new CargoIntakeFeedWheel(0));
 
         highCargoRelJoyBtn = new JoystickButton(rightJoy, 5);

@@ -24,10 +24,10 @@ public class Constants {
     public static final double normalLiftDownSpeed = 0.4;
     
     //Cargo lift heights
-    public static final double topRocketCargoHeight = 63;//66 
-    public static final double middleRocketCargoHeight = 37;//38
-    public static final double bottomRocketCargoHeight = 11;//10
-    public static final double cargoLoadHeight = 26.5;//27.5
+    public static final double topRocketCargoHeight = 65;//66 
+    public static final double middleRocketCargoHeight = 39;//38
+    public static final double bottomRocketCargoHeight = 13;//10
+    public static final double cargoLoadHeight = 28.5;//27.5
     public static final double cargoGroundHeight = -5;
 
     //Hatch lift heights
