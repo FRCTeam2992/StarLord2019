@@ -24,7 +24,7 @@ public class Constants {
     public static final double normalLiftDownSpeed = 0.4;
     
     //Cargo lift heights
-    public static final double topRocketCargoHeight = 65;//66 
+    public static final double topRocketCargoHeight = 66;//66 
     public static final double middleRocketCargoHeight = 39;//38
     public static final double bottomRocketCargoHeight = 13;//10
     public static final double cargoLoadHeight = 28.5;//27.5

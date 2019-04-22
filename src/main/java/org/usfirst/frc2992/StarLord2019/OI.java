@@ -93,6 +93,7 @@ public class OI {
     public JoystickButton climbDownFrontBtn;
     public JoystickButton climberCheckBtn;
     public JoystickButton climberOSBtn;
+    public JoystickButton climbHoldBtn;//hold climb arms down during match
 
     public JoystickButton autoAlignBtn;
     public JoystickButton autoGroundFeedBtn;//Cargo
@@ -101,11 +102,7 @@ public class OI {
     public JoystickButton autoHatchScoreBtn; //Hatch
  
     public JoystickButton limitSwitchOverrideBtn;
-    public JoystickButton autoSwtich1;
-    public JoystickButton autoSwtich2;
-    public JoystickButton autoSwtich3;
-    public JoystickButton autoSwtich4;
-    public JoystickButton autoSwtich5;
+
     //public JoystickButton autoSwtich6;
 
     //2 output channels for LED on btnBox
@@ -131,7 +128,7 @@ public class OI {
     //Joystick Btns
         pieceRelJoyBtn = new JoystickButton(rightJoy, 3);
         pieceRelJoyBtn.whenPressed(new autoHatchScore());
-        pieceRelJoyBtn.whileHeld(new CargoIntakeFeedWheel(-1));
+        pieceRelJoyBtn.whileHeld(new CargoIntakeFeedWheel(-.8));
         pieceRelJoyBtn.whenReleased(new CargoIntakeFeedWheel(0));
 
         highCargoRelJoyBtn = new JoystickButton(rightJoy, 5);
@@ -253,15 +250,8 @@ public class OI {
         climbDownFrontBtn.whileHeld(new ClimbFrontUp(-.5));
         climbDownFrontBtn.whenReleased(new ClimbStopFront());
 
-        autoSwtich1 = new JoystickButton(buttonBox2, 13);
-
-        autoSwtich2 = new JoystickButton(buttonBox2, 14);
-
-        autoSwtich3 = new JoystickButton(buttonBox2, 15);
-
-        autoSwtich4 = new JoystickButton(buttonBox2, 16);
-
-        autoSwtich5 = new JoystickButton(buttonBox2, 17);
+        climbHoldBtn = new JoystickButton(buttonBox2, 13);
+        climbHoldBtn.whileHeld(new ClimbFrontUp(-.03));
 
         //autoSwtich6 = new JoystickButton(buttonBox2, 18);        
 

@@ -283,7 +283,9 @@ public class Robot extends TimedRobot {
         }
                
     }
+    
     public void setAutoMode() {
+        /*
         int autoMode = 0;
         if (Robot.oi.autoSwtich1.get()){
             autoMode += 1;
@@ -333,6 +335,7 @@ public class Robot extends TimedRobot {
                     autoStartPosn = "Anywhere";
                     break;
         }
+        */
     }
 
     public static void climbGyro(double power){// use to autonomously climb and keep robot level
