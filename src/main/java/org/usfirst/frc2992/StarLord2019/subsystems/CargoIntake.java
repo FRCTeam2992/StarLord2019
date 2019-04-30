@@ -139,16 +139,7 @@ public class CargoIntake extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-    public void CargoIntakeFeedWheel(double Power){
-        /*
-        m_power = Power;
-        if(cargoDistSensor.get() && Power>0){
-            cargoPickUpMtr.set(0);
-        } else{
-            cargoPickUpMtr.set(Power);
-        }
-        */
-        
+    public void CargoIntakeFeedWheel(double Power){        
         //makes sure the motor run longer so cargo is in all the way
         m_power = Power;
         if (cargoDistSensor.get() && Power>0){ //if get sensor increment counter

@@ -40,6 +40,7 @@ public class autoHatchRel extends Command {
     @Override
     protected void initialize() {
         this.setInterruptible(true);
+        //Only extend bc driver button actualy releases hatch
         Robot.hatchIntake.HatchIntakeExtend(true, true);
         Robot.hatchIntake.hatchScoringBool = true;
     }

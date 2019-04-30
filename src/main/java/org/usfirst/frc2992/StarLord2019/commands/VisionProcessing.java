@@ -107,48 +107,13 @@ public class VisionProcessing extends Command {
                 leftJoyVal = -Robot.oi.leftJoy.smoothGetY();
                 Robot.driveTrain.arcadeDrive(leftJoyVal, -rightJoyVal);
             }
-/*
-            //values from limelight
-            x = tx.getDouble(0.0); //needs to be global
-            double y = ty.getDouble(0.0);
-            double area = ta.getDouble(0.0);
 
-            SmartDashboard.putNumber("LimeLightX", x);
-            SmartDashboard.putNumber("LimeLightY", y);
-            SmartDashboard.putNumber("LimeLightArea", area);
-
-            if(x>0 && !haveOvershot){
-                autoCmd = new AutoDriveFwd(10, 0.5, 3, true, x+10);
-            }else if(x<0 && !haveOvershot){
-                autoCmd = new AutoDriveFwd(10, 0.5, 3, true, x-10);
-            }
-
-            if(Math.abs(x) > 1.5 && !isAutoSet && haveOvershot){// if angle b/w middle of pic and bot, turn towards target
-                autoCmd = new AutoDriveTurn(-x, 0.5, 3);
-                isAutoSet = true;
-            } else if(Math.abs(x) <= 1.5 && !isAutoSet && haveOvershot){//if angle is close within 1.5deg, just drive towards it
-                dist = Robot.driveTrain.getDist(camHt, tarHt, camAngle, y);
-                //newDist = (int) Math.round(dist);
-                dist = Robot.driveTrain.convertEncoderTicks(dist * (Math.sin(camAngle))); //Pyth. Theorem to find Horiz dist fwd
-                autoCmd = new AutoDriveFwd(dist, 0.5, 3, true, x); 
-                isAutoSet = true;
-            }
-*/
-            
-            //if(autoCmd.isCompleted()) isAutoSet = false;
         }
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-/*
-        if((dist < 5 && Math.abs(x) < 1.5)){
-            return true;
-        } else{
-            return false;
-        }
-*/
         return false;  // Count on driver to interrupt by releasing button
     }
 
@@ -161,7 +126,6 @@ public class VisionProcessing extends Command {
 
         Robot.VPLights = false;
         light.setDouble(1);//force limelight light off
-    //    if(autoCmd != null) autoCmd.cancel();
     }
 
     // Called when another command which requires one or more of the same
@@ -173,7 +137,6 @@ public class VisionProcessing extends Command {
         thirdSteer = 0;
         Robot.VPLights = false;
         light.setDouble(1); //force limelight light to turn off
-    //    if(autoCmd != null) autoCmd.cancel();
     }
 
     public void updateLimelightTracking(){

@@ -118,29 +118,6 @@ public class HatchIntake extends Subsystem {
         if(stopCommand!=null) stopCommand.start();
         if(stopCommand2!=null) stopCommand2.start();
 
-/*
-        if(!Robot.disabledMode && !Robot.isCargoMode && !Robot.isAutoTime && !Robot.VPLights && !Robot.climbLights
-                && !hatchScoringBool && !hatchLoadedBool){//make sure other lights not overrridden
-            if(Robot.hatchIntake.getGrabSol()){
-                Robot.lightCode.setLightSequence(.125);
-            } else{
-                Robot.lightCode.setLightSequence(.575);
-            }    
-        }else if(!Robot.disabledMode && !Robot.isAutoTime && !Robot.isCargoMode && hatchLoadedBool && !hatchScoringBool 
-                && !Robot.VPLights && !Robot.climbLights && !Robot.hatchScoreLights ){//hatchLoaded Lights
-            Robot.hatchLoadLights = true;
-            Robot.hatchScoreLights = false;
-            Robot.lightCode.setLightSequence(.425);
-        } else if(!Robot.disabledMode && !Robot.isAutoTime && !Robot.isCargoMode && hatchScoringBool && !Robot.VPLights
-                && !Robot.climbLights && !Robot.hatchLoadLights){//hatch score lights
-            Robot.hatchScoreLights = true;
-            Robot.hatchLoadLights = false;
-            Robot.lightCode.setLightSequence(.475);
-        } else{
-            Robot.hatchScoreLights = false;
-            Robot.hatchLoadLights = false;
-        }
-*/
     if(!Robot.disabledMode && !Robot.isCargoMode && !Robot.isAutoTime 
             && !Robot.VPLights && !Robot.climbLights){//make sure other lights not overrridden
         if(Robot.hatchIntake.getGrabSol()){
@@ -191,14 +168,6 @@ public class HatchIntake extends Subsystem {
     public boolean getHatchSol2(){
         return hatchPushSol2.get();
     }
-    /*
-    public void yeeHaw(int cowboy){
-        String text = "";
-        for(int i = 0; i < cowboy; i++){
-            text += "Yeehaw! ";
-        }
-        System.out.println(text);
-    }
-*/
+    
 }
 

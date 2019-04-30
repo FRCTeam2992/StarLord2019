@@ -179,7 +179,6 @@ public class Robot extends TimedRobot {
         lightCode.setLightSequence(.8);
         dashUpdate();
         Scheduler.getInstance().run();
-        setAutoMode();
 
         if(oi.leftJoy.getTrigger()){
             startCam("Cargo");
@@ -203,7 +202,6 @@ public class Robot extends TimedRobot {
         isAutoTime = true;
         disabledMode = false;
 
-        setAutoMode();
         driveTrain.navx.zeroYaw();
         lightCode.setLightSequence(.525);
         // schedule the autonomous command (example)
@@ -284,59 +282,6 @@ public class Robot extends TimedRobot {
                
     }
     
-    public void setAutoMode() {
-        /*
-        int autoMode = 0;
-        if (Robot.oi.autoSwtich1.get()){
-            autoMode += 1;
-        }
-        if (Robot.oi.autoSwtich2.get()){
-            autoMode += 2;
-        }
-        if (Robot.oi.autoSwtich3.get()){
-            autoMode += 4;
-        }
-        if (Robot.oi.autoSwtich4.get()){
-            autoMode += 8;
-        }
-        if (Robot.oi.autoSwtich5.get()){
-            autoMode += 16;
-        }
-        //if (Robot.oi.autoSwtich6.get()){
-          //  autoMode += 32;
-        //}
-
-        autoCommandNum = autoMode;
-        
-
-        switch(autoMode){
-            case 0: autonomousCommand = new driveSticks();//  AutoDriveFwd(6 * 3.14, 0.5, 5, true, 0)
-                    autoName = "Driver control";
-                    autoStartPosn = "Anywhere";
-                    break;
-            case 1: autonomousCommand = new autoLeftSideLeftRocket();
-                    autoName = "Left side, closest Rocket face";
-                    autoStartPosn = "Left Side, Level 1";
-                    break;
-            case 2: autonomousCommand = new autoMiddleToLeftCargo();
-                    autoName = "Front Left Cargoship";
-                    autoStartPosn = "Left-Middle Hab";
-                    break;
-            case 4: autonomousCommand = new autoMiddleToRightCargo();
-                    autoName = "Front Right Cargoship";
-                    autoStartPosn = "Right-Middle Hab";
-                    break;
-            case 8: autonomousCommand = new AutoRightRocketRightSide();
-                    autoName = "Right side, closest Rocket face";
-                    autoStartPosn = "Right Side, Level 1";
-                    break;
-            default: autonomousCommand = new driveSticks();
-                    autoName = "Driver Control";
-                    autoStartPosn = "Anywhere";
-                    break;
-        }
-        */
-    }
 
     public static void climbGyro(double power){// use to autonomously climb and keep robot level
         double gkp = .01;//COMP ROBOT = .01
@@ -344,7 +289,6 @@ public class Robot extends TimedRobot {
         double gyroError = (driveTrain.navx.getRoll() + Constants.rollCorrection);
 
         //PID for climb motors
-        //UNCOMMENT FOR COMP ROBOT!!!
         climbFront.climbMtr1.set(ControlMode.PercentOutput, power-(gkp*gyroError));
         climbBack.climbMtr2.set(ControlMode.PercentOutput, power+(gkp*gyroError) + .2);
         

@@ -20,19 +20,19 @@ package org.usfirst.frc2992.StarLord2019;
 public class Constants {
     public static final int liftEncDist = 4096;
 
-    public static final double normalLiftUpSpeed = .8;//.9
+    public static final double normalLiftUpSpeed = .8;
     public static final double normalLiftDownSpeed = 0.4;
     
     //Cargo lift heights
-    public static final double topRocketCargoHeight = 66;//66 
-    public static final double middleRocketCargoHeight = 39;//38
-    public static final double bottomRocketCargoHeight = 13;//10
-    public static final double cargoLoadHeight = 28.5;//27.5
+    public static final double topRocketCargoHeight = 66;
+    public static final double middleRocketCargoHeight = 39;
+    public static final double bottomRocketCargoHeight = 13;
+    public static final double cargoLoadHeight = 28.5;
     public static final double cargoGroundHeight = -5;
 
     //Hatch lift heights
-    public static final double topRocketHatchHeight = 53.5;//56
-    public static final double middleRocketHatchHeight = 26;//28
+    public static final double topRocketHatchHeight = 53.5;
+    public static final double middleRocketHatchHeight = 26;
     public static final double bottomRocketHatchHeight = -5;
 
     public static final double hatchLoadingGrabTimeout = 0.3;
@@ -45,8 +45,8 @@ public class Constants {
     public static final double camAngle = 53;
 
     //Climb Constants
-    public static double upClimbSpeed = .85;//1
-    public static double downClimbSpeed = -.65;//-.3
+    public static double upClimbSpeed = .85;
+    public static double downClimbSpeed = -.65;
     public static double rollCorrection = -3;
     public static double climbAngleLimit = 7;
 
