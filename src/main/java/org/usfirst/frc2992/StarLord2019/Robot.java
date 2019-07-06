@@ -272,7 +272,7 @@ public class Robot extends TimedRobot {
             SmartDashboard.putString("Auto Start Position", autoStartPosn);
             SmartDashboard.putBoolean("Lift top limit", lift.liftTalon.getSensorCollection().isFwdLimitSwitchClosed());
             SmartDashboard.putBoolean("Lift bottom limit", lift.liftTalon.getSensorCollection().isRevLimitSwitchClosed());
-            SmartDashboard.putBoolean("Front climb limit", climbFront.climbMtr1.getSensorCollection().isFwdLimitSwitchClosed());
+            SmartDashboard.putBoolean("Front climb limit", climbFront.getTopLimitSwitch());
             SmartDashboard.putBoolean("Rear climb limit", climbBack.climbMtr2.getSensorCollection().isFwdLimitSwitchClosed());
 
             SmartDashboard.putNumber("Lift Motor", lift.liftTalon.get());
@@ -290,7 +290,7 @@ public class Robot extends TimedRobot {
         double gyroError = (driveTrain.navx.getRoll() + Constants.rollCorrection);
 
         //PID for climb motors
-        climbFront.climbMtr1.set(ControlMode.PercentOutput, power-(gkp*gyroError));
+        climbFront.climbMtr1.set(power-(gkp*gyroError));
         climbBack.climbMtr2.set(ControlMode.PercentOutput, power+(gkp*gyroError) + .2);
         
 /*      //FOR PRACTICE ROBOT

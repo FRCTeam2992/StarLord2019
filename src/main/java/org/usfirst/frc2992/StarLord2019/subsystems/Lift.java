@@ -140,7 +140,7 @@ public class Lift extends Subsystem {
             //encoder attached to climb mtr bc sentinel board probs
 
             if(Robot.isPracBot){
-                Robot.climbFront.climbMtr1.setSelectedSensorPosition(0);
+                liftTalon.setSelectedSensorPosition(0);
             } else {
                 Robot.driveTrain.leftTalonDrive.setSelectedSensorPosition(0); //TODO Maybe change sides of drivetrain
             }
