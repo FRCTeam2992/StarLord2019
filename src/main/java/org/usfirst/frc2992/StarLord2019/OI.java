@@ -103,6 +103,8 @@ public class OI {
  
     public JoystickButton limitSwitchOverrideBtn;
 
+    public JoystickButton driveModeBtn;
+
     //2 output channels for LED on btnBox
     //To see where used - go to driveSticks Cmd
     public int cargoLight = 1; //1 is port#
@@ -118,7 +120,7 @@ public class OI {
         buttonBox2 = new Joystick(3);
 
     //OS BUTTONS!!
-        OSBtn = new JoystickButton(buttonBox2, 18);
+        OSBtn = new JoystickButton(buttonBox2, 16);
         OSJoyBtn = new JoystickButton(leftJoy, 4);
 
         climberOSBtn = new JoystickButton(rightJoy, 6);
@@ -128,11 +130,11 @@ public class OI {
         pieceRelJoyBtn = new JoystickButton(rightJoy, 3);
         pieceRelJoyBtn.whenPressed(new autoHatchScore());
         pieceRelJoyBtn.whileHeld(new CargoIntakeFeedWheel(-.8));
-        pieceRelJoyBtn.whenReleased(new CargoIntakeFeedWheel(0));
+        pieceRelJoyBtn.whenReleased(new CargoIntakeFeedStop());
 
         highCargoRelJoyBtn = new JoystickButton(rightJoy, 5);
         highCargoRelJoyBtn.whileHeld(new CargoIntakeFeedWheel(-1));
-        highCargoRelJoyBtn.whenReleased(new CargoIntakeFeedWheel(0));
+        highCargoRelJoyBtn.whenReleased(new CargoIntakeFeedStop());
 
         slowSpeedRegulator = new JoystickButton(rightJoy, 4);
 
@@ -183,19 +185,19 @@ public class OI {
        
         groundFwdCargoBtn = new JoystickButton(buttonBox, 11);
         groundFwdCargoBtn.whileHeld(new CargoGroundFeedwheel(1));
-        groundFwdCargoBtn.whenReleased(new CargoGroundFeedwheel(0));
+        groundFwdCargoBtn.whenReleased(new CargoGroundFeedStop());
 
         groundRevCargoBtn = new JoystickButton(buttonBox, 12);
         groundRevCargoBtn.whileHeld(new CargoGroundFeedwheel(-1));
-        groundRevCargoBtn.whenReleased(new CargoGroundFeedwheel(0));
+        groundRevCargoBtn.whenReleased(new CargoGroundFeedStop());
         
         feedWheelInBtn = new JoystickButton(buttonBox, 13);
         feedWheelInBtn.whileHeld(new CargoIntakeFeedWheel(.7));
-        feedWheelInBtn.whenReleased(new CargoIntakeFeedWheel(0));
+        feedWheelInBtn.whenReleased(new CargoIntakeFeedStop());
  
         feedWheelOutBtn = new JoystickButton(buttonBox, 14);
         feedWheelOutBtn.whileHeld(new CargoIntakeFeedWheel(-.6));
-        feedWheelOutBtn.whenReleased(new CargoIntakeFeedWheel(0));
+        feedWheelOutBtn.whenReleased(new CargoIntakeFeedStop());
 
         //this btn doesn't trigger a cmd.
         //It's used in lift and climber to make sure can still lift w/ broken sensor
@@ -243,6 +245,8 @@ public class OI {
 
         climbHoldBtn = new JoystickButton(buttonBox2, 13);
         climbHoldBtn.whileHeld(new ClimbFrontUp(-.03));
+
+        driveModeBtn = new JoystickButton(buttonBox2, 14);     // Switch arcade or tank
 
         //autoSwtich6 = new JoystickButton(buttonBox2, 18);        
 

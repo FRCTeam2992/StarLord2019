@@ -41,5 +41,6 @@ public class autoCargoLoadStation extends CommandGroup {
     addParallel(new CargoDeploySol(true));
     addSequential(new LiftSetHeight(0, 0.4, Constants.normalLiftDownSpeed, 4));//why was this changed - we're not going up here
     addSequential(new CargoDeploySol(false));
+    addSequential(new CargoIntakeFeedStop());
   }
 }

@@ -68,7 +68,8 @@ public class driveSticks extends Command {
     @Override
     protected void execute() {
         //double right = -Robot.oi.rightJoy.smoothGetY(); //for tank
-        double right = -Robot.oi.rightJoy.smoothGetX();//for arcade
+        double rightX = -Robot.oi.rightJoy.smoothGetX();//for arcade
+        double rightY = -Robot.oi.rightJoy.smoothGetY(); //For tank
         double left = -Robot.oi.leftJoy.smoothGetY();
 
         // Turn dampening for tank drive
@@ -78,7 +79,7 @@ public class driveSticks extends Command {
         left /= 1 + kDamp * speeddiff;
 */
         //turn dampening for arcade
-        right /= 1 + kDamp;
+        rightX /= 1 + kDamp;
 
         // Straight drive assist
 /*
@@ -131,7 +132,7 @@ public class driveSticks extends Command {
 */
 
         if(Robot.oi.slowSpeedRegulator.get()){  //Set to slower max speed for fine movements
-            right /= Constants.slowSpeed;
+            rightX /= Constants.slowSpeed;
             left /= Constants.slowSpeed;
         }
 
@@ -143,8 +144,11 @@ public class driveSticks extends Command {
 
         if(Robot.oi.leftJoy.getTrigger()){
             //DO WE WANT TANK OR ARCADE??????
-            //Robot.driveTrain.tankDrive(-right, -left);
-            Robot.driveTrain.arcadeDrive(left, -right);
+            if (Robot.oi.driveModeBtn.get()) {
+                Robot.driveTrain.tankDrive(-rightY, -left);
+            } else {
+                Robot.driveTrain.arcadeDrive(left, -rightX);
+            }
             Robot.isCargoMode = true;
 
             //setting the port# on the btnBox to boolean for LED
@@ -154,8 +158,13 @@ public class driveSticks extends Command {
             Robot.startCam("Cargo"); // start the cargo Camera
             
         } else{
-            //Robot.driveTrain.tankDrive(left, right);
-            Robot.driveTrain.arcadeDrive(left, -right);
+            //DO WE WANT TANK OR ARCADE??????
+            if (Robot.oi.driveModeBtn.get()) {
+                Robot.driveTrain.tankDrive(left, rightY);
+            } else {
+                Robot.driveTrain.arcadeDrive(left, -rightX);
+            }
+                        
             Robot.isCargoMode = false;
 
             //setting the port# on the btnBox to boolean for LED

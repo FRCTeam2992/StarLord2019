@@ -23,6 +23,7 @@ public class Constants {
     public static final double normalLiftUpSpeed = .8;
     public static final double normalLiftDownSpeed = 0.4;
     
+
     //Cargo lift heights
     public static final double topRocketCargoHeight = 66;
     public static final double middleRocketCargoHeight = 39;
@@ -52,6 +53,10 @@ public class Constants {
 
     //Drive Constants
     public static double slowSpeed = 2.5;
+
+    //Lift height delta practice chassis to main chassis
+    public static final double cargoDeltaPrac = -2; // Practice chassis cargo heights need to be 2 inches lower
+     
 
 }
 

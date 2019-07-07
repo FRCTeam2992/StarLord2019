@@ -42,6 +42,7 @@ public class autoCargoLoadGround extends CommandGroup {
     addSequential(new CargoDeploySol(false));
     addParallel(new HatchIntakeExtend(false,false));
     addSequential(new WaitCommand(.35));
-    addParallel(new CargoGroundFeedwheel(0));
+    addParallel(new CargoGroundFeedStop());
+    addParallel(new CargoIntakeFeedStop());
   }
 }
