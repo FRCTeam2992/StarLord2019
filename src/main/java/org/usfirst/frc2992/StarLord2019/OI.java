@@ -120,7 +120,7 @@ public class OI {
         buttonBox2 = new Joystick(3);
 
     //OS BUTTONS!!
-        OSBtn = new JoystickButton(buttonBox2, 16);
+        OSBtn = new JoystickButton(buttonBox2, 18);
         OSJoyBtn = new JoystickButton(leftJoy, 4);
 
         climberOSBtn = new JoystickButton(rightJoy, 6);
