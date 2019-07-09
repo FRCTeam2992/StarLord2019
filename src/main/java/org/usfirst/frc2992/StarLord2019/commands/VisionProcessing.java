@@ -51,7 +51,8 @@ public class VisionProcessing extends Command {
     private double secondSteer = 0;
     private double thirdSteer = 0;
 
-    private double rightJoyVal = 0;
+    private double rightXJoyVal = 0;
+    private double rightYJoyVal = 0;
     private double leftJoyVal = 0;
 
     Command autoCmd;
@@ -103,9 +104,14 @@ public class VisionProcessing extends Command {
                     Robot.VPLights = true;
                     Robot.lightCode.setLightSequence(.175);
                 }
-                rightJoyVal = -Robot.oi.rightJoy.smoothGetX();//for arcade
+                rightXJoyVal = -Robot.oi.rightJoy.smoothGetX();//for arcade
+                rightYJoyVal = -Robot.oi.rightJoy.smoothGetY();
                 leftJoyVal = -Robot.oi.leftJoy.smoothGetY();
-                Robot.driveTrain.arcadeDrive(leftJoyVal, -rightJoyVal);
+                if (Robot.oi.driveModeBtn.get()) {
+                    Robot.driveTrain.tankDrive(leftJoyVal, rightYJoyVal);
+                } else {
+                    Robot.driveTrain.arcadeDrive(leftJoyVal, -rightXJoyVal);
+                }
             }
 
         }
