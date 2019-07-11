@@ -144,7 +144,7 @@ public class ClimbFront extends Subsystem {
             if(limitOverrideBtn){ //If comp bot, checks limitSwitch on Rio
                 climbMtr1.set(Speed);
             } else {
-                if(climbTopLimitSwitch.get()){
+                if(!climbTopLimitSwitch.get()){
                     if(Speed < 0){
                         climbMtr1.set(Speed);
                     }
