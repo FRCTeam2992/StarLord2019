@@ -135,14 +135,14 @@ public class Lift extends Subsystem {
             limitSwitchMode = true;
         }
 
-        
+        /*
         if(liftTalon.getSensorCollection().isRevLimitSwitchClosed()){
             //encoder attached directly to liftTalon, fixed sentinal board issues
 
             liftTalon.setSelectedSensorPosition(0);
             
         }
-        
+        */
  
     }
 
