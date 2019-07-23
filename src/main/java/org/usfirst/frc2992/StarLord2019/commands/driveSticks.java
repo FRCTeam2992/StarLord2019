@@ -25,7 +25,7 @@ public class driveSticks extends Command {
 
     final double kDamp = 0.2;         // 20% turn speed dampening
 
-    boolean straightDrive = false;          // Are we attempting to assist w/ straight driving?
+    public static boolean straightDrive = false;          // Are we attempting to assist w/ straight driving? Should be false, will turn true if in straightDrive mode
     final double straightThreshold = 0.1;
     double maxJoy = 0;
     double minJoy = 0;       // Faster than this both stick we straighten assist
@@ -71,47 +71,47 @@ public class driveSticks extends Command {
         double rightX = -Robot.oi.rightJoy.smoothGetX();//for arcade
         double rightY = -Robot.oi.rightJoy.smoothGetY(); //For tank
         double left = -Robot.oi.leftJoy.smoothGetY();
+        double rawRight = Robot.oi.rightJoy.getY();
+        double rawLeft = Robot.oi.leftJoy.getY();
 
-        // Turn dampening for tank drive
-        /*
-        double speeddiff = Math.abs(right - left);
-        right /= 1 + kDamp * speeddiff;
-        left /= 1 + kDamp * speeddiff;
-*/
-        //turn dampening for arcade
-        rightX /= 1 + kDamp;
 
-        // Straight drive assist
-/*
-        maxJoy = Math.max(Math.abs(rawRight), Math.abs(rawLeft));
-        minJoy = Math.min(Math.abs(rawRight), Math.abs(rawLeft));
+        if(Robot.oi.driveModeBtn.get()){ //For tank drive
 
-        deadzone = maxJoy - (maxJoy * .2);
+            // Turn dampening for tank drive
+            double speeddiff = Math.abs(rightY - left);
+            rightY /= 1 + kDamp * speeddiff;
+            left /= 1 + kDamp * speeddiff;
 
-        if (minJoy >= deadzone && ((rawRight > 0 && rawLeft > 0) || (rawRight < 0 && rawLeft < 0))) {
+            // Straight drive assist
+            maxJoy = Math.max(Math.abs(rawRight), Math.abs(rawLeft));
+            minJoy = Math.min(Math.abs(rawRight), Math.abs(rawLeft));
+
+            deadzone = maxJoy - (maxJoy * .2);
+
+            if (minJoy >= deadzone && ((rawRight > 0 && rawLeft > 0) || (rawRight < 0 && rawLeft < 0))) {
             // Driving straight forward or back
-            if (!straightDrive) {
+                if (!straightDrive) {
                 // First cycle so record the angle
-                straightHead = Robot.driveTrain.scaleAngle(Robot.driveTrain.navx.getYaw());
-                straightDrive = true;
-            } 
-            /*else if(rawRight > 0 && rawLeft > 0){
+                    straightHead = Robot.driveTrain.scaleAngle(Robot.driveTrain.navx.getYaw());
+                    straightDrive = true;
+                } 
+                else if(rawRight > 0 && rawLeft > 0){
                 // Not first cycle so we will adjust drive powers
-                right += gkp * Robot.driveTrain.calcGyroError(straightHead);
-                left -= gkp * Robot.driveTrain.calcGyroError(straightHead);
-            }//
-            else {
+                    rightX += gkp * Robot.driveTrain.calcGyroError(straightHead);
+                    left -= gkp * Robot.driveTrain.calcGyroError(straightHead);
+                }//
+                else {
                 // Not first cycle so we will adjust drive powers
                 //same values fwd and back
-                right += gkp * Robot.driveTrain.calcGyroError(straightHead);
-                left -= gkp * Robot.driveTrain.calcGyroError(straightHead);
-            }
-        } else {
+                    rightX += gkp * Robot.driveTrain.calcGyroError(straightHead);
+                    left -= gkp * Robot.driveTrain.calcGyroError(straightHead);
+                }
+            } else {
             // Not trying to drive straight
-            straightDrive = false;
-        }
-*/
-/*
+                straightDrive = false;
+            }
+
+        /* Old test straight drive code? Doesn't seem to fit anywhere
         else if (stickDiff <  -straightThreshold) {
             // Driving straight back
             if (!straightDrive) {
@@ -124,16 +124,25 @@ public class driveSticks extends Command {
                 left -= gkp * Robot.driveTrain.calcGyroError(straightHead);
             }
         }   
-
-        // Force scale motor powers -1 to 1 range
-        double powerMax = Math.max(1.0, Math.max(Math.abs(right), Math.abs(left)));
-        right /= powerMax;
-        left /= powerMax;
 */
+        // Force scale motor powers -1 to 1 range
+            double powerMax = Math.max(1.0, Math.max(Math.abs(rightX), Math.abs(left)));
+            rightX /= powerMax;
+            left /= powerMax;
+
+        } else { //For arcade drive
+            //turn dampening for arcade
+            rightX /= 1 + kDamp;
+        }
+        
+        
+
+
 
         if(Robot.oi.slowSpeedRegulator.get()){  //Set to slower max speed for fine movements
             rightX /= Constants.slowSpeed;
             left /= Constants.slowSpeed;
+            rightY /= Constants.slowSpeed;
         }
 
         if(Robot.oi.rightJoy.getTrigger()){

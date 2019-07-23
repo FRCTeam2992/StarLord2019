@@ -202,9 +202,11 @@ public class Lift extends Subsystem {
 
     public double ChooseCargoHeight(int floor){
         double delta = 0.0;
+        double cargoDelta = 0.0;
         
         if (Robot.isPracBot){
             delta = Constants.cargoDeltaPrac;
+            cargoDelta = Constants.cargoLvl1DeltaPrac;
         } 
 
         switch (floor){
@@ -212,7 +214,7 @@ public class Lift extends Subsystem {
 
             case 1: return Constants.cargoLoadHeight+delta;
 
-            case 2: return Constants.bottomRocketCargoHeight+delta;
+            case 2: return Constants.bottomRocketCargoHeight+delta+cargoDelta; //Has prac delta and level 1 cargo delta
 
             case 3: return Constants.middleRocketCargoHeight+delta;
 

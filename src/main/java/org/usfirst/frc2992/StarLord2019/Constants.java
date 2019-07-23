@@ -56,7 +56,8 @@ public class Constants {
 
     //Lift height delta practice chassis to main chassis
     public static final double cargoDeltaPrac = -1; // Practice chassis cargo heights need to be 2 inches lower
-     
+    public static final double cargoLvl1DeltaPrac = -1; // Practice bot cargo lvl 1 height needs to be lowered by 1 inch
+    
 
 }
 
