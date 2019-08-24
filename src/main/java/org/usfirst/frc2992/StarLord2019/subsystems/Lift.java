@@ -70,6 +70,9 @@ public class Lift extends Subsystem {
         liftTalon.configPeakCurrentLimit(40);
         liftTalon.configPeakCurrentDuration(3000);//ms
         liftTalon.configContinuousCurrentLimit(30);
+        /*if(Robot.isPracBot){
+            liftTalon.setSensorPhase(true);
+        }*/
         //liftTalon.configClearPositionOnLimitR(true, 10); //(clear Posn, TimeoutMS
 
         liftVictor = new WPI_VictorSPX(8);
@@ -198,6 +201,11 @@ public class Lift extends Subsystem {
         
         //liftTalon.set(ControlMode.Position, height);        
         liftTalon.set(ControlMode.MotionMagic, height);
+    }
+
+    public void manualHoldPosition(){
+        moving = false;
+        liftTalon.set(.1);
     }
 
     public double ChooseCargoHeight(int floor){

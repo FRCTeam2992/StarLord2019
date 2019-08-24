@@ -77,6 +77,7 @@ public class OI {
     public JoystickButton liftSetMiddleRocket;
     public JoystickButton liftSetTopRocket;
     public JoystickButton liftSetGround;
+    public JoystickButton liftManualHold;
 
     public JoystickButton gearShiftBtn;
 
@@ -125,6 +126,9 @@ public class OI {
 
         climberOSBtn = new JoystickButton(rightJoy, 6);
         climberOSBtn.whileHeld(new ClimbFrontUp(-.8));
+
+        liftManualHold = new JoystickButton(buttonBox2, 17);
+
 
     //Joystick Btns
         pieceRelJoyBtn = new JoystickButton(rightJoy, 3);

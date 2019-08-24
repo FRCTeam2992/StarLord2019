@@ -291,7 +291,7 @@ public class Robot extends TimedRobot {
         double gyroError = (driveTrain.navx.getRoll() + Constants.rollCorrection);
 
         //PID for climb motors
-        climbFront.ClimbFrontUp(power-(gkp*gyroError));
+        climbFront.ClimbFrontUp((power-(gkp*gyroError))-.1);
         //climbFront.climbMtr1.set(power-(gkp*gyroError));
         climbBack.climbMtr2.set(ControlMode.PercentOutput, power+(gkp*gyroError) + .2);
         

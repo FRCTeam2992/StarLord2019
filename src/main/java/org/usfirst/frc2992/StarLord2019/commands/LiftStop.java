@@ -51,6 +51,13 @@ public class LiftStop extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
+        if(Robot.oi.liftManualHold.get()){
+            if(stopTimer.get() < 30 && !Robot.disabledMode && !Robot.lift.liftTalon.getSensorCollection().isRevLimitSwitchClosed()){
+                Robot.lift.manualHoldPosition();
+            } else {
+                Robot.lift.liftStop();
+            }
+        } else {
         if (stopTimer.get() < 30 && !Robot.oi.limitSwitchOverrideBtn.get() && !Robot.disabledMode ){  //Prevents backdriving on robot
             Robot.lift.holdPosn();
         } else if(stopTimer.get()<30 && Robot.oi.limitSwitchOverrideBtn.get() && !Robot.disabledMode){
@@ -58,6 +65,7 @@ public class LiftStop extends Command {
         } else{
             Robot.lift.liftStop();
         }
+    }
     }
 
     // Make this return true when this Command no longer needs to run execute()
